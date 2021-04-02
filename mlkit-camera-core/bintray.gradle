@@ -1,0 +1,12 @@
+apply plugin: 'com.github.panpf.bintray-publish'
+
+//添加
+publish {
+    userOrg = 'jenly'//bintray.com用户名
+    groupId = 'com.king.mlkit'//jcenter上的路径
+    artifactId = 'mlkit-camera-core'//项目名称
+    publishVersion = app_version.versionName//版本号
+    desc = 'MLKit for Android'//描述
+    website = 'https://github.com/jenly1314/MLKit'//网站
+
+}

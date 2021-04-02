@@ -1,0 +1,8 @@
+include ':mlkit-image-labeling'
+include ':mlkit-object-detection'
+include ':mlkit-text-recognition'
+include ':mlkit-face-detection'
+include ':mlkit-barcode-scanning'
+include ':mlkit-camera-core'
+include ':app'
+rootProject.name = "MLKit"

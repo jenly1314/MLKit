@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion build_versions.compileSdk
+    buildToolsVersion build_versions.buildTools
+    defaultConfig {
+        applicationId "com.king.mlkit.vision.app"
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
+
+    implementation deps.androidx.design
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
+
+    implementation deps.kotlin
+    implementation deps.corektx
+
+    implementation deps.base_util
+    implementation deps.app_dialog
+
+    implementation project(':mlkit-camera-core')
+    implementation project(':mlkit-barcode-scanning')
+    implementation project(':mlkit-face-detection')
+    implementation project(':mlkit-image-labeling')
+    implementation project(':mlkit-object-detection')
+    implementation project(':mlkit-text-recognition')
+}

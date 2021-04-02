@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="ml_camera_status_bar_color">#00000000</color>
+    <color name="ml_camera_navigation_bar_color">#00000000</color>
+</resources>

@@ -13,51 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.text
 
-import android.widget.ImageView
-import com.google.mlkit.vision.barcode.Barcode
+import com.google.mlkit.vision.text.Text
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
-import com.king.mlkit.vision.barcode.BarcodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
-import java.lang.StringBuilder
+import com.king.mlkit.vision.text.TextCameraScanActivity
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-class BarcodeScanningActivity : BarcodeCameraScanActivity() {
-
-    override fun initCameraScan() {
-        super.initCameraScan()
-        cameraScan.setPlayBeep(true)
-            .setVibrate(true)
-    }
-
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
-
+class TextRecognitionActivity : TextCameraScanActivity() {
+    override fun onScanResultCallback(result: AnalyzeResult<Text>) {
         cameraScan.setAnalyzeImage(false)
-        val buffer = StringBuilder()
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
-            for ((index,data) in result.result.withIndex()) {
-                buffer.append("[$index] ").append(data.displayValue).append("\n")
-                canvas.drawRect(data.boundingBox,paint)
-            }
-        }
 
-        val config = AppDialogConfig(this,R.layout.barcode_result_dialog)
-        config.setContent(buffer).setOnClickOk {
+        val config = AppDialogConfig(this)
+        config.setContent(result.result.text)
+            .setOnClickOk {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)
             }.setOnClickCancel {
                 AppDialog.INSTANCE.dismissDialog()
                 finish()
             }
-        val imageView = config.getView<ImageView>(R.id.ivDialogContent)
-        imageView.setImageBitmap(bitmap)
         AppDialog.INSTANCE.showDialog(config)
-
     }
-
-
 }

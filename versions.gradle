@@ -70,6 +70,9 @@ deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:16.1.1"
 deps.google_mlkit_face_detection = "com.google.mlkit:face-detection:16.0.6"
 deps.google_mlkit_image_labeling = "com.google.mlkit:image-labeling:17.0.3"
 deps.google_mlkit_object_detection = "com.google.mlkit:object-detection:16.2.3"
+deps.google_mlkit_pose_detection = "com.google.mlkit:pose-detection:17.0.1-beta3"
+deps.google_mlkit_pose_detection_accurate = "com.google.mlkit:pose-detection-accurate:17.0.1-beta3"
+deps.google_mlkit_segmentation_selfie = "com.google.mlkit:segmentation-selfie:16.0.0-beta1"
 deps.google_gms_text_recognition = "com.google.android.gms:play-services-mlkit-text-recognition:16.1.3"
 
 

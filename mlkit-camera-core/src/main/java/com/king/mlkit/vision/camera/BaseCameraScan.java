@@ -141,6 +141,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     private void initData(){
         mResultLiveData = new MutableLiveData<>();
         mResultLiveData.observe(mLifecycleOwner, result -> {
+            isAnalyzeResult = false;
             if(result != null){
                 handleAnalyzeResult(result);
             }else if(mOnScanResultCallback != null){
@@ -277,6 +278,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST));
                 imageAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), image -> {
                     if(isAnalyze && !isAnalyzeResult && mAnalyzer != null){
+                        isAnalyzeResult = true;
                         mAnalyzer.analyze(image,mOnAnalyzeListener);
                     }
                     image.close();
@@ -302,12 +304,11 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         if(isAnalyzeResult || !isAnalyze){
             return;
         }
-        isAnalyzeResult = true;
+
         if(mBeepManager != null){
             mBeepManager.playBeepSoundAndVibrate();
         }
 
-        isAnalyzeResult = false;
         if(mOnScanResultCallback != null){
             mOnScanResultCallback.onScanResultCallback(result);
         }

@@ -57,5 +57,8 @@ dependencies {
     implementation project(':mlkit-face-detection')
     implementation project(':mlkit-image-labeling')
     implementation project(':mlkit-object-detection')
+    implementation project(':mlkit-pose-detection')
+    implementation project(':mlkit-pose-detection-accurate')
+    implementation project(':mlkit-segmentation-selfie')
     implementation project(':mlkit-text-recognition')
 }

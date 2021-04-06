@@ -1,91 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="QRCode scanning"
+            style="@style/OnClick"/>
 
-    <Button
-        android:id="@+id/btn0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="QRCode scanning"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Barcode scanning"
+            style="@style/OnClick"/>
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="Barcode scanning"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn0"
-        style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Barcode recognition from image"
+            style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="High-accuracy landmark detection"
+            style="@style/OnClick"/>
 
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="Face detection"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn1"
-        style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Multiple face detection"
+            style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Image labeling"
+            style="@style/OnClick"/>
 
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="Image labeling"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn2"
-        style="@style/OnClick"/>
-    <Button
-        android:id="@+id/btn4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="Object detection"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn3"
-        style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Object detection and tracking"
+            style="@style/OnClick"/>
 
-    <Button
-        android:id="@+id/btn5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="Text recognition"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn4"
-        style="@style/OnClick"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Multiple object detection"
+            style="@style/OnClick"/>
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Pose detection"
+            style="@style/OnClick"/>
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Pose detection accurate"
+            style="@style/OnClick"/>
+
+        <Button
+            android:id="@+id/btn10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Selfie segmentation"
+            style="@style/OnClick"/>
+
+        <Button
+            android:id="@+id/btn11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Text recognition"
+            style="@style/OnClick"/>
+
+    </LinearLayout>
+</ScrollView>

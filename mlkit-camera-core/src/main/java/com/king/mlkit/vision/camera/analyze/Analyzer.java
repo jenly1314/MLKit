@@ -32,7 +32,7 @@ public interface Analyzer<T> {
     void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<T>> listener);
 
 
-    interface OnAnalyzeListener<T>{
+    public interface OnAnalyzeListener<T>{
         void onSuccess(@NonNull T result);
         void onFailure();
     }

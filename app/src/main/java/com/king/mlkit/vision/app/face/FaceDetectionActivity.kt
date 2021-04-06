@@ -13,30 +13,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.face
 
-import com.google.mlkit.vision.text.Text
+import android.widget.ImageView
+import com.google.mlkit.vision.face.Face
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.mlkit.vision.app.R
+import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.camera.AnalyzeResult
-import com.king.mlkit.vision.text.TextCameraScanActivity
+import com.king.mlkit.vision.face.FaceCameraScanActivity
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-class TextRecognitionActivity : TextCameraScanActivity() {
-    override fun onScanResultCallback(result: AnalyzeResult<Text>) {
-        cameraScan.setAnalyzeImage(false)
+open class FaceDetectionActivity : FaceCameraScanActivity() {
 
-        val config = AppDialogConfig(this)
-        config.setContent(result.result.text)
-            .setOnClickOk {
+
+
+    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Face>>) {
+        cameraScan.setAnalyzeImage(false)
+        val bitmap = result.bitmap.drawRect {canvas,paint ->
+            for (data in result.result) {
+                canvas.drawRect(data.boundingBox,paint)
+
+                data.allContours
+                for(contour in data.allContours){
+                    for (point in contour.points){
+                        canvas.drawCircle(point.x,point.y,2f,paint)
+                    }
+                }
+            }
+        }
+
+        val config = AppDialogConfig(this, R.layout.result_dialog)
+        config.setOnClickOk {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)
             }.setOnClickCancel {
                 AppDialog.INSTANCE.dismissDialog()
                 finish()
             }
+        val imageView = config.getView<ImageView>(R.id.ivDialogContent)
+        imageView.setImageBitmap(bitmap)
         AppDialog.INSTANCE.showDialog(config)
     }
 }

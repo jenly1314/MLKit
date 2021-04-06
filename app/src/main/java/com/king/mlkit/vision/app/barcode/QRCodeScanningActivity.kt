@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.barcode
 
 import android.widget.ImageView
 import com.google.mlkit.vision.barcode.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.mlkit.vision.app.R
+import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
 import java.lang.StringBuilder
@@ -49,7 +51,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
             }
         }
 
-        val config = AppDialogConfig(this,R.layout.barcode_result_dialog)
+        val config = AppDialogConfig(this, R.layout.barcode_result_dialog)
         config.setContent(buffer).setOnClickOk {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)

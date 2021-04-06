@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.image
 
 import com.google.mlkit.vision.label.ImageLabel
 import com.king.app.dialog.AppDialog

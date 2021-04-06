@@ -15,7 +15,6 @@
  */
 package com.king.mlkit.vision.barcode;
 
-import android.content.Intent;
 
 import androidx.annotation.Nullable;
 

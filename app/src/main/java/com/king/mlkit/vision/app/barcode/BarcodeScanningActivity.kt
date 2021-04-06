@@ -13,29 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.barcode
 
 import android.widget.ImageView
-import com.google.mlkit.vision.objects.DetectedObject
+import com.google.mlkit.vision.barcode.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
-import com.king.mlkit.vision.`object`.ObjectCameraScanActivity
+import com.king.mlkit.vision.app.R
+import com.king.mlkit.vision.app.drawRect
+import com.king.mlkit.vision.barcode.BarcodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
+import java.lang.StringBuilder
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-class ObjectDetectionActivity : ObjectCameraScanActivity() {
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<DetectedObject>>) {
+class BarcodeScanningActivity : BarcodeCameraScanActivity() {
+
+    override fun initCameraScan() {
+        super.initCameraScan()
+        cameraScan.setPlayBeep(true)
+            .setVibrate(true)
+    }
+
+    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
+
         cameraScan.setAnalyzeImage(false)
+        val buffer = StringBuilder()
         val bitmap = result.bitmap.drawRect {canvas,paint ->
-            for (data in result.result) {
+            for ((index,data) in result.result.withIndex()) {
+                buffer.append("[$index] ").append(data.displayValue).append("\n")
                 canvas.drawRect(data.boundingBox,paint)
             }
         }
 
-        val config = AppDialogConfig(this,R.layout.result_dialog)
-        config.setOnClickOk {
+        val config = AppDialogConfig(this, R.layout.barcode_result_dialog)
+        config.setContent(buffer).setOnClickOk {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)
             }.setOnClickCancel {
@@ -45,5 +58,8 @@ class ObjectDetectionActivity : ObjectCameraScanActivity() {
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
         AppDialog.INSTANCE.showDialog(config)
+
     }
+
+
 }

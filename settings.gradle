@@ -1,3 +1,6 @@
+include ':mlkit-segmentation-selfie'
+include ':mlkit-pose-detection-accurate'
+include ':mlkit-pose-detection'
 include ':mlkit-image-labeling'
 include ':mlkit-object-detection'
 include ':mlkit-text-recognition'

@@ -89,7 +89,7 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 allprojects {
     repositories {
         //...
-        maven { url 'https://dl.bintray.com/jenly/maven' }
+        maven { url 'https://jitpack.io' }
     }
 }
 ```

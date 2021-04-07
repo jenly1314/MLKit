@@ -127,7 +127,7 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.0'
 
 ## 特别说明
 
-关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[MLKit](https://github.com/jenly1314/MLKit)抽离修改而成，所以在Camera预览相关API的使用上有很高的相似度。
+关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[ZXingLite](https://github.com/jenly1314/ZXingLite)抽离修改而成，所以在Camera预览相关API的使用上有很高的相似度。
 各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义扩展去实现。
 
 ## 示例

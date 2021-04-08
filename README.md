@@ -14,6 +14,7 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 基于现有的API您可以很轻松的实现文字识别、条码识别、图像标记、人脸检测、对象检测等功能；另一方面，如果您是一位经验丰富的ML开发人员，ML kit甚至提供了便利的API，可帮助您在移动应用中使用自定义的TensorFlow Lit模型。
 
 ## GIF 展示
+
 因为功能太多，暂时没有录制GIF，请直接下载[Demo App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)查看并体验吧。
 
 

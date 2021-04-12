@@ -180,9 +180,19 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         LogUtils.d(String.format("screenSize: %d * %d",mScreenWidth,mScreenHeight));
         //因为为了保持流畅性和性能，限制在1080p，在此前提下尽可能的找到屏幕接近的分辨率
         if(mScreenWidth < mScreenHeight){
-            mTargetSize = new Size(mScreenWidth,mScreenWidth / 9 * 16);
+            float ratio =  mScreenWidth / (float)mScreenHeight;
+            if(ratio > 0.7){//一般应用于平板
+                mTargetSize = new Size(mScreenWidth,mScreenWidth / 3 * 4);
+            }else{
+                mTargetSize = new Size(mScreenWidth,mScreenWidth / 9 * 16);
+            }
         }else{
-            mTargetSize = new Size(mScreenHeight / 9 * 16, mScreenHeight);
+            float ratio = mScreenHeight / (float)mScreenWidth;
+            if(ratio > 0.7){//一般应用于平板
+                mTargetSize = new Size(mScreenHeight / 3 * 4, mScreenHeight);
+            }else{
+                mTargetSize = new Size(mScreenHeight / 9 * 16, mScreenHeight);
+            }
         }
 
         mBeepManager = new BeepManager(mContext);
@@ -265,7 +275,8 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         mCameraProviderFuture.addListener(() -> {
 
             try{
-                Preview preview = mCameraConfig.options(new Preview.Builder().setTargetResolution(mTargetSize));
+                Preview preview = mCameraConfig.options(new Preview.Builder()
+                        .setTargetResolution(mTargetSize));
 
                 //相机选择器
                 CameraSelector cameraSelector = mCameraConfig.options(new CameraSelector.Builder());

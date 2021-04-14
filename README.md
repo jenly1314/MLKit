@@ -1,6 +1,7 @@
 # MLKit
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)
+[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314.MLKit/mlkit-camera-core)](https://repo1.maven.org/maven2/com/github/jenly1314/MLKit)
 [![JitPack](https://jitpack.io/v/jenly1314/MLKit.svg)](https://jitpack.io/#jenly1314/MLKit)
 [![CI](https://travis-ci.org/jenly1314/MLKit.svg?branch=master)](https://travis-ci.org/jenly1314/MLKit)
 [![CircleCI](https://circleci.com/gh/jenly1314/MLKit.svg?style=svg)](https://circleci.com/gh/jenly1314/MLKit)
@@ -81,11 +82,22 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 
 ## 引入
 
-由于2021年2月3日 **JFrog宣布将关闭Bintray和JCenter，计划在2022年2月完全关闭。** 所以本项目的开源库只发布到了 **JitPack** 仓库
+由于2021年2月3日 **JFrog宣布将关闭Bintray和JCenter，计划在2022年2月完全关闭。** 所以本项目的aar只发布到了**Maven Central** 和 **JitPack** 仓库
 
 ### Gradle:
 
-1. 在Project的 **build.gradle** 里面添加 **JitPack** 的仓库
+1. 在Project的 **build.gradle** 里面添加远程仓库  
+          
+```gradle
+allprojects {
+    repositories {
+        //...
+        mavenCentral()
+    }
+}
+```
+或
+
 ```gradle
 allprojects {
     repositories {
@@ -94,6 +106,7 @@ allprojects {
     }
 }
 ```
+
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 ```gradle
 

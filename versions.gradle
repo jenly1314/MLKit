@@ -28,6 +28,7 @@ versions.runner = "1.2.0"
 versions.espresso = "3.3.0"
 
 versions.bintrayPublish = '1.0.0'
+versions.mavenPublish = '0.13.0'
 
 versions.gralde = "4.1.3"
 versions.kotlin = "1.4.30"
@@ -83,6 +84,7 @@ ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
     handler.google()
+    handler.mavenCentral()
     handler.jcenter()
     handler.maven { url 'https://jitpack.io' }
 }

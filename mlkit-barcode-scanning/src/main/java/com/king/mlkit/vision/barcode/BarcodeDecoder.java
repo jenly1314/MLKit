@@ -18,8 +18,10 @@ package com.king.mlkit.vision.barcode;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.barcode.Barcode;
@@ -31,6 +33,7 @@ import com.king.mlkit.vision.camera.analyze.Analyzer;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.regex.Pattern;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -99,6 +102,7 @@ public class BarcodeDecoder {
         return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(fromBitmap(bitmap));
     }
 
+
     public static Task<List<Barcode>> process(InputImage inputImage,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
         return BarcodeScanning.getClient().process(inputImage).addOnSuccessListener(result -> {
             if(listener != null){
@@ -143,5 +147,31 @@ public class BarcodeDecoder {
 
     public static Task<List<Barcode>> process(InputImage inputImage, @Barcode.BarcodeFormat int format,@Barcode.BarcodeFormat int... formats){
         return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(inputImage);
+    }
+
+    /**
+     * 获取条码信息，通过遍历{@param barcodeList}找到与正则{@param regex}匹配的条码
+     * @param barcodeList 条码列表
+     * @param regex 正则
+     * @param allowDefault 是否允许默认返回
+     *                     为true表示允许，则在没有找到与正则匹配的的条码时，默认返回第0个位置的条码
+     *                     为false表示不允许，则在没有找到与正则匹配的条码识，返回空
+     * @return
+     */
+    public static Barcode getBarcode(List<Barcode> barcodeList, @Nullable String regex,boolean allowDefault){
+        if(barcodeList != null && !barcodeList.isEmpty()){
+            if(!TextUtils.isEmpty(regex)){//如果正则不为空
+                for(Barcode barcode : barcodeList){
+                    if(Pattern.matches(regex,barcode.getRawValue())){//通过遍历找到与正则匹配的条码
+                        return barcode;
+                    }
+                }
+            }
+            if(allowDefault){//如果允许默认，则在没有找到与正则匹配的的条码时，默认返回第0个位置的条码
+                return barcodeList.get(0);
+            }
+        }
+
+        return null;
     }
 }

@@ -25,8 +25,6 @@ public class LogUtils {
 
     public static final String TAG = "MLKit";
 
-    public static final String COLON = ":";
-
     public static final String VERTICAL = "|";
 
     /** 是否显示Log日志 */
@@ -70,7 +68,7 @@ public class LogUtils {
      */
     public static final int ASSERT = 7;
 
-    public static final String TAG_FORMAT = "%s.%s(L:%d)";
+    public static final String TAG_FORMAT = "%s.%s(%s:%d)";
 
     private LogUtils(){
         throw new AssertionError();
@@ -98,13 +96,13 @@ public class LogUtils {
 
     /**
      * 根据堆栈生成TAG
-     * @return TAG|className.methodName(L:lineNumber)
+     * @return TAG|className.methodName(fileName:lineNumber)
      */
     private static String generateTag(StackTraceElement caller) {
         String tag = TAG_FORMAT;
         String callerClazzName = caller.getClassName();
         callerClazzName = callerClazzName.substring(callerClazzName.lastIndexOf(".") + 1);
-        tag = String.format(tag,new Object[] { callerClazzName, caller.getMethodName(),Integer.valueOf(caller.getLineNumber()) });
+        tag = String.format(tag,new Object[] { callerClazzName, caller.getMethodName(),caller.getFileName(),Integer.valueOf(caller.getLineNumber()) });
         return new StringBuilder().append(TAG).append(VERTICAL).append(tag).toString();
     }
 

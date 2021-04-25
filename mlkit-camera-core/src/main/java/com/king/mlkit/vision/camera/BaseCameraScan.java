@@ -177,7 +177,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         mScreenWidth = displayMetrics.widthPixels;
         mScreenHeight = displayMetrics.heightPixels;
 
-        LogUtils.d(String.format("screenSize: %d * %d",mScreenWidth,mScreenHeight));
+        LogUtils.d(String.format("displayMetrics:%dx%d",mScreenWidth,mScreenHeight));
         //因为为了保持流畅性和性能，限制在1080p，在此前提下尽可能的找到屏幕接近的分辨率
         if(mScreenWidth < mScreenHeight){
             float ratio =  mScreenWidth / (float)mScreenHeight;
@@ -194,6 +194,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
                 mTargetSize = new Size(mScreenHeight / 9 * 16, mScreenHeight);
             }
         }
+        LogUtils.d("targetSize:" + mTargetSize);
 
         mBeepManager = new BeepManager(mContext);
         mAmbientLightManager = new AmbientLightManager(mContext);

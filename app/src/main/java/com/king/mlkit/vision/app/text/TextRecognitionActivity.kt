@@ -15,9 +15,12 @@
  */
 package com.king.mlkit.vision.app.text
 
+import android.text.method.ScrollingMovementMethod
+import android.widget.TextView
 import com.google.mlkit.vision.text.Text
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.text.TextCameraScanActivity
 
@@ -28,7 +31,8 @@ class TextRecognitionActivity : TextCameraScanActivity() {
     override fun onScanResultCallback(result: AnalyzeResult<Text>) {
         cameraScan.setAnalyzeImage(false)
 
-        val config = AppDialogConfig(this)
+        val config = AppDialogConfig(this, R.layout.text_result_dialog)
+        config.getView<TextView>(R.id.tvDialogContent).movementMethod = ScrollingMovementMethod.getInstance()
         config.setContent(result.result.text)
             .setOnClickOk {
                 AppDialog.INSTANCE.dismissDialog()
@@ -37,6 +41,6 @@ class TextRecognitionActivity : TextCameraScanActivity() {
                 AppDialog.INSTANCE.dismissDialog()
                 finish()
             }
-        AppDialog.INSTANCE.showDialog(config)
+        AppDialog.INSTANCE.showDialog(config,false)
     }
 }

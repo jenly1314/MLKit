@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MLKit">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,36 +28,47 @@
         </activity>
 
         <activity android:name=".barcode.QRCodeScanningActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".barcode.BarcodeScanningActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".face.FaceDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".face.MultipleFaceDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".image.ImageLabelingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".object.ObjectDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".object.MultipleObjectDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".pose.PoseDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".pose.AccuratePoseDetectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".segmentation.SelfieSegmentationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".text.TextRecognitionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
         <meta-data

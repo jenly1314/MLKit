@@ -40,6 +40,6 @@ class ImageLabelingActivity : ImageCameraScanActivity() {
             AppDialog.INSTANCE.dismissDialog()
             finish()
         }
-        AppDialog.INSTANCE.showDialog(config)
+        AppDialog.INSTANCE.showDialog(config,false)
     }
 }

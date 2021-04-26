@@ -61,7 +61,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
             }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config)
+        AppDialog.INSTANCE.showDialog(config,false)
 
     }
 

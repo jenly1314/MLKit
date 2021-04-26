@@ -28,7 +28,7 @@ class SelfieSegmentationActivity : SegmentationCameraScanActivity() {
         }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(processBitmap(result))
-        AppDialog.INSTANCE.showDialog(config)
+        AppDialog.INSTANCE.showDialog(config,false)
     }
 
     private fun processBitmap(result: AnalyzeResult<SegmentationMask>): Bitmap{

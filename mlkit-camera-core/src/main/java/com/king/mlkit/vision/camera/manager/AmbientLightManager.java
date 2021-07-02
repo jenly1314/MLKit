@@ -81,9 +81,9 @@ public class AmbientLightManager implements SensorEventListener {
                 float lightLux = sensorEvent.values[0];
                 mOnLightSensorEventListener.onSensorChanged(lightLux);
                 if (lightLux <= darkLightLux) {
-                    mOnLightSensorEventListener.onSensorChanged(true,darkLightLux);
+                    mOnLightSensorEventListener.onSensorChanged(true,lightLux);
                 } else if (lightLux >= brightLightLux) {
-                    mOnLightSensorEventListener.onSensorChanged(false,darkLightLux);
+                    mOnLightSensorEventListener.onSensorChanged(false,lightLux);
                 }
             }
         }

@@ -111,31 +111,31 @@ allprojects {
 ```gradle
 
 //Camera核心 (*必须项)
-implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.0.1'
 
 //条码识别 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.0.1'
 
 //人脸检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.0.1'
 
 //图像标记 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.0.1'
 
 //对象检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.0.1'
 
 //Pose检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.0.1'
 
 //Pose检测精确版 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.0.1'
 
 //自拍分割 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.0.1'
 
 //文字识别 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.1'
 
 ```
 

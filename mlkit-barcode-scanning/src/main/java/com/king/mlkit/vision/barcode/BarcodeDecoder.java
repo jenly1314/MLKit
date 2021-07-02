@@ -56,8 +56,13 @@ public class BarcodeDecoder {
         return InputImage.fromBitmap(bitmap,rotation);
     }
 
-    public static Task<List<Barcode>> process(Bitmap bitmap, Analyzer.OnAnalyzeListener<List<Barcode>> listener){
-        return BarcodeScanning.getClient().process(fromBitmap(bitmap)).addOnSuccessListener(result -> {
+
+    public static Task<List<Barcode>> process(Bitmap bitmap,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
+        return process(bitmap,listener, Barcode.FORMAT_ALL_FORMATS);
+    }
+
+    public static Task<List<Barcode>> process(Bitmap bitmap, Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format,@Barcode.BarcodeFormat int... formats){
+        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(fromBitmap(bitmap)).addOnSuccessListener(result -> {
             if(listener != null){
                 if(result == null || result.isEmpty()){
                     listener.onFailure();
@@ -74,7 +79,11 @@ public class BarcodeDecoder {
     }
 
     public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull Executor executor,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
-        return BarcodeScanning.getClient().process(fromBitmap(bitmap)).addOnSuccessListener(executor,result -> {
+        return process(bitmap,executor,listener, Barcode.FORMAT_ALL_FORMATS);
+    }
+
+    public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull Executor executor,Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format,@Barcode.BarcodeFormat int... formats){
+        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(fromBitmap(bitmap)).addOnSuccessListener(executor,result -> {
             if(listener != null){
                 if(result == null || result.isEmpty()){
                     listener.onFailure();
@@ -83,7 +92,7 @@ public class BarcodeDecoder {
                 }
             }
 
-        }).addOnFailureListener(e -> {
+        }).addOnFailureListener(executor, e -> {
             if(listener != null){
                 listener.onFailure();
             }
@@ -102,9 +111,13 @@ public class BarcodeDecoder {
         return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(fromBitmap(bitmap));
     }
 
-
     public static Task<List<Barcode>> process(InputImage inputImage,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
-        return BarcodeScanning.getClient().process(inputImage).addOnSuccessListener(result -> {
+        return process(inputImage,listener, Barcode.FORMAT_ALL_FORMATS);
+    }
+
+
+    public static Task<List<Barcode>> process(InputImage inputImage,Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format,@Barcode.BarcodeFormat int... formats){
+        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(inputImage).addOnSuccessListener(result -> {
             if(listener != null){
                 if(result == null || result.isEmpty()){
                     listener.onFailure();
@@ -121,7 +134,11 @@ public class BarcodeDecoder {
     }
 
     public static Task<List<Barcode>> process(InputImage inputImage, @NonNull Executor executor,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
-        return BarcodeScanning.getClient().process(inputImage).addOnSuccessListener(executor,result -> {
+        return process(inputImage,executor,listener, Barcode.FORMAT_ALL_FORMATS);
+    }
+
+    public static Task<List<Barcode>> process(InputImage inputImage, @NonNull Executor executor,Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format,@Barcode.BarcodeFormat int... formats){
+        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format,formats).build()).process(inputImage).addOnSuccessListener(executor,result -> {
             if(listener != null){
                 if(result == null ){
                     listener.onFailure();
@@ -130,7 +147,7 @@ public class BarcodeDecoder {
                 }
             }
 
-        }).addOnFailureListener(e -> {
+        }).addOnFailureListener(executor, e -> {
             if(listener != null){
                 listener.onFailure();
             }

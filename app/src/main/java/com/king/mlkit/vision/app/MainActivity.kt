@@ -23,6 +23,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.barcode.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
@@ -47,6 +48,8 @@ import java.lang.StringBuilder
 
 
 class MainActivity : AppCompatActivity() {
+
+    var isQRCode = false
 
     companion object{
 
@@ -80,7 +83,8 @@ class MainActivity : AppCompatActivity() {
     private fun processPhoto(data: Intent?){
         data?.let {
             try{
-                val src = BitmapFactory.decodeFile(UriUtils.getPath(getContext(),data.data))
+                val src = MediaStore.Images.Media.getBitmap(contentResolver,it.data)
+//                val src = BitmapFactory.decodeFile(UriUtils.getPath(getContext(),data.data))
                 BarcodeDecoder.process(src, object : OnAnalyzeListener<List<Barcode>?> {
                     override fun onSuccess(result: List<Barcode>) {
                         if(result?.isNotEmpty()){
@@ -110,9 +114,11 @@ class MainActivity : AppCompatActivity() {
                         LogUtils.d("onFailure")
                         ToastUtils.showToast(getContext(),"onFailure")
                     }
-                })
+                //如果指定具体的识别条码类型，速度会更快
+                },if(isQRCode) Barcode.FORMAT_QR_CODE else Barcode.FORMAT_ALL_FORMATS)
             }catch (e: Exception){
-
+                e.printStackTrace()
+                ToastUtils.showToast(getContext(),e.message)
             }
 
         }
@@ -122,7 +128,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, cls))
     }
 
-    private fun pickPhotoClicked(){
+    private fun pickPhotoClicked(isQRCode: Boolean){
+        this.isQRCode = isQRCode
         if(PermissionUtils.checkPermission(getContext(),Manifest.permission.READ_EXTERNAL_STORAGE)){
             startPickPhoto()
         }else{
@@ -142,16 +149,17 @@ class MainActivity : AppCompatActivity() {
         when (v.id){
             R.id.btn0 -> startActivity(QRCodeScanningActivity::class.java)
             R.id.btn1 -> startActivity(BarcodeScanningActivity::class.java)
-            R.id.btn2 -> pickPhotoClicked()
-            R.id.btn3 -> startActivity(FaceDetectionActivity::class.java)
-            R.id.btn4 -> startActivity(MultipleFaceDetectionActivity::class.java)
-            R.id.btn5 -> startActivity(ImageLabelingActivity::class.java)
-            R.id.btn6 -> startActivity(ObjectDetectionActivity::class.java)
-            R.id.btn7 -> startActivity(MultipleObjectDetectionActivity::class.java)
-            R.id.btn8 -> startActivity(PoseDetectionActivity::class.java)
-            R.id.btn9 -> startActivity(AccuratePoseDetectionActivity::class.java)
-            R.id.btn10 -> startActivity(SelfieSegmentationActivity::class.java)
-            R.id.btn11 -> startActivity(TextRecognitionActivity::class.java)
+            R.id.btn2 -> pickPhotoClicked(true)
+            R.id.btn3 -> pickPhotoClicked(false)
+            R.id.btn4 -> startActivity(FaceDetectionActivity::class.java)
+            R.id.btn5 -> startActivity(MultipleFaceDetectionActivity::class.java)
+            R.id.btn6 -> startActivity(ImageLabelingActivity::class.java)
+            R.id.btn7 -> startActivity(ObjectDetectionActivity::class.java)
+            R.id.btn8 -> startActivity(MultipleObjectDetectionActivity::class.java)
+            R.id.btn9 -> startActivity(PoseDetectionActivity::class.java)
+            R.id.btn10 -> startActivity(AccuratePoseDetectionActivity::class.java)
+            R.id.btn11 -> startActivity(SelfieSegmentationActivity::class.java)
+            R.id.btn12 -> startActivity(TextRecognitionActivity::class.java)
         }
     }
 

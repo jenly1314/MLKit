@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.CameraSelector;
 
 import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.mlkit.vision.camera.config.CameraConfig;
 
 
 /**

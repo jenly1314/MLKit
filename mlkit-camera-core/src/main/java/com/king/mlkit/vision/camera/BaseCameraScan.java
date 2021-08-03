@@ -16,8 +16,6 @@
 package com.king.mlkit.vision.camera;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
-import android.util.Size;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -43,6 +41,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig;
+import com.king.mlkit.vision.camera.config.CameraConfig;
 import com.king.mlkit.vision.camera.manager.AmbientLightManager;
 import com.king.mlkit.vision.camera.manager.BeepManager;
 import com.king.mlkit.vision.camera.util.LogUtils;
@@ -99,15 +99,10 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     private BeepManager mBeepManager;
     private AmbientLightManager mAmbientLightManager;
 
-    private int mOrientation;
-    private int mScreenWidth;
-    private int mScreenHeight;
-    private long mLastAutoZoomTime;
     private long mLastHoveTapTime;
     private boolean isClickTap;
     private float mDownX;
     private float mDownY;
-    private Size mTargetSize;
 
     public BaseCameraScan(@NonNull FragmentActivity activity, @NonNull  PreviewView previewView){
         this.mFragmentActivity = activity;
@@ -162,8 +157,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
             }
         };
 
-        mOrientation = mContext.getResources().getConfiguration().orientation;
-
         ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(mContext, mOnScaleGestureListener);
         mPreviewView.setOnTouchListener((v, event) -> {
             handlePreviewViewClickTap(event);
@@ -173,28 +166,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
             return false;
         });
 
-        DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
-        mScreenWidth = displayMetrics.widthPixels;
-        mScreenHeight = displayMetrics.heightPixels;
-
-        LogUtils.d(String.format("displayMetrics:%dx%d",mScreenWidth,mScreenHeight));
-        //因为为了保持流畅性和性能，限制在1080p，在此前提下尽可能的找到屏幕接近的分辨率
-        if(mScreenWidth < mScreenHeight){
-            float ratio =  mScreenWidth / (float)mScreenHeight;
-            if(ratio > 0.7){//一般应用于平板
-                mTargetSize = new Size(mScreenWidth,mScreenWidth / 3 * 4);
-            }else{
-                mTargetSize = new Size(mScreenWidth,mScreenWidth / 9 * 16);
-            }
-        }else{
-            float ratio = mScreenHeight / (float)mScreenWidth;
-            if(ratio > 0.7){//一般应用于平板
-                mTargetSize = new Size(mScreenHeight / 3 * 4, mScreenHeight);
-            }else{
-                mTargetSize = new Size(mScreenHeight / 9 * 16, mScreenHeight);
-            }
-        }
-        LogUtils.d("targetSize:" + mTargetSize);
 
         mBeepManager = new BeepManager(mContext);
         mAmbientLightManager = new AmbientLightManager(mContext);
@@ -256,7 +227,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
 
     private void initConfig(){
         if(mCameraConfig == null){
-            mCameraConfig = new CameraConfig();
+            mCameraConfig = new AspectRatioCameraConfig(mContext);
         }
     }
 
@@ -276,8 +247,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         mCameraProviderFuture.addListener(() -> {
 
             try{
-                Preview preview = mCameraConfig.options(new Preview.Builder()
-                        .setTargetResolution(mTargetSize));
+                Preview preview = mCameraConfig.options(new Preview.Builder());
 
                 //相机选择器
                 CameraSelector cameraSelector = mCameraConfig.options(new CameraSelector.Builder());
@@ -286,7 +256,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
 
                 //图像分析
                 ImageAnalysis imageAnalysis = mCameraConfig.options(new ImageAnalysis.Builder()
-                        .setTargetResolution(mTargetSize)
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST));
                 imageAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), image -> {
                     if(isAnalyze && !isAnalyzeResult && mAnalyzer != null){

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.camera;
+package com.king.mlkit.vision.camera.config;
 
 import androidx.annotation.NonNull;
 import androidx.camera.core.CameraSelector;
@@ -22,6 +22,9 @@ import androidx.camera.core.Preview;
 
 /**
  * 相机配置：主要用于提供相机预览时可自定义一些配置，便于扩展
+ * 你也可以直接使用内置定义的相机配置
+ * {@link AspectRatioCameraConfig}
+ * {@link ResolutionCameraConfig}
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class CameraConfig {

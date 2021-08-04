@@ -27,7 +27,7 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
 
 /**
- * 相机配置：根据纵横比配置相机，理论适配所有Android设备
+ * 相机配置：根据纵横比配置相机，使输出分析的图像尽可能的接近屏幕比例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public final class AspectRatioCameraConfig extends CameraConfig {
@@ -57,7 +57,6 @@ public final class AspectRatioCameraConfig extends CameraConfig {
     @NonNull
     @Override
     public Preview options(@NonNull Preview.Builder builder) {
-        builder.setTargetAspectRatio(mAspectRatio);
         return super.options(builder);
     }
 

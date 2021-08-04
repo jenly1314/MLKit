@@ -49,7 +49,6 @@ dependencies {
     implementation deps.kotlin
     implementation deps.corektx
 
-    implementation deps.base_util
     implementation deps.app_dialog
 
     implementation project(':mlkit-camera-core')

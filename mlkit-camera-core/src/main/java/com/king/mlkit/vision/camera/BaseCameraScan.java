@@ -41,7 +41,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig;
 import com.king.mlkit.vision.camera.config.CameraConfig;
 import com.king.mlkit.vision.camera.manager.AmbientLightManager;
 import com.king.mlkit.vision.camera.manager.BeepManager;
@@ -227,7 +226,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
 
     private void initConfig(){
         if(mCameraConfig == null){
-            mCameraConfig = new AspectRatioCameraConfig(mContext);
+            mCameraConfig = new CameraConfig();
         }
     }
 

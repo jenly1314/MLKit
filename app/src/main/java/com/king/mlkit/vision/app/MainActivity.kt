@@ -17,18 +17,15 @@ package com.king.mlkit.vision.app
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.barcode.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
-import com.king.base.util.ToastUtils
-import com.king.base.util.UriUtils
 import com.king.mlkit.vision.app.`object`.MultipleObjectDetectionActivity
 import com.king.mlkit.vision.app.`object`.ObjectDetectionActivity
 import com.king.mlkit.vision.app.barcode.BarcodeScanningActivity
@@ -84,7 +81,6 @@ class MainActivity : AppCompatActivity() {
         data?.let {
             try{
                 val src = MediaStore.Images.Media.getBitmap(contentResolver,it.data)
-//                val src = BitmapFactory.decodeFile(UriUtils.getPath(getContext(),data.data))
                 BarcodeDecoder.process(src, object : OnAnalyzeListener<List<Barcode>?> {
                     override fun onSuccess(result: List<Barcode>) {
                         if(result?.isNotEmpty()){
@@ -107,18 +103,18 @@ class MainActivity : AppCompatActivity() {
                             AppDialog.INSTANCE.showDialog(config)
                         }else{
                             LogUtils.d("result is null")
-                            ToastUtils.showToast(getContext(),"result is null")
+                            Toast.makeText(getContext(),"result is null", Toast.LENGTH_SHORT).show()
                         }
                     }
                     override fun onFailure() {
                         LogUtils.d("onFailure")
-                        ToastUtils.showToast(getContext(),"onFailure")
+                        Toast.makeText(getContext(),"onFailure", Toast.LENGTH_SHORT).show()
                     }
                 //如果指定具体的识别条码类型，速度会更快
                 },if(isQRCode) Barcode.FORMAT_QR_CODE else Barcode.FORMAT_ALL_FORMATS)
             }catch (e: Exception){
                 e.printStackTrace()
-                ToastUtils.showToast(getContext(),e.message)
+                Toast.makeText(getContext(),e.message, Toast.LENGTH_SHORT).show()
             }
 
         }

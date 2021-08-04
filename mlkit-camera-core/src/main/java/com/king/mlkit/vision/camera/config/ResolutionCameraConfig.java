@@ -27,7 +27,7 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
 
 /**
- * 相机配置：根据尺寸配置相机的目标图像，使预览和输出的图像尽可能的接近屏幕尺寸
+ * 相机配置：根据尺寸配置相机的目标图像，使输出分析的图像尽可能的接近屏幕尺寸
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class ResolutionCameraConfig extends CameraConfig {
@@ -41,7 +41,7 @@ public class ResolutionCameraConfig extends CameraConfig {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        LogUtils.d(String.format("displayMetrics:%dx%d",width,height));
+        LogUtils.d(String.format("displayMetrics:%d x %d",width,height));
         //因为为了保持流畅性和性能，限制在1080p，在此前提下尽可能的找到屏幕接近的分辨率
         if(width < height){
             int size = Math.min(width, 1080);
@@ -68,7 +68,6 @@ public class ResolutionCameraConfig extends CameraConfig {
     @NonNull
     @Override
     public Preview options(@NonNull Preview.Builder builder) {
-        builder.setTargetResolution(mTargetSize);
         return super.options(builder);
     }
 

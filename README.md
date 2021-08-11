@@ -209,7 +209,7 @@ CameraScan配置示例
 
 Camera核心：为各个子库提供相机预览分析的核心库。
 
-如果MLKit支持的衍生库没有满足你的需求，你也可以通过依赖 **mlkit-camera-core** 去扩展实现任何与相机预览和分析相关的衍生库。
+如果MLKit支持的衍生库没有满足你的需求，你也可以通过依赖 **mlkit-camera-core** 去拓展实现任何与相机预览和分析相关的衍生库。
 
 #### mlkit-barcode-scanning
 
@@ -295,7 +295,7 @@ compileOptions {
 ## 特别说明
 
 关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[ZXingLite](https://github.com/jenly1314/ZXingLite)抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
-各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义扩展去实现。
+各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义拓展去实现。
 
 ### 相关推荐
 

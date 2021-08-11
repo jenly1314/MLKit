@@ -139,16 +139,6 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.2'
 
 ```
 
-## 特别说明
-
-关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[ZXingLite](https://github.com/jenly1314/ZXingLite)抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
-各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义扩展去实现。
-
-### 相关推荐
-
-#### [MLKit](https://github.com/jenly1314/MLKit) 一个强大易用的工具包。通过ML Kit您可以很轻松的实现文字识别、条码识别、图像标记、人脸检测、对象检测等功能。    
-#### [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
-
 ## 示例
 
 布局示例
@@ -301,6 +291,17 @@ compileOptions {
 }
 
 ```
+
+## 特别说明
+
+关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[ZXingLite](https://github.com/jenly1314/ZXingLite)抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
+各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义扩展去实现。
+
+### 相关推荐
+
+#### [MLKit](https://github.com/jenly1314/MLKit) 一个强大易用的工具包。通过ML Kit您可以很轻松的实现文字识别、条码识别、图像标记、人脸检测、对象检测等功能。    
+#### [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
+
 
 ## 版本记录
 

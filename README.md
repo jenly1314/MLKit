@@ -213,6 +213,64 @@ CameraScan配置示例
         getCameraScan().enableTorch(torch);
 ```
 
+### 各个module的使用 
+
+#### mlkit-camera-core
+
+Camera核心：为各个子库提供相机预览分析的核心库。
+
+如果MLKit支持的衍生库没有满足你的需求，你也可以通过依赖 **mlkit-camera-core** 去扩展实现任何与相机预览和分析相关的衍生库。
+
+#### mlkit-barcode-scanning
+
+扫条形码/二维码实现示例：通过直接继承 **BarcodeCameraScanActivity** 实现的示例
+[BarcodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/BarcodeScanningActivity.kt)
+
+扫二维码实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
+[QRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/QRCodeScanningActivity.kt)
+
+#### mlkit-face-detection
+
+人脸检测实现示例：通过直接继承 **FaceCameraScanActivity** 实现的示例
+[FaceDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/FaceDetectionActivity.kt)
+
+多人脸检测实现示例：通过间接继承 **FaceCameraScanActivity** 实现的示例
+[MultipleFaceDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/MultipleFaceDetectionActivity.kt)
+
+#### mlkit-image-labeling
+
+图像标记实现示例：通过直接继承 **ImageCameraScanActivity** 实现的示例
+[ImageLabelingActivity](app/src/main/java/com/king/mlkit/vision/app/image/ImageLabelingActivity.kt)
+
+#### mlkit-image-labeling
+
+对象检测实现示例：通过直接继承 **ObjectCameraScanActivity** 实现的示例
+[ObjectDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/object/ObjectDetectionActivity.kt)
+
+多对象检测实现示例：通过间接继承 **ObjectCameraScanActivity** 实现的示例
+[MultipleObjectDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/object/MultipleObjectDetectionActivity.kt)
+
+#### mlkit-pose-detection
+
+Pose检测实现示例：通过直接继承 **PoseCameraScanActivity** 实现的示例
+[PoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/PoseDetectionActivity.kt)
+
+#### mlkit-pose-detection-accurate
+
+Pose检测精确版实现示例：通过间接继承 **AccuratePoseCameraScanActivity** 实现的示例
+[AccuratePoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/AccuratePoseDetectionActivity.kt)
+
+#### mlkit-segmentation-selfie
+
+自拍分割实现示例：通过直接继承 **SegmentationCameraScanActivity** 实现的示例
+[SelfieSegmentationActivity](app/src/main/java/com/king/mlkit/vision/app/segmentation/SelfieSegmentationActivity.kt)
+
+#### mlkit-text-recognition
+
+文字识别实现示例：通过直接继承 **TextCameraScanActivity** 实现的示例
+[TextRecognitionActivity](app/src/main/java/com/king/mlkit/vision/app/text/TextRecognitionActivity.kt)
+
+
 ### 模型配置
 
 关于自动下载模型，可选项但推荐：在AndroidManifest中申明配置

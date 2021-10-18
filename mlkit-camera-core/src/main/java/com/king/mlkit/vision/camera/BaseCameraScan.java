@@ -126,8 +126,9 @@ public class BaseCameraScan<T> extends CameraScan<T> {
             if(mCamera != null){
                 float ratio = mCamera.getCameraInfo().getZoomState().getValue().getZoomRatio();
                 zoomTo(ratio * scale);
+                return true;
             }
-            return true;
+            return false;
         }
 
     };

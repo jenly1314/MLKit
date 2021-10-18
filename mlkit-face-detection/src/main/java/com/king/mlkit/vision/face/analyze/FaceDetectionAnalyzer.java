@@ -27,7 +27,7 @@ import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
 import com.king.mlkit.vision.camera.AnalyzeResult;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.ImageUtils;
+import com.king.mlkit.vision.camera.util.BitmapUtils;
 import com.king.mlkit.vision.camera.util.LogUtils;
 
 import java.util.List;
@@ -65,7 +65,8 @@ public class FaceDetectionAnalyzer implements Analyzer<List<Face>> {
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<Face>>> listener) {
         try{
 
-            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy,imageProxy.getImageInfo().getRotationDegrees());
+            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
+//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);

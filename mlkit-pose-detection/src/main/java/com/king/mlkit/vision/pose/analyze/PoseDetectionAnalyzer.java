@@ -28,7 +28,7 @@ import com.google.mlkit.vision.pose.PoseDetectorOptionsBase;
 import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions;
 import com.king.mlkit.vision.camera.AnalyzeResult;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.ImageUtils;
+import com.king.mlkit.vision.camera.util.BitmapUtils;
 import com.king.mlkit.vision.camera.util.LogUtils;
 
 /**
@@ -56,7 +56,8 @@ public class PoseDetectionAnalyzer implements Analyzer<Pose> {
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<Pose>> listener) {
         try {
 
-            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy,imageProxy.getImageInfo().getRotationDegrees());
+            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
+//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);

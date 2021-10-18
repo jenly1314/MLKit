@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/ivResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <com.king.mlkit.vision.barcode.ViewfinderView
         android:id="@+id/viewfinderView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:viewfinderStyle="popular"
+        app:frameRatio="0.9" />
     <ImageView
         android:id="@+id/ivFlashlight"
         android:layout_width="wrap_content"

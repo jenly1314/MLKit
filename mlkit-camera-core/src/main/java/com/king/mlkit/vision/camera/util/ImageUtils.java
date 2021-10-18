@@ -37,7 +37,7 @@ public class ImageUtils {
     }
 
     public static Bitmap imageProxyToBitmap(ImageProxy imageProxy) throws Exception{
-        return imageProxyToBitmap(imageProxy,0);
+        return imageProxyToBitmap(imageProxy, imageProxy.getImageInfo().getRotationDegrees());
     }
 
     public static Bitmap imageProxyToBitmap(ImageProxy imageProxy,int rotationDegrees) throws Exception{

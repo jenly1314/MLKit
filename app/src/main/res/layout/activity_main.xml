@@ -8,6 +8,18 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="QRCode scanning"
+            style="@style/OnClick"/>
+
         <Button
             android:id="@+id/btn0"
             android:layout_width="match_parent"
@@ -16,7 +28,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:text="QRCode scanning"
+            android:text="Multiple QRCode scanning"
             style="@style/OnClick"/>
 
         <Button

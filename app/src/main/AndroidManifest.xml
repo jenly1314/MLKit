@@ -27,6 +27,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".barcode.MultipleQRCodeScanningActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme"/>
+
         <activity android:name=".barcode.QRCodeScanningActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>

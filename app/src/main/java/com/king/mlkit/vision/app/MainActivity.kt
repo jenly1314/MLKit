@@ -29,6 +29,7 @@ import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.app.`object`.MultipleObjectDetectionActivity
 import com.king.mlkit.vision.app.`object`.ObjectDetectionActivity
 import com.king.mlkit.vision.app.barcode.BarcodeScanningActivity
+import com.king.mlkit.vision.app.barcode.MultipleQRCodeScanningActivity
 import com.king.mlkit.vision.app.barcode.QRCodeScanningActivity
 import com.king.mlkit.vision.app.face.FaceDetectionActivity
 import com.king.mlkit.vision.app.face.MultipleFaceDetectionActivity
@@ -38,6 +39,7 @@ import com.king.mlkit.vision.app.pose.PoseDetectionActivity
 import com.king.mlkit.vision.app.segmentation.SelfieSegmentationActivity
 import com.king.mlkit.vision.app.text.TextRecognitionActivity
 import com.king.mlkit.vision.barcode.BarcodeDecoder
+import com.king.mlkit.vision.camera.CameraScan
 import com.king.mlkit.vision.camera.analyze.Analyzer.OnAnalyzeListener
 import com.king.mlkit.vision.camera.util.LogUtils
 import com.king.mlkit.vision.camera.util.PermissionUtils
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         const val REQUEST_CODE_PHOTO = 1
         const val REQUEST_CODE_REQUEST_EXTERNAL_STORAGE = 2
+
+        const val REQUEST_CODE_SCAN_CODE = 3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         if(resultCode == RESULT_OK){
             when(requestCode){
                 REQUEST_CODE_PHOTO -> processPhoto(data)
+                REQUEST_CODE_SCAN_CODE -> processScanResult(data)
             }
         }
     }
@@ -76,6 +81,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getContext() = this
+
+    private fun processScanResult(data: Intent?){
+        val text = CameraScan.parseScanResult(data)
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show()
+    }
 
     private fun processPhoto(data: Intent?){
         data?.let {
@@ -143,7 +153,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onClick(v: View){
         when (v.id){
-            R.id.btn0 -> startActivity(QRCodeScanningActivity::class.java)
+            R.id.btn -> startActivityForResult(Intent(this,QRCodeScanningActivity::class.java),REQUEST_CODE_SCAN_CODE)
+            R.id.btn0 -> startActivity(MultipleQRCodeScanningActivity::class.java)
             R.id.btn1 -> startActivity(BarcodeScanningActivity::class.java)
             R.id.btn2 -> pickPhotoClicked(true)
             R.id.btn3 -> pickPhotoClicked(false)

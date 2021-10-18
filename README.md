@@ -77,8 +77,46 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 
 文字识别：识别图像中的文字信息（需ML模型）
 
-> 参见[text-recognition](https://developers.google.cn/ml-kit/vision/text-recognition)
+> 参见[text-recognition](https://developers.google.cn/ml-kit/vision/text-recognition/v2)
 
+## ViewfinderView相关字段说明
+| 字段 | 字段类型 | 默认值 | 字段说明 |
+| :------| :------ | :------ | :------ |
+| maskColor | color |<font color=#000000>#60000000</font>| 扫描区外遮罩的颜色 |
+| frameColor | color |<font color=#1FB3E2>#7F1FB3E2</font>| 扫描区边框的颜色 |
+| cornerColor | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区边角的颜色 |
+| laserColor | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区激光线的颜色 |
+| labelText | string |  | 扫描提示文本信息 |
+| labelTextColor | color |<font color=#C0C0C0>#FFC0C0C0</font>| 提示文本字体颜色 |
+| labelTextSize | dimension |14sp| 提示文本字体大小 |
+| labelTextPadding | dimension |24dp| 提示文本距离扫描区的间距 |
+| labelTextWidth | dimension | | 提示文本的宽度，默认为View的宽度 |
+| labelTextLocation | enum |bottom| 提示文本显示位置 |
+| frameWidth | dimension |  | 扫码框宽度 |
+| frameHeight | dimension |  | 扫码框高度 |
+| laserStyle | enum | line | 扫描激光的样式 |
+| gridColumn | integer | 20 | 网格扫描激光列数 |
+| gridHeight | integer | 40dp | 网格扫描激光高度，为0dp时，表示动态铺满 |
+| cornerRectWidth | dimension | 4dp | 扫描区边角的宽 |
+| cornerRectHeight | dimension | 16dp | 扫描区边角的高 |
+| scannerLineMoveDistance | dimension | 2dp | 扫描线每次移动距离 |
+| scannerLineHeight | dimension | 5dp | 扫描线高度 |
+| frameLineWidth | dimension | 1dp | 边框线宽度 |
+| scannerAnimationDelay | integer | 20 | 扫描动画延迟间隔时间，单位：毫秒 |
+| frameRatio | float | 0.625f | 扫码框与屏幕占比 |
+| framePaddingLeft | dimension | 0 | 扫码框左边的内间距 |
+| framePaddingTop | dimension | 0 | 扫码框上边的内间距 |
+| framePaddingRight | dimension | 0 | 扫码框右边的内间距 |
+| framePaddingBottom | dimension | 0 | 扫码框下边的内间距 |
+| frameGravity | enum | center | 扫码框对齐方式 |
+| pointColor | color | <font color=#1FB3E2>#FF1FB3E2</font> | 结果点的颜色 |
+| pointStrokeColor | color | <font color=#FFFFFF>#FFFFFFFF</font> | 结果点描边的颜色 |
+| pointRadius | dimension | 15dp | 结果点的半径 |
+| pointStrokeRatio | float | 1.2 | 结果点描边半径与结果点半径的比例 |
+| pointDrawable | reference |  | 结果点自定义图片 |
+| showPointAnim | boolean | true | 是否显示结果点的动画 |
+| laserDrawable | reference | | 扫描激光自定义图片 |
+| viewfinderStyle | enum | classic | 取景框样式；支持：classic：经典样式（带扫码框那种）、popular：流行样式（不带扫码框） |
 
 ## 引入
 
@@ -110,32 +148,32 @@ allprojects {
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 ```gradle
 
-//Camera核心 (*必须项)
-implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.0.2'
+//Camera核心 (*必须)
+implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.0.3'
 
-//条码识别 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.0.2'
+//条码识别 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.0.3'
 
-//人脸检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.0.2'
+//人脸检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.0.3'
 
-//图像标记 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.0.2'
+//图像标记 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.0.3'
 
-//对象检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.0.2'
+//对象检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.0.3'
 
-//Pose检测 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.0.2'
+//Pose检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.0.3'
 
-//Pose检测精确版 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.0.2'
+//Pose检测精确版 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.0.3'
 
-//自拍分割 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.0.2'
+//自拍分割 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.0.3'
 
-//文字识别 (可选项)
-implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.2'
+//文字识别 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.0.3'
 
 ```
 
@@ -218,6 +256,11 @@ Camera核心：为各个子库提供相机预览分析的核心库。
 
 扫二维码实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
 [QRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/QRCodeScanningActivity.kt)
+
+
+扫二维码（多个结果）实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
+[MultipleQRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/MultipleQRCodeScanningActivity.kt)
+
 
 #### mlkit-face-detection
 
@@ -304,6 +347,12 @@ compileOptions {
 
 
 ## 版本记录
+
+#### v1.0.3：2021-10-18
+* 更新CameraX至v1.0.2
+* ViewfinderView新增支持显示结果点相关
+* 新增扫二维码有多个结果时可选实现示例（类似于新版微信效果）
+* 文字识别（text recognition）改为静态（即：使用v2）
 
 #### v1.0.2：2021-8-4
 * 更新CameraX至v1.0.1

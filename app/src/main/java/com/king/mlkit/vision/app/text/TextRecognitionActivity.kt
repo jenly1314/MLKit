@@ -18,11 +18,14 @@ package com.king.mlkit.vision.app.text
 import android.text.method.ScrollingMovementMethod
 import android.widget.TextView
 import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.camera.AnalyzeResult
+import com.king.mlkit.vision.camera.analyze.Analyzer
 import com.king.mlkit.vision.text.TextCameraScanActivity
+import com.king.mlkit.vision.text.analyze.TextRecognitionAnalyzer
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -42,5 +45,10 @@ class TextRecognitionActivity : TextCameraScanActivity() {
                 finish()
             }
         AppDialog.INSTANCE.showDialog(config,false)
+    }
+
+
+    override fun createAnalyzer(): Analyzer<Text>? {
+        return TextRecognitionAnalyzer(ChineseTextRecognizerOptions.Builder().build())
     }
 }

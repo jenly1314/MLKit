@@ -23,10 +23,11 @@ import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
-import com.google.mlkit.vision.text.TextRecognizerOptions;
+import com.google.mlkit.vision.text.TextRecognizerOptionsInterface;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import com.king.mlkit.vision.camera.AnalyzeResult;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.ImageUtils;
+import com.king.mlkit.vision.camera.util.BitmapUtils;
 import com.king.mlkit.vision.camera.util.LogUtils;
 
 
@@ -41,11 +42,11 @@ public class TextRecognitionAnalyzer implements Analyzer<Text> {
         this(null);
     }
 
-    public TextRecognitionAnalyzer(TextRecognizerOptions options){
+    public TextRecognitionAnalyzer(TextRecognizerOptionsInterface options){
         if(options != null){
             mTextRecognizer = TextRecognition.getClient(options);
         }else{
-            mTextRecognizer = TextRecognition.getClient();
+            mTextRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         }
     }
 
@@ -53,7 +54,9 @@ public class TextRecognitionAnalyzer implements Analyzer<Text> {
     @Override
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<Text>> listener) {
         try {
-            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy,imageProxy.getImageInfo().getRotationDegrees());
+
+            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
+//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);

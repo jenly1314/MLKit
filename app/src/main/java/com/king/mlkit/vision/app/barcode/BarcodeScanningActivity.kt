@@ -15,7 +15,9 @@
  */
 package com.king.mlkit.vision.app.barcode
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
+import androidx.camera.core.CameraX
 import com.google.mlkit.vision.barcode.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
@@ -60,7 +62,6 @@ class BarcodeScanningActivity : BarcodeCameraScanActivity() {
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
         AppDialog.INSTANCE.showDialog(config,false)
-
     }
 
 

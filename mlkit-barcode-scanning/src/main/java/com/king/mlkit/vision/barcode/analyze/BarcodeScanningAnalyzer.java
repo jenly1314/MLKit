@@ -27,7 +27,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.common.InputImage;
 import com.king.mlkit.vision.camera.AnalyzeResult;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.ImageUtils;
+import com.king.mlkit.vision.camera.util.BitmapUtils;
 import com.king.mlkit.vision.camera.util.LogUtils;
 
 import java.util.List;
@@ -62,7 +62,9 @@ public class BarcodeScanningAnalyzer implements Analyzer<List<Barcode>> {
     @Override
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<Barcode>>> listener) {
         try{
-            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy,imageProxy.getImageInfo().getRotationDegrees());
+
+            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
+//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);

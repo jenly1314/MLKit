@@ -15,53 +15,89 @@
  */
 package com.king.mlkit.vision.app.barcode
 
+import android.content.Intent
+import android.graphics.Point
 import android.widget.ImageView
 import com.google.mlkit.vision.barcode.Barcode
-import com.king.app.dialog.AppDialog
-import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.app.R
-import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
+import com.king.mlkit.vision.barcode.utils.PointUtils
 import com.king.mlkit.vision.camera.AnalyzeResult
-import java.lang.StringBuilder
+import com.king.mlkit.vision.camera.CameraScan
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class QRCodeScanningActivity : QRCodeCameraScanActivity() {
 
+
+    private lateinit var ivResult: ImageView
+
+    override fun initUI() {
+        super.initUI()
+
+        ivResult = findViewById<ImageView>(R.id.ivResult)
+    }
+
     override fun initCameraScan() {
         super.initCameraScan()
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
+            .bindFlashlightView(ivFlashlight)
     }
 
     override fun getLayoutId(): Int {
         return R.layout.qrcode_scan_activity
     }
 
+    override fun onBackPressed() {
+        if(viewfinderView.isShowPoints){//如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
+            ivResult.setImageResource(0)
+            viewfinderView.showScanner()
+            cameraScan.setAnalyzeImage(true)
+            return
+        }
+        super.onBackPressed()
+    }
+
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
 
         cameraScan.setAnalyzeImage(false)
-        val buffer = StringBuilder()
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
-            for ((index,data) in result.result.withIndex()) {
-                buffer.append("[$index] ").append(data.displayValue).append("\n")
-                canvas.drawRect(data.boundingBox,paint)
-            }
-        }
+        val results = result.result
 
-        val config = AppDialogConfig(this, R.layout.barcode_result_dialog)
-        config.setContent(buffer).setOnClickOk {
-                AppDialog.INSTANCE.dismissDialog()
-                cameraScan.setAnalyzeImage(true)
-            }.setOnClickCancel {
-                AppDialog.INSTANCE.dismissDialog()
-                finish()
-            }
-        val imageView = config.getView<ImageView>(R.id.ivDialogContent)
-        imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config,false)
+        //取预览当前帧图片并显示，为结果点提供参照
+        ivResult.setImageBitmap(previewView.bitmap)
+        val points = ArrayList<Point>()
+        for ((index,data) in results.withIndex()) {
+            val rect = results[index].boundingBox
+            //将实际的结果中心点坐标转换成界面预览的坐标
+            val point = PointUtils.transform(rect.centerX(), rect.centerY(), result.bitmap.width, result.bitmap.height, viewfinderView.width, viewfinderView.height)
+            points.add(point)
+        }
+        //设置Item点击监听
+        viewfinderView.setOnItemClickListener {
+            //显示点击Item将所在位置扫码识别的结果返回
+            val intent = Intent()
+            intent.putExtra(CameraScan.SCAN_RESULT,results[it].displayValue)
+            setResult(RESULT_OK,intent)
+            finish()
+
+            /*
+                显示结果后，如果需要继续扫码，则可以继续分析图像
+             */
+//            ivResult.setImageResource(0)
+//            viewfinderView.showScanner()
+//            cameraScan.setAnalyzeImage(true)
+        }
+        //显示结果点信息
+        viewfinderView.showResultPoints(points)
+
+        if(results.size == 1){//只有一个结果直接返回
+            val intent = Intent()
+            intent.putExtra(CameraScan.SCAN_RESULT,results[0].displayValue)
+            setResult(RESULT_OK,intent)
+            finish()
+        }
 
     }
 

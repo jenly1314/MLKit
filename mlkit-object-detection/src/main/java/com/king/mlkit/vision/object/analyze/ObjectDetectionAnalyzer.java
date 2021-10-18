@@ -29,7 +29,7 @@ import com.google.mlkit.vision.objects.ObjectDetectorOptionsBase;
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions;
 import com.king.mlkit.vision.camera.AnalyzeResult;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.ImageUtils;
+import com.king.mlkit.vision.camera.util.BitmapUtils;
 import com.king.mlkit.vision.camera.util.LogUtils;
 
 import java.util.List;
@@ -71,7 +71,8 @@ public class ObjectDetectionAnalyzer implements Analyzer<List<DetectedObject>> {
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<DetectedObject>>> listener) {
         try {
 
-            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy,imageProxy.getImageInfo().getRotationDegrees());
+            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
+//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);

@@ -16,7 +16,9 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 
 ## GIF 展示
 
-因为功能太多，暂时没有录制GIF，请直接下载[Demo App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)查看并体验吧。
+因为功能太多，暂时没有录制GIF
+
+> 你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk) 体验效果
 
 
 ## 各Module相关说明
@@ -120,8 +122,6 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 
 ## 引入
 
-由于2021年2月3日 **JFrog宣布将关闭Bintray和JCenter，计划在2022年2月完全关闭。** 所以本项目的aar只发布到了**Maven Central** 和 **JitPack** 仓库
-
 ### Gradle:
 
 1. 在Project的 **build.gradle** 里面添加远程仓库  
@@ -131,16 +131,6 @@ allprojects {
     repositories {
         //...
         mavenCentral()
-    }
-}
-```
-或
-
-```gradle
-allprojects {
-    repositories {
-        //...
-        maven { url 'https://jitpack.io' }
     }
 }
 ```
@@ -234,7 +224,7 @@ CameraScan配置示例
             .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
             .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
             .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
-            .startCamera();//启动预览
+            .startCamera();//启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用这句）
 
 
         //设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效

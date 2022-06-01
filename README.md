@@ -361,8 +361,9 @@ compileOptions {
 
 ## 特别说明
 
-关于[mlkit-camera-core](mlkit-camera-core)的核心代码是基于[ZXingLite](https://github.com/jenly1314/ZXingLite)抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
-各个mlkit相关的 **Module** 主要是基于[mlkit-camera-core](mlkit-camera-core)提供相机的预览帧来做不同的分析处理，所以如果MLKit当前不满足您的需求，您可以自定义拓展去实现。
+关于 [mlkit-camera-core](mlkit-camera-core) 的核心代码是基于 [ZXingLite](https://github.com/jenly1314/ZXingLite) 抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
+各个 **MLKit** 相关的 **Module** 主要是基于 [mlkit-camera-core](mlkit-camera-core) 提供相机的预览帧来做不同的分析处理，所以如果 **MLKit** 当前不满足您的需求，您可以自定义拓展去实现;
+也可以基于 [mlkit-camera-core](mlkit-camera-core) 开发各种衍生库。（例如：[WeChatQRCode](https://github.com/jenly1314/WeChatQRCode)）
 
 ### 相关推荐
 

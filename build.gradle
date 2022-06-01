@@ -3,7 +3,12 @@
 buildscript {
     apply from: 'versions.gradle'
 
-    addRepos(repositories)
+    repositories {
+        google()
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        mavenCentral()
+    }
+
 
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gralde"
@@ -16,11 +21,23 @@ buildscript {
 }
 
 allprojects {
-    addRepos(repositories)
+    repositories {
+        google()
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        mavenCentral()
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+allprojects {
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
 }
 
 allprojects {

@@ -37,7 +37,7 @@ open class ObjectDetectionActivity : ObjectCameraScanActivity() {
         }
 
         val config = AppDialogConfig(this, R.layout.result_dialog)
-        config.setOnClickOk {
+        config.setOnClickConfirm {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)
             }.setOnClickCancel {

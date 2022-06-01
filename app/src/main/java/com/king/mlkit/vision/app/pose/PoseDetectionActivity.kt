@@ -60,7 +60,7 @@ class PoseDetectionActivity : PoseCameraScanActivity() {
 //        val rightMouth = pose.getPoseLandmark(PoseLandmark.RIGHT_MOUTH)
 
         val config = AppDialogConfig(this, R.layout.result_dialog)
-        config.setOnClickOk {
+        config.setOnClickConfirm {
             AppDialog.INSTANCE.dismissDialog()
             cameraScan.setAnalyzeImage(true)
         }.setOnClickCancel {

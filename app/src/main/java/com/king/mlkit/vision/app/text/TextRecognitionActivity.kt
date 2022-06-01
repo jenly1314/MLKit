@@ -37,7 +37,7 @@ class TextRecognitionActivity : TextCameraScanActivity() {
         val config = AppDialogConfig(this, R.layout.text_result_dialog)
         config.getView<TextView>(R.id.tvDialogContent).movementMethod = ScrollingMovementMethod.getInstance()
         config.setContent(result.result.text)
-            .setOnClickOk {
+            .setOnClickConfirm {
                 AppDialog.INSTANCE.dismissDialog()
                 cameraScan.setAnalyzeImage(true)
             }.setOnClickCancel {

@@ -69,7 +69,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:text="High-accuracy landmark detection"
+            android:text="Face detection and classification"
             style="@style/OnClick"/>
 
         <Button

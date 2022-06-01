@@ -33,7 +33,7 @@ class ImageLabelingActivity : ImageCameraScanActivity() {
             buffer.append("[$index] ").append(data.text).append("\n")
         }
         val config = AppDialogConfig(this)
-        config.setContent(buffer).setOnClickOk {
+        config.setContent(buffer).setOnClickConfirm {
             AppDialog.INSTANCE.dismissDialog()
             cameraScan.setAnalyzeImage(true)
         }.setOnClickCancel {

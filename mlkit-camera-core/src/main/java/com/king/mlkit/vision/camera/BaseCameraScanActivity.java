@@ -18,7 +18,6 @@ package com.king.mlkit.vision.camera;
 import android.Manifest;
 import android.os.Bundle;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,9 +41,8 @@ public abstract class BaseCameraScanActivity<T> extends AppCompatActivity implem
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int layoutId = getLayoutId();
-        if(isContentView(layoutId)){
-            setContentView(layoutId);
+        if(isContentView()){
+            setContentView(getLayoutId());
         }
         initUI();
     }
@@ -122,10 +120,9 @@ public abstract class BaseCameraScanActivity<T> extends AppCompatActivity implem
 
     /**
      * 返回true时会自动初始化{@link #setContentView(int)}，返回为false是需自己去初始化{@link #setContentView(int)}
-     * @param layoutId
      * @return 默认返回true
      */
-    public boolean isContentView(@LayoutRes int layoutId){
+    public boolean isContentView(){
         return true;
     }
 

@@ -70,6 +70,7 @@ public class FaceDetectionAnalyzer implements Analyzer<List<Face>> {
 //            @SuppressLint("UnsafeExperimentalUsageError")
 //            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
             InputImage inputImage = InputImage.fromBitmap(bitmap,0);
+
             mDetector.process(inputImage)
                     .addOnSuccessListener(result -> {
                         if(result == null || result.isEmpty()){

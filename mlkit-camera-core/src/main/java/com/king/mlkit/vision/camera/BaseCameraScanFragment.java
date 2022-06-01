@@ -21,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.view.PreviewView;
@@ -49,8 +48,7 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        int layoutId = getLayoutId();
-        if(isContentView(layoutId)){
+        if(isContentView()){
             mRootView = createRootView(inflater,container);
         }
         initUI();
@@ -147,10 +145,9 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
 
     /**
      * 返回true时会自动初始化{@link #createRootView(LayoutInflater, ViewGroup)}，返回为false是需自己去初始化{@link #createRootView(LayoutInflater, ViewGroup)}
-     * @param layoutId
      * @return 默认返回true
      */
-    public boolean isContentView(@LayoutRes int layoutId){
+    public boolean isContentView(){
         return true;
     }
 

@@ -18,7 +18,7 @@ package com.king.mlkit.vision.barcode;
 
 import androidx.annotation.Nullable;
 
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.king.mlkit.vision.barcode.analyze.BarcodeScanningAnalyzer;
 import com.king.mlkit.vision.camera.BaseCameraScanFragment;
 import com.king.mlkit.vision.camera.analyze.Analyzer;

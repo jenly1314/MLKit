@@ -16,6 +16,7 @@
 package com.king.mlkit.vision.camera;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -256,6 +257,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
 
                 //图像分析
                 ImageAnalysis imageAnalysis = mCameraConfig.options(new ImageAnalysis.Builder()
+                        .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888)
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST));
                 imageAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), image -> {
                     if(isAnalyze && !isAnalyzeResult && mAnalyzer != null){
@@ -404,7 +406,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         if(mCamera != null){
             return mCamera.getCameraInfo().hasFlashUnit();
         }
-        return false;
+        return mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
     }
 
     @Override

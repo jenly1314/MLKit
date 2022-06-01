@@ -24,9 +24,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.Task;
-import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
 
@@ -57,7 +57,7 @@ public class BarcodeDecoder {
     }
 
 
-    public static Task<List<Barcode>> process(Bitmap bitmap,Analyzer.OnAnalyzeListener<List<Barcode>> listener){
+    public static Task<List<Barcode>> process(Bitmap bitmap, Analyzer.OnAnalyzeListener<List<Barcode>> listener){
         return process(bitmap,listener, Barcode.FORMAT_ALL_FORMATS);
     }
 

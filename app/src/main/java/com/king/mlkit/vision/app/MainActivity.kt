@@ -23,7 +23,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.mlkit.vision.barcode.Barcode
+import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.app.`object`.MultipleObjectDetectionActivity
@@ -98,14 +98,17 @@ class MainActivity : AppCompatActivity() {
                             val bitmap = src.drawRect { canvas, paint ->
                                 for ((index,data) in result.withIndex()) {
                                     buffer.append("[$index] ").append(data.displayValue).append("\n")
-                                    canvas.drawRect(data.boundingBox,paint)
+                                    data.boundingBox?.let{ box ->
+                                        canvas.drawRect(box, paint)
+                                    }
+
                                 }
                             }
 
                             val config = AppDialogConfig(getContext(),R.layout.barcode_result_dialog)
                             config.setContent(buffer)
                                     .setHideCancel(true)
-                                    .setOnClickOk {
+                                    .setOnClickConfirm {
                                 AppDialog.INSTANCE.dismissDialog()
                             }
                             val imageView = config.getView<ImageView>(R.id.ivDialogContent)

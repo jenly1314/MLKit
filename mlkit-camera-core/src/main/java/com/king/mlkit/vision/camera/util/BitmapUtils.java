@@ -1,5 +1,6 @@
 package com.king.mlkit.vision.camera.util;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -52,8 +53,8 @@ public class BitmapUtils {
     @Nullable
     public static Bitmap getBitmap(ImageProxy image) {
 
-        ByteBuffer nv21Buffer =
-                yuv420ThreePlanesToNV21(image.getImage().getPlanes(), image.getWidth(), image.getHeight());
+        @SuppressLint("UnsafeOptInUsageError")
+        ByteBuffer nv21Buffer = yuv420ThreePlanesToNV21(image.getImage().getPlanes(), image.getWidth(), image.getHeight());
         return getBitmap(nv21Buffer, image.getWidth(), image.getHeight(), image.getImageInfo().getRotationDegrees());
     }
 

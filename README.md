@@ -16,7 +16,7 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 
 ## GIF 展示
 
-因为功能太多，暂时没有录制GIF
+因为功能太多，所以暂未录制GIF
 
 > 你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk) 体验效果
 
@@ -136,6 +136,40 @@ allprojects {
 ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
+```gradle
+
+//Camera核心 (*必须)
+implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.1.0'
+
+//条码识别 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.1.0'
+
+//人脸检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.1.0'
+
+//图像标记 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.1.0'
+
+//对象检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.1.0'
+
+//Pose检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.1.0'
+
+//Pose检测精确版 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.1.0'
+
+//自拍分割 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.1.0'
+
+//文字识别 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.1.0'
+
+```
+
+> 使用 **v1.1.x** 以上版本需要 **targetSdkVersion >= 31**，
+> 如果 **targetSdkVersion < 31** 请使用 **v1.0.x** 版本
+ 
 ```gradle
 
 //Camera核心 (*必须)
@@ -294,9 +328,9 @@ Pose检测精确版实现示例：通过间接继承 **AccuratePoseCameraScanAct
 [TextRecognitionActivity](app/src/main/java/com/king/mlkit/vision/app/text/TextRecognitionActivity.kt)
 
 
-### 模型配置
+### 模型配置（可选）
 
-关于自动下载模型，可选项但推荐：在AndroidManifest中申明配置
+关于自动下载模型（如果选择使用 Google Play Services 中的模型）则可以通过在AndroidManifest中申明配置
 ```xml
     <meta-data
         android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -337,6 +371,12 @@ compileOptions {
 
 
 ## 版本记录
+
+#### v1.1.0：2022-6-1
+* 更新MLKit相关依赖库版本
+* 更新CameraX至v1.1.0-rc01
+* 更新targetSdkVersion至31
+* 更新Gradle至v7.2
 
 #### v1.0.3：2021-10-18
 * 更新CameraX至v1.0.2

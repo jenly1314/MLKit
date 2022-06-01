@@ -60,7 +60,7 @@ import androidx.core.content.ContextCompat;
 public class ViewfinderView extends View {
 
     /**
-     * 默认范围比例，之所以默认为 1.2 是因为内切圆半径和外切圆半径之和的二分之一（即：（1 + (√2) / 2 ≈ 1.2）
+     * 默认范围比例，之所以默认为 1.2 是因为内切圆半径和外切圆半径之和的二分之一（即：（1 + √2) / 2 ≈ 1.2）
      */
     private final float DEFAULT_RANGE_RATIO = 1.2F;
 
@@ -239,7 +239,7 @@ public class ViewfinderView extends View {
     private GestureDetector gestureDetector;
 
 
-    @IntDef({ViewfinderStyle.CLASSIC})
+    @IntDef({ViewfinderStyle.CLASSIC, ViewfinderStyle.POPULAR})
     @Retention(RetentionPolicy.SOURCE)
     public @interface ViewfinderStyle {
         /**

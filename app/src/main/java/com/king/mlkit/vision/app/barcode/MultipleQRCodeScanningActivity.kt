@@ -16,7 +16,7 @@
 package com.king.mlkit.vision.app.barcode
 
 import android.widget.ImageView
-import com.google.mlkit.vision.barcode.Barcode
+import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.app.R
@@ -49,12 +49,14 @@ class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {
         val bitmap = result.bitmap.drawRect {canvas,paint ->
             for ((index,data) in result.result.withIndex()) {
                 buffer.append("[$index] ").append(data.displayValue).append("\n")
-                canvas.drawRect(data.boundingBox,paint)
+                data.boundingBox?.let { box ->
+                    canvas.drawRect(box, paint)
+                }
             }
         }
 
         val config = AppDialogConfig(this, R.layout.barcode_result_dialog)
-        config.setContent(buffer).setOnClickOk {
+        config.setContent(buffer).setOnClickConfirm {
             AppDialog.INSTANCE.dismissDialog()
             cameraScan.setAnalyzeImage(true)
         }.setOnClickCancel {

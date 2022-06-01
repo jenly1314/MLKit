@@ -48,7 +48,7 @@
             android:id="@+id/line"
             layout="@layout/app_dialog_line_v"/>
         <Button
-            android:id="@+id/btnDialogOK"
+            android:id="@+id/btnDialogConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"

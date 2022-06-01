@@ -77,7 +77,7 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 
 ### [mlkit-text-recognition](mlkit-text-recognition)
 
-文字识别：识别图像中的文字信息（需ML模型）
+文字识别：识别图像中的文字信息
 
 > 参见[text-recognition](https://developers.google.cn/ml-kit/vision/text-recognition/v2)
 
@@ -330,7 +330,7 @@ Pose检测精确版实现示例：通过间接继承 **AccuratePoseCameraScanAct
 
 ### 模型配置（可选）
 
-关于自动下载模型（如果选择使用 Google Play Services 中的模型）则可以通过在AndroidManifest中申明配置
+关于依赖项下载模型（如果选择使用 Google Play Services 中的模型）则可以通过在AndroidManifest中申明配置
 ```xml
     <meta-data
         android:name="com.google.firebase.ml.vision.DEPENDENCIES"

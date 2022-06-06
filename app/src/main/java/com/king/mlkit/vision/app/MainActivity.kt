@@ -93,12 +93,12 @@ class MainActivity : AppCompatActivity() {
                 val src = MediaStore.Images.Media.getBitmap(contentResolver,it.data)
                 BarcodeDecoder.process(src, object : OnAnalyzeListener<List<Barcode>?> {
                     override fun onSuccess(result: List<Barcode>) {
-                        if(result?.isNotEmpty()){
+                        if(result.isNotEmpty()){
                             val buffer = StringBuilder()
                             val bitmap = src.drawRect { canvas, paint ->
-                                for ((index,data) in result.withIndex()) {
-                                    buffer.append("[$index] ").append(data.displayValue).append("\n")
-                                    data.boundingBox?.let{ box ->
+                                for ((index, barcode) in result.withIndex()) {
+                                    buffer.append("[$index] ").append(barcode.displayValue).append("\n")
+                                    barcode.boundingBox?.let{ box ->
                                         canvas.drawRect(box, paint)
                                     }
 

@@ -36,8 +36,6 @@ open class FaceDetectionActivity : FaceCameraScanActivity() {
         val bitmap = result.bitmap.drawRect {canvas,paint ->
             for (data in result.result) {
                 canvas.drawRect(data.boundingBox,paint)
-
-                data.allContours
                 for(contour in data.allContours){
                     for (point in contour.points){
                         canvas.drawCircle(point.x,point.y,2f,paint)

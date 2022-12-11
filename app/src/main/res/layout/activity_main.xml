@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/btn"
+            android:id="@+id/btnQRCodeScanning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -21,7 +21,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn0"
+            android:id="@+id/btnMultipleQRCodeScanning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -32,7 +32,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/btnBarcodeScanning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -42,7 +42,7 @@
             android:text="Barcode scanning"
             style="@style/OnClick"/>
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/btnQRCodeRecognitionFromImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -52,7 +52,7 @@
             android:text="QRCode recognition from image"
             style="@style/OnClick"/>
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/btnBarcodeRecognitionFromImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -62,7 +62,7 @@
             android:text="Barcode recognition from image"
             style="@style/OnClick"/>
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/btnFaceDetectionAndClassification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -73,7 +73,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn5"
+            android:id="@+id/btnMultipleFaceDetection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -82,8 +82,19 @@
             android:layout_marginBottom="4dp"
             android:text="Multiple face detection"
             style="@style/OnClick"/>
+
         <Button
-            android:id="@+id/btn6"
+            android:id="@+id/btnFaceMeshDetection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Face mesh detection"
+            style="@style/OnClick"/>
+        <Button
+            android:id="@+id/btnImageLabeling"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -94,7 +105,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn7"
+            android:id="@+id/btnObjectDetectionAndTracking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -105,7 +116,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn8"
+            android:id="@+id/btnMultipleObjectDetection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -116,7 +127,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn9"
+            android:id="@+id/btnPoseDetection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -127,7 +138,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn10"
+            android:id="@+id/btnPoseDetectionAccurate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -138,7 +149,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn11"
+            android:id="@+id/btnSelfieSegmentation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -149,7 +160,7 @@
             style="@style/OnClick"/>
 
         <Button
-            android:id="@+id/btn12"
+            android:id="@+id/btnTextRecognition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

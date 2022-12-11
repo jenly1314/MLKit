@@ -9,3 +9,4 @@ include ':mlkit-barcode-scanning'
 include ':mlkit-camera-core'
 include ':app'
 rootProject.name = "MLKit"
+include ':mlkit-face-mesh-detection'

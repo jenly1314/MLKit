@@ -32,6 +32,7 @@ import com.king.mlkit.vision.app.barcode.BarcodeScanningActivity
 import com.king.mlkit.vision.app.barcode.MultipleQRCodeScanningActivity
 import com.king.mlkit.vision.app.barcode.QRCodeScanningActivity
 import com.king.mlkit.vision.app.face.FaceDetectionActivity
+import com.king.mlkit.vision.app.face.FaceMeshDetectionActivity
 import com.king.mlkit.vision.app.face.MultipleFaceDetectionActivity
 import com.king.mlkit.vision.app.image.ImageLabelingActivity
 import com.king.mlkit.vision.app.pose.AccuratePoseDetectionActivity
@@ -156,20 +157,21 @@ class MainActivity : AppCompatActivity() {
 
     fun onClick(v: View){
         when (v.id){
-            R.id.btn -> startActivityForResult(Intent(this,QRCodeScanningActivity::class.java),REQUEST_CODE_SCAN_CODE)
-            R.id.btn0 -> startActivity(MultipleQRCodeScanningActivity::class.java)
-            R.id.btn1 -> startActivity(BarcodeScanningActivity::class.java)
-            R.id.btn2 -> pickPhotoClicked(true)
-            R.id.btn3 -> pickPhotoClicked(false)
-            R.id.btn4 -> startActivity(FaceDetectionActivity::class.java)
-            R.id.btn5 -> startActivity(MultipleFaceDetectionActivity::class.java)
-            R.id.btn6 -> startActivity(ImageLabelingActivity::class.java)
-            R.id.btn7 -> startActivity(ObjectDetectionActivity::class.java)
-            R.id.btn8 -> startActivity(MultipleObjectDetectionActivity::class.java)
-            R.id.btn9 -> startActivity(PoseDetectionActivity::class.java)
-            R.id.btn10 -> startActivity(AccuratePoseDetectionActivity::class.java)
-            R.id.btn11 -> startActivity(SelfieSegmentationActivity::class.java)
-            R.id.btn12 -> startActivity(TextRecognitionActivity::class.java)
+            R.id.btnQRCodeScanning -> startActivityForResult(Intent(this,QRCodeScanningActivity::class.java),REQUEST_CODE_SCAN_CODE)
+            R.id.btnMultipleQRCodeScanning -> startActivity(MultipleQRCodeScanningActivity::class.java)
+            R.id.btnBarcodeScanning -> startActivity(BarcodeScanningActivity::class.java)
+            R.id.btnQRCodeRecognitionFromImage -> pickPhotoClicked(true)
+            R.id.btnBarcodeRecognitionFromImage -> pickPhotoClicked(false)
+            R.id.btnFaceDetectionAndClassification -> startActivity(FaceDetectionActivity::class.java)
+            R.id.btnMultipleFaceDetection -> startActivity(MultipleFaceDetectionActivity::class.java)
+            R.id.btnFaceMeshDetection -> startActivity(FaceMeshDetectionActivity::class.java)
+            R.id.btnImageLabeling -> startActivity(ImageLabelingActivity::class.java)
+            R.id.btnObjectDetectionAndTracking -> startActivity(ObjectDetectionActivity::class.java)
+            R.id.btnMultipleObjectDetection -> startActivity(MultipleObjectDetectionActivity::class.java)
+            R.id.btnPoseDetection -> startActivity(PoseDetectionActivity::class.java)
+            R.id.btnPoseDetectionAccurate -> startActivity(AccuratePoseDetectionActivity::class.java)
+            R.id.btnSelfieSegmentation -> startActivity(SelfieSegmentationActivity::class.java)
+            R.id.btnTextRecognition -> startActivity(TextRecognitionActivity::class.java)
         }
     }
 

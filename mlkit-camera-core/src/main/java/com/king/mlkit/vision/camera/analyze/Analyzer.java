@@ -28,10 +28,14 @@ public interface Analyzer<T> {
     /**
      * Analyzes an image to produce a result.
      * @param imageProxy The image to analyze
+     * @param listener {@link OnAnalyzeListener}
      */
     void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<T>> listener);
 
-
+    /**
+     * Analyze listener
+     * @param <T>
+     */
     public interface OnAnalyzeListener<T>{
         void onSuccess(@NonNull T result);
         void onFailure();

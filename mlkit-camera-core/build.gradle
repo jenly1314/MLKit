@@ -40,6 +40,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation deps.test.junit
+    androidTestImplementation deps.test.android_ext_junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 

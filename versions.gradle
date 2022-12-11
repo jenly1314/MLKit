@@ -1,15 +1,15 @@
 //App
 def app_version = [:]
-app_version.versionCode = 5
-app_version.versionName = "1.1.0"
+app_version.versionCode = 6
+app_version.versionName = "1.2.0"
 ext.app_version = app_version
 
 //build version
 def build_versions = [:]
 build_versions.minSdk = 21
-build_versions.targetSdk = 31
-build_versions.compileSdk = 31
-build_versions.buildTools = "31.0.0"
+build_versions.targetSdk = 33
+build_versions.compileSdk = 33
+build_versions.buildTools = "33.0.0"
 ext.build_versions = build_versions
 
 ext.deps = [:]
@@ -22,7 +22,8 @@ versions.appcompat = "1.1.0"
 versions.constraintLayout = "2.0.4"
 
 //test
-versions.junit = "1.1.2"
+versions.junit = "4.13.2"
+versions.androidExtJunit = "1.1.2"
 versions.test = "1.2.0"
 versions.runner = "1.2.0"
 versions.espresso = "3.3.0"
@@ -34,7 +35,7 @@ versions.gralde = "7.1.1"
 versions.kotlin = "1.6.0"
 versions.coreKtx = "1.6.0"
 
-versions.camerax = "1.1.0-rc01"
+versions.camerax = "1.2.0"
 
 ext.versions = versions
 
@@ -47,7 +48,8 @@ deps.androidx = androidx
 
 //test
 def test = [:]
-test.junit = "androidx.test.ext:junit:$versions.junit"
+test.junit = "junit:junit:$versions.junit"
+test.android_ext_junit = "androidx.test.ext:junit:$versions.androidExtJunit"
 test.test = "androidx.test:core:$versions.test"
 test.runner = "androidx.test:runner:$versions.runner"
 test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
@@ -64,15 +66,16 @@ deps.camera_camera2 = "androidx.camera:camera-camera2:$versions.camerax"
 deps.camera_lifecycle = "androidx.camera:camera-lifecycle:$versions.camerax"
 deps.camera_view = "androidx.camera:camera-view:$versions.camerax"
 
-deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:17.0.2"
+deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:17.0.3"
 deps.google_mlkit_face_detection = "com.google.mlkit:face-detection:16.1.5"
+deps.google_mlkit_face_mesh_detection = "com.google.mlkit:face-mesh-detection:16.0.0-beta1"
 deps.google_mlkit_image_labeling = "com.google.mlkit:image-labeling:17.0.7"
 deps.google_mlkit_object_detection = "com.google.mlkit:object-detection:17.0.0"
-deps.google_mlkit_pose_detection = "com.google.mlkit:pose-detection:18.0.0-beta2"
-deps.google_mlkit_pose_detection_accurate = "com.google.mlkit:pose-detection-accurate:18.0.0-beta2"
+deps.google_mlkit_pose_detection = "com.google.mlkit:pose-detection:18.0.0-beta3"
+deps.google_mlkit_pose_detection_accurate = "com.google.mlkit:pose-detection-accurate:18.0.0-beta3"
 deps.google_mlkit_segmentation_selfie = "com.google.mlkit:segmentation-selfie:16.0.0-beta4"
-deps.google_mlkit_text_recognition = "com.google.mlkit:text-recognition:16.0.0-beta4"
-deps.google_mlkit_text_recognition_chinese = "com.google.mlkit:text-recognition-chinese:16.0.0-beta4"
+deps.google_mlkit_text_recognition = "com.google.mlkit:text-recognition:16.0.0-beta6"
+deps.google_mlkit_text_recognition_chinese = "com.google.mlkit:text-recognition-chinese:16.0.0-beta6"
 //deps.google_gms_text_recognition = "com.google.android.gms:play-services-mlkit-text-recognition:17.0.0"
 
 deps.app_dialog = "com.github.jenly1314.AppUpdater:app-dialog:1.1.3"

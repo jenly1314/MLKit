@@ -13,6 +13,11 @@ android {
         versionCode app_version.versionCode
         versionName app_version.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //设置支持的 SO 库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters 'armeabi-v7a' // , 'arm64-v8a', 'x86', 'x86_64'
+        }
     }
     buildTypes {
         release {
@@ -38,6 +43,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation deps.test.junit
+    androidTestImplementation deps.test.android_ext_junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
@@ -53,6 +59,7 @@ dependencies {
     implementation project(':mlkit-camera-core')
     implementation project(':mlkit-barcode-scanning')
     implementation project(':mlkit-face-detection')
+    implementation project(':mlkit-face-mesh-detection')
     implementation project(':mlkit-image-labeling')
     implementation project(':mlkit-object-detection')
     implementation project(':mlkit-pose-detection')

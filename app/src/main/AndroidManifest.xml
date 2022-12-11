@@ -48,6 +48,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
 
+        <activity android:name=".face.FaceMeshDetectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme"/>
+
         <activity android:name=".image.ImageLabelingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraScanTheme"/>
@@ -80,9 +84,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="barcode,face,ocr,ica" />
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
+<!--            android:value="barcode,face,ocr,ica" />-->
     </application>
 
 </manifest>

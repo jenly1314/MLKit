@@ -304,7 +304,7 @@ Camera核心：为各个子库提供相机预览分析的核心库。
 图像标签实现示例：通过直接继承 **ImageCameraScanActivity** 实现的示例
 [ImageLabelingActivity](app/src/main/java/com/king/mlkit/vision/app/image/ImageLabelingActivity.kt)
 
-#### mlkit-image-labeling
+#### mlkit-object-detection
 
 对象检测实现示例：通过直接继承 **ObjectCameraScanActivity** 实现的示例
 [ObjectDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/object/ObjectDetectionActivity.kt)

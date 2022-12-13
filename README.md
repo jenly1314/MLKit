@@ -153,7 +153,7 @@ implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.2.0'
 //人脸检测 (可选)
 implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.2.0'
 
-//人脸检测 (可选)
+//人脸网格检测 (可选)
 implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:1.2.0'
 
 //图像标签 (可选)

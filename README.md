@@ -229,9 +229,9 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 > 你也可以自定义或覆写 **CameraConfig** 中的 **options** 方法，根据需要定制配置。
 
-> 这里特别温馨提示：默认配置在未配置相机的目标分析图像大小时，会优先使用：横屏：640 * 480 竖屏：480 * 640；
+这里特别温馨提示：默认配置在未配置相机的目标分析图像大小时，会优先使用：横屏：640 * 480 竖屏：480 * 640；
 
-#### 根据这个图像质量顺便说下默认配置的优缺点：
+根据这个图像质量顺便说下默认配置的优缺点：
 
 * 优点：因为图像质量不高，所以在低配置的设备上使用也能hold住，这样就能尽可能的适应各种设备；
 * 缺点：正是由于图像质量不高，从而可能会对检测识别率略有影响，比如在某些机型上体验欠佳。
@@ -240,11 +240,22 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 > 当使用默认的 **CameraConfig** 在某些机型上体验欠佳时，你可以尝试使用 **AspectRatioCameraConfig** 或
 **ResolutionCameraConfig** 会有意想不到奇效。
 
+### 关于 **Analyzer**
+
+**Analyzer** 为定义的分析器接口；主要用于分析相机预览的帧数据；MLKit的各个子库皆是通过实现 **Analyzer** 来检测分析结果的。
+
+### 关于 **BaseCameraScanActivity** 和 **BaseCameraScanFragment**
+
+**BaseCameraScanActivity** 和 **BaseCameraScanFragment** 作为扫描预览界面的基类，主要目的是便于快速实现扫描识别。
+
+> 扫描预览界面内部持有 **CameraScan**，并处理了 **CameraScan** 的初始化（如：相机权限、相机预览、生命周期等细节）
 
 ### 布局示例
 
-**PreviewView** 用来预览，布局内至少要保证有 **PreviewView**；如果是继承 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 或其子类实现的相机扫描；快速实现扫描功能；
-需自定义布局时，覆写getLayoutId方法即可；预览控件ID可覆写getPreviewViewId方法自定义，更多代码用法可**BaseCameraScanActivity**源码或参见下面的使用示例。
+**PreviewView** 用来预览，布局内至少要保证有 **PreviewView**；如果是继承 **BaseCameraScanActivity** 或 
+**BaseCameraScanFragment** 或其子类实现的相机扫描；快速实现扫描功能；
+
+需自定义布局时，通过覆写getLayoutId方法即可；预览控件ID可覆写getPreviewViewId方法自定义；更多代码用法可**BaseCameraScanActivity**源码或参见下面的使用示例。
 
 示例：
 

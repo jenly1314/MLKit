@@ -35,7 +35,7 @@ import androidx.fragment.app.Fragment;
  * <p>
  * 快速实现扫描识别主要有以下几种方式：
  * <p>
- * 1、通过继承 {@linkBaseCameraScanActivity}或者{@link BaseCameraScanFragment}或其子类，可快速实现扫描识别。
+ * 1、通过继承 {@link BaseCameraScanActivity}或者{@link BaseCameraScanFragment}或其子类，可快速实现扫描识别。
  * （适用于大多数场景，自定义布局时需覆写getLayoutId方法）
  * <p>
  * 2、在你项目的Activity或者Fragment中实例化一个{@link BaseCameraScan}。（适用于想在扫码界面写交互逻辑，又因为项目

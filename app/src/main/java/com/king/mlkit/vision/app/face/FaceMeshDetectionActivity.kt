@@ -31,27 +31,27 @@ open class FaceMeshDetectionActivity : FaceMeshCameraScanActivity() {
 
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<FaceMesh>>) {
         cameraScan.setAnalyzeImage(false)
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
+        val bitmap = result.bitmap.drawRect { canvas, paint ->
             for (data in result.result) {
-                canvas.drawRect(data.boundingBox,paint)
+                canvas.drawRect(data.boundingBox, paint)
 
-                for(point in data.allPoints){
+                for (point in data.allPoints) {
                     val position = point.position
-                    canvas.drawCircle(position.x,position.y,2f,paint)
+                    canvas.drawCircle(position.x, position.y, 2f, paint)
                 }
             }
         }
 
         val config = AppDialogConfig(this, R.layout.result_dialog)
         config.setOnClickConfirm {
-                AppDialog.INSTANCE.dismissDialog()
-                cameraScan.setAnalyzeImage(true)
-            }.setOnClickCancel {
-                AppDialog.INSTANCE.dismissDialog()
-                finish()
-            }
+            AppDialog.INSTANCE.dismissDialog()
+            cameraScan.setAnalyzeImage(true)
+        }.setOnClickCancel {
+            AppDialog.INSTANCE.dismissDialog()
+            finish()
+        }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 }

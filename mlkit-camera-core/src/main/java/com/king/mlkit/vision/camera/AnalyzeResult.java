@@ -18,34 +18,50 @@ package com.king.mlkit.vision.camera;
 import android.graphics.Bitmap;
 
 /**
+ * 分析结果
+ *
+ * @param <T> 泛型T为分析结果的具体数据类型
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class AnalyzeResult<T> {
-
+    /**
+     * 分析的原始图像
+     */
     private Bitmap bitmap;
-
+    /**
+     * 分析图像得到的结果
+     */
     private T result;
-
-    public AnalyzeResult() {
-    }
 
     public AnalyzeResult(Bitmap bitmap, T result) {
         this.bitmap = bitmap;
         this.result = result;
     }
 
+    /**
+     * 获取分析的原始图像
+     *
+     * @return
+     */
     public Bitmap getBitmap() {
         return bitmap;
     }
 
+    @Deprecated
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
 
+    /**
+     * 获取分析结果
+     *
+     * @return
+     */
     public T getResult() {
         return result;
     }
 
+    @Deprecated
     public void setResult(T result) {
         this.result = result;
     }

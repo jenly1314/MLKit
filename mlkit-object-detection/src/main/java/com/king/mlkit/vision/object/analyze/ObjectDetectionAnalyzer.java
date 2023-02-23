@@ -15,42 +15,36 @@
  */
 package com.king.mlkit.vision.object.analyze;
 
-
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.ObjectDetection;
 import com.google.mlkit.vision.objects.ObjectDetector;
 import com.google.mlkit.vision.objects.ObjectDetectorOptionsBase;
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 /**
+ * 对象检测分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class ObjectDetectionAnalyzer implements Analyzer<List<DetectedObject>> {
+public class ObjectDetectionAnalyzer extends CommonAnalyzer<List<DetectedObject>> {
 
     private ObjectDetector mDetector;
 
-    public ObjectDetectionAnalyzer(){
+    public ObjectDetectionAnalyzer() {
         this(null);
-
-
     }
 
-    public ObjectDetectionAnalyzer(ObjectDetectorOptionsBase options){
-        if(options != null){
+    public ObjectDetectionAnalyzer(ObjectDetectorOptionsBase options) {
+        if (options != null) {
             mDetector = ObjectDetection.getClient(options);
-        }else{
+        } else {
             // Live detection and tracking
             mDetector = ObjectDetection.getClient(new ObjectDetectorOptions.Builder()
                     .setDetectorMode(ObjectDetectorOptions.STREAM_MODE)
@@ -66,28 +60,9 @@ public class ObjectDetectionAnalyzer implements Analyzer<List<DetectedObject>> {
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<DetectedObject>>> listener) {
-        try {
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mDetector.process(inputImage).addOnSuccessListener(result -> {
-                if(result == null || result.isEmpty()){
-                    listener.onFailure();
-                }else{
-                    listener.onSuccess(new AnalyzeResult<>(bitmap,result));
-                }
-            }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        } catch (Exception e) {
-            LogUtils.w(e);
-        }
+    protected Task<List<DetectedObject>> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

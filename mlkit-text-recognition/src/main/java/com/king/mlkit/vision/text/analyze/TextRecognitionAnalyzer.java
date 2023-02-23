@@ -15,63 +15,41 @@
  */
 package com.king.mlkit.vision.text.analyze;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.TextRecognizerOptionsInterface;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
+import androidx.annotation.NonNull;
 
 /**
+ * 文字识别分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class TextRecognitionAnalyzer implements Analyzer<Text> {
+public class TextRecognitionAnalyzer extends CommonAnalyzer<Text> {
 
-    private TextRecognizer mTextRecognizer;
+    private TextRecognizer mDetector;
 
     public TextRecognitionAnalyzer() {
         this(null);
     }
 
-    public TextRecognitionAnalyzer(TextRecognizerOptionsInterface options){
-        if(options != null){
-            mTextRecognizer = TextRecognition.getClient(options);
-        }else{
-            mTextRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+    public TextRecognitionAnalyzer(TextRecognizerOptionsInterface options) {
+        if (options != null) {
+            mDetector = TextRecognition.getClient(options);
+        } else {
+            mDetector = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<Text>> listener) {
-        try {
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mTextRecognizer.process(inputImage).addOnSuccessListener(result -> {
-                if(result != null){
-                    listener.onSuccess(new AnalyzeResult<>(bitmap,result));
-                }else {
-                    listener.onFailure();
-                }
-            }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        }catch (Exception e){
-            LogUtils.w(e);
-        }
+    protected Task<Text> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

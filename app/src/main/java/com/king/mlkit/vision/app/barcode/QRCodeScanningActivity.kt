@@ -21,22 +21,22 @@ import android.widget.ImageView
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
-import com.king.mlkit.vision.barcode.utils.PointUtils
 import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.camera.CameraScan
+import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig
+import com.king.mlkit.vision.camera.util.PointUtils
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class QRCodeScanningActivity : QRCodeCameraScanActivity() {
 
-
     private lateinit var ivResult: ImageView
 
     override fun initUI() {
         super.initUI()
 
-        ivResult = findViewById<ImageView>(R.id.ivResult)
+        ivResult = findViewById(R.id.ivResult)
     }
 
     override fun initCameraScan() {
@@ -51,7 +51,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
     }
 
     override fun onBackPressed() {
-        if(viewfinderView.isShowPoints){//如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
+        if (viewfinderView.isShowPoints) {//如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
             ivResult.setImageResource(0)
             viewfinderView.showScanner()
             cameraScan.setAnalyzeImage(true)
@@ -71,7 +71,14 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         for (barcode in results) {
             barcode.boundingBox?.let { box ->
                 //将实际的结果中心点坐标转换成界面预览的坐标
-                val point = PointUtils.transform(box.centerX(), box.centerY(), result.bitmap.width, result.bitmap.height, viewfinderView.width, viewfinderView.height)
+                val point = PointUtils.transform(
+                    box.centerX(),
+                    box.centerY(),
+                    result.bitmap.width,
+                    result.bitmap.height,
+                    viewfinderView.width,
+                    viewfinderView.height
+                )
                 points.add(point)
             }
 
@@ -80,8 +87,8 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         viewfinderView.setOnItemClickListener {
             //显示点击Item将所在位置扫码识别的结果返回
             val intent = Intent()
-            intent.putExtra(CameraScan.SCAN_RESULT,results[it].displayValue)
-            setResult(RESULT_OK,intent)
+            intent.putExtra(CameraScan.SCAN_RESULT, results[it].displayValue)
+            setResult(RESULT_OK, intent)
             finish()
 
             /*
@@ -94,10 +101,10 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         //显示结果点信息
         viewfinderView.showResultPoints(points)
 
-        if(results.size == 1){//只有一个结果直接返回
+        if (results.size == 1) {//只有一个结果直接返回
             val intent = Intent()
-            intent.putExtra(CameraScan.SCAN_RESULT,results[0].displayValue)
-            setResult(RESULT_OK,intent)
+            intent.putExtra(CameraScan.SCAN_RESULT, results[0].displayValue)
+            setResult(RESULT_OK, intent)
             finish()
         }
 

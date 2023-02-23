@@ -15,7 +15,6 @@
  */
 package com.king.mlkit.vision.object;
 
-import androidx.annotation.Nullable;
 
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.king.mlkit.vision.camera.BaseCameraScanFragment;
@@ -24,7 +23,13 @@ import com.king.mlkit.vision.object.analyze.ObjectDetectionAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 对象检测 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link ObjectCameraScanActivity}或{@link ObjectCameraScanFragment}可快速实现对象检测
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class ObjectCameraScanFragment extends BaseCameraScanFragment<List<DetectedObject>> {

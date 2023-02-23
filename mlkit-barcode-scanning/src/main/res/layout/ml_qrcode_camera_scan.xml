@@ -17,5 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/ml_flashlight_selector"
+        android:contentDescription="@null"
         android:layout_marginTop="@dimen/ml_flashlight_margin_top" />
 </FrameLayout>

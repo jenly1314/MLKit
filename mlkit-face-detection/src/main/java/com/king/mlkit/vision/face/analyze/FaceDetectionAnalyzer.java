@@ -15,38 +15,35 @@
  */
 package com.king.mlkit.vision.face.analyze;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 /**
+ * 人脸检测分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class FaceDetectionAnalyzer implements Analyzer<List<Face>> {
+public class FaceDetectionAnalyzer extends CommonAnalyzer<List<Face>> {
 
     private FaceDetector mDetector;
 
-    public FaceDetectionAnalyzer(){
+    public FaceDetectionAnalyzer() {
         this(null);
     }
 
-    public FaceDetectionAnalyzer(FaceDetectorOptions options){
-        if(options != null){
+    public FaceDetectionAnalyzer(FaceDetectorOptions options) {
+        if (options != null) {
             mDetector = FaceDetection.getClient(options);
-        }else{
+        } else {
             // High-accuracy landmark detection and face classification
 //            mDetector = FaceDetection.getClient(new FaceDetectorOptions.Builder()
 //                    .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
@@ -60,29 +57,9 @@ public class FaceDetectionAnalyzer implements Analyzer<List<Face>> {
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<Face>>> listener) {
-        try{
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mDetector.process(inputImage)
-                    .addOnSuccessListener(result -> {
-                        if(result == null || result.isEmpty()){
-                            listener.onFailure();
-                        }else{
-                            listener.onSuccess(new AnalyzeResult<>(bitmap,result));
-                        }
-                    }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        }catch (Exception e){
-            LogUtils.w(e);
-        }
+    protected Task<List<Face>> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

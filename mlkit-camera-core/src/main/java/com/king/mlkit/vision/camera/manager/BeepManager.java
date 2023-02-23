@@ -17,7 +17,6 @@ package com.king.mlkit.vision.camera.manager;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.VibrationEffect;
@@ -84,7 +83,6 @@ public final class BeepManager implements MediaPlayer.OnErrorListener, Closeable
             AssetFileDescriptor file = context.getResources().openRawResourceFd(R.raw.ml_beep);
             mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             mediaPlayer.setOnErrorListener(this);
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setLooping(false);
             mediaPlayer.prepare();
             return mediaPlayer;

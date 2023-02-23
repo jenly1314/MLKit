@@ -21,17 +21,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.camera.util.PermissionUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.view.PreviewView;
 import androidx.fragment.app.Fragment;
 
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.LogUtils;
-import com.king.mlkit.vision.camera.util.PermissionUtils;
-
-
 /**
+ * 相机扫描基类；{@link BaseCameraScanFragment} 内部持有{@link CameraScan}，便于快速实现扫描识别。
+ * <p>
+ * 快速实现扫描识别主要有以下几种方式：
+ * <p>
+ * 1、通过继承 {@linkBaseCameraScanActivity}或者{@link BaseCameraScanFragment}或其子类，可快速实现扫描识别。
+ * （适用于大多数场景，自定义布局时需覆写getLayoutId方法）
+ * <p>
+ * 2、在你项目的Activity或者Fragment中实例化一个{@link BaseCameraScan}。（适用于想在扫码界面写交互逻辑，又因为项目
+ * 架构或其它原因，无法直接或间接继承{@link BaseCameraScanActivity}或{@link BaseCameraScanFragment}时使用）
+ * <p>
+ * 3、继承{@link CameraScan}自己实现一个，可参照默认实现类{@link BaseCameraScan}，其他步骤同方式2。（高级用法，谨慎使用）
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class BaseCameraScanFragment<T> extends Fragment implements CameraScan.OnScanResultCallback<T> {
@@ -41,15 +52,12 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
     private View mRootView;
 
     protected PreviewView previewView;
-    protected View ivFlashlight;
-
-    private CameraScan mCameraScan;
-
+    private CameraScan<T> mCameraScan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(isContentView()){
-            mRootView = createRootView(inflater,container);
+        if (isContentView()) {
+            mRootView = createRootView(inflater, container);
         }
         initUI();
         return mRootView;
@@ -58,23 +66,16 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
     /**
      * 初始化
      */
-    public void initUI(){
+    public void initUI() {
         previewView = mRootView.findViewById(getPreviewViewId());
         initCameraScan();
         startCamera();
     }
 
     /**
-     * 点击手电筒
-     */
-    protected void onClickFlashlight(){
-        toggleTorchState();
-    }
-
-    /**
      * 初始化CameraScan
      */
-    public void initCameraScan(){
+    public void initCameraScan() {
         mCameraScan = createCameraScan(previewView)
                 .setAnalyzer(createAnalyzer())
                 .setOnScanResultCallback(this);
@@ -83,13 +84,13 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
     /**
      * 启动相机预览
      */
-    public void startCamera(){
-        if(mCameraScan != null){
-            if(PermissionUtils.checkPermission(getContext(), Manifest.permission.CAMERA)){
+    public void startCamera() {
+        if (mCameraScan != null) {
+            if (PermissionUtils.checkPermission(getContext(), Manifest.permission.CAMERA)) {
                 mCameraScan.startCamera();
-            }else{
+            } else {
                 LogUtils.d("checkPermissionResult != PERMISSION_GRANTED");
-                PermissionUtils.requestPermission(this,Manifest.permission.CAMERA,CAMERA_PERMISSION_REQUEST_CODE);
+                PermissionUtils.requestPermission(this, Manifest.permission.CAMERA, CAMERA_PERMISSION_REQUEST_CODE);
             }
         }
     }
@@ -97,42 +98,30 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
     /**
      * 释放相机
      */
-    private void releaseCamera(){
-        if(mCameraScan != null){
+    private void releaseCamera() {
+        if (mCameraScan != null) {
             mCameraScan.release();
-        }
-    }
-
-    /**
-     * 切换闪光灯状态（开启/关闭）
-     */
-    protected void toggleTorchState(){
-        if(mCameraScan != null){
-            boolean isTorch = mCameraScan.isTorchEnabled();
-            mCameraScan.enableTorch(!isTorch);
-            if(ivFlashlight != null){
-                ivFlashlight.setSelected(!isTorch);
-            }
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == CAMERA_PERMISSION_REQUEST_CODE){
-            requestCameraPermissionResult(permissions,grantResults);
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            requestCameraPermissionResult(permissions, grantResults);
         }
     }
 
     /**
      * 请求Camera权限回调结果
+     *
      * @param permissions
      * @param grantResults
      */
-    public void requestCameraPermissionResult(@NonNull String[] permissions, @NonNull int[] grantResults){
-        if(PermissionUtils.requestPermissionsResult(Manifest.permission.CAMERA,permissions,grantResults)){
+    public void requestCameraPermissionResult(@NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (PermissionUtils.requestPermissionsResult(Manifest.permission.CAMERA, permissions, grantResults)) {
             startCamera();
-        }else{
+        } else {
             getActivity().finish();
         }
     }
@@ -145,66 +134,74 @@ public abstract class BaseCameraScanFragment<T> extends Fragment implements Came
 
     /**
      * 返回true时会自动初始化{@link #createRootView(LayoutInflater, ViewGroup)}，返回为false是需自己去初始化{@link #createRootView(LayoutInflater, ViewGroup)}
+     *
      * @return 默认返回true
      */
-    public boolean isContentView(){
+    public boolean isContentView() {
         return true;
     }
 
     /**
      * 创建{@link #mRootView}
+     *
      * @param inflater
      * @param container
      * @return
      */
     @NonNull
-    public View createRootView(LayoutInflater inflater, ViewGroup container){
-        return inflater.inflate(getLayoutId(),container,false);
+    public View createRootView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(getLayoutId(), container, false);
     }
 
     /**
-     * 布局id
+     * 布局ID；通过覆写此方法可以自定义布局
+     *
      * @return
      */
-    public int getLayoutId(){
+    public int getLayoutId() {
         return R.layout.ml_camera_scan;
     }
 
-
     /**
-     * 预览界面{@link #previewView} 的ID
+     * 预览界面{@link #previewView}的ID
+     *
      * @return
      */
-    public int getPreviewViewId(){
+    public int getPreviewViewId() {
         return R.id.previewView;
     }
 
     /**
-     * Get {@link CameraScan}
+     * 获取 {@link CameraScan}
+     *
      * @return {@link #mCameraScan}
      */
-    public CameraScan<T> getCameraScan(){
+    public CameraScan<T> getCameraScan() {
         return mCameraScan;
     }
 
-
-    //--------------------------------------------
-
+    /**
+     * 获取根视图
+     *
+     * @return
+     */
     public View getRootView() {
         return mRootView;
     }
 
     /**
      * 创建{@link CameraScan}
+     *
      * @param previewView
      * @return
      */
-    public CameraScan<T> createCameraScan(PreviewView previewView){
-        return new BaseCameraScan<>(this,previewView);
+    public CameraScan<T> createCameraScan(PreviewView previewView) {
+        return new BaseCameraScan<>(this, previewView);
     }
 
     /**
      * 创建分析器
+     *
      * @return
      */
     @Nullable

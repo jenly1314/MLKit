@@ -15,27 +15,24 @@
  */
 package com.king.mlkit.vision.facemesh.analyze;
 
-import android.graphics.Bitmap;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.facemesh.FaceMesh;
 import com.google.mlkit.vision.facemesh.FaceMeshDetection;
 import com.google.mlkit.vision.facemesh.FaceMeshDetector;
 import com.google.mlkit.vision.facemesh.FaceMeshDetectorOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
 
 /**
+ * 人脸网格分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class FaceMeshDetectionAnalyzer implements Analyzer<List<FaceMesh>> {
+public class FaceMeshDetectionAnalyzer extends CommonAnalyzer<List<FaceMesh>> {
 
     private FaceMeshDetector mDetector;
 
@@ -51,29 +48,9 @@ public class FaceMeshDetectionAnalyzer implements Analyzer<List<FaceMesh>> {
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<FaceMesh>>> listener) {
-        try {
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
-
-            mDetector.process(inputImage)
-                    .addOnSuccessListener(result -> {
-                        if (result == null || result.isEmpty()) {
-                            listener.onFailure();
-                        } else {
-                            listener.onSuccess(new AnalyzeResult<>(bitmap, result));
-                        }
-                    }).addOnFailureListener(e -> {
-                        listener.onFailure();
-                    });
-        } catch (Exception e) {
-            LogUtils.w(e);
-        }
+    protected Task<List<FaceMesh>> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

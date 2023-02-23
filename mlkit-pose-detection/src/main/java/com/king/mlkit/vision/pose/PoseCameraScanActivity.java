@@ -15,14 +15,18 @@
  */
 package com.king.mlkit.vision.pose;
 
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.pose.Pose;
 import com.king.mlkit.vision.camera.BaseCameraScanActivity;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
 import com.king.mlkit.vision.pose.analyze.PoseDetectionAnalyzer;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 姿势检测 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link PoseCameraScanActivity}或{@link PoseCameraScanFragment}可快速实现姿势检测
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class PoseCameraScanActivity extends BaseCameraScanActivity<Pose> {

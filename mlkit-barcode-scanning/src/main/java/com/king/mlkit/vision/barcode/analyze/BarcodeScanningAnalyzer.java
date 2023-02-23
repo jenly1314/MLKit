@@ -15,72 +15,49 @@
  */
 package com.king.mlkit.vision.barcode.analyze;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 
 /**
+ * 条码扫描分析器：分析相机预览的帧数据，从中检测识别条形码/二维码
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class BarcodeScanningAnalyzer implements Analyzer<List<Barcode>> {
+public class BarcodeScanningAnalyzer extends CommonAnalyzer<List<Barcode>> {
 
     private BarcodeScanner mDetector;
 
-    public BarcodeScanningAnalyzer(){
+    public BarcodeScanningAnalyzer() {
         mDetector = BarcodeScanning.getClient();
     }
 
-    public BarcodeScanningAnalyzer(@Barcode.BarcodeFormat int barcodeFormat, @Barcode.BarcodeFormat int... barcodeFormats){
+    public BarcodeScanningAnalyzer(@Barcode.BarcodeFormat int barcodeFormat, @Barcode.BarcodeFormat int... barcodeFormats) {
         this(new BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(barcodeFormat,barcodeFormats)
+                .setBarcodeFormats(barcodeFormat, barcodeFormats)
                 .build());
     }
 
-    public BarcodeScanningAnalyzer(BarcodeScannerOptions options){
-        if(options != null){
+    public BarcodeScanningAnalyzer(BarcodeScannerOptions options) {
+        if (options != null) {
             mDetector = BarcodeScanning.getClient(options);
-        }else{
+        } else {
             mDetector = BarcodeScanning.getClient();
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<Barcode>>> listener) {
-        try{
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mDetector.process(inputImage)
-                    .addOnSuccessListener(result -> {
-                        if(result == null || result.isEmpty()){
-                            listener.onFailure();
-                        }else{
-                            listener.onSuccess(new AnalyzeResult(bitmap,result));
-                        }
-                    }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        }catch (Exception e){
-            LogUtils.w(e);
-        }
+    protected Task<List<Barcode>> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
+
 }

@@ -15,9 +15,6 @@
  */
 package com.king.mlkit.vision.barcode;
 
-
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.king.mlkit.vision.barcode.analyze.BarcodeScanningAnalyzer;
 import com.king.mlkit.vision.camera.BaseCameraScanFragment;
@@ -25,17 +22,24 @@ import com.king.mlkit.vision.camera.analyze.Analyzer;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 条形码扫描 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link BarcodeCameraScanActivity}或{@link BarcodeCameraScanFragment}可快速实现条形码（二维码是条形码的子集）
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class BarcodeCameraScanFragment extends BaseCameraScanFragment<List<Barcode>> {
     /**
      * 创建分析器，默认分析所有条码格式
+     *
      * @return
      */
     @Nullable
     @Override
-    public Analyzer<List<Barcode>> createAnalyzer(){
+    public Analyzer<List<Barcode>> createAnalyzer() {
         return new BarcodeScanningAnalyzer(Barcode.FORMAT_ALL_FORMATS);
     }
 

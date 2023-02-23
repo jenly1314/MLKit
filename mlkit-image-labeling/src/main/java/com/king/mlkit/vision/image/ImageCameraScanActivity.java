@@ -15,8 +15,6 @@
  */
 package com.king.mlkit.vision.image;
 
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.label.ImageLabel;
 import com.king.mlkit.vision.camera.BaseCameraScanActivity;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
@@ -24,7 +22,13 @@ import com.king.mlkit.vision.image.analyze.ImageLabelingAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 图像标签 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link ImageCameraScanActivity}或{@link ImageCameraScanFragment}可快速识别图像中的实体
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class ImageCameraScanActivity extends BaseCameraScanActivity<List<ImageLabel>> {

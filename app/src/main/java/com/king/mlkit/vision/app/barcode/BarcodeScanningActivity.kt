@@ -24,7 +24,6 @@ import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.BarcodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.camera.config.ResolutionCameraConfig
-import java.lang.StringBuilder
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -42,8 +41,8 @@ class BarcodeScanningActivity : BarcodeCameraScanActivity() {
 
         cameraScan.setAnalyzeImage(false)
         val buffer = StringBuilder()
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
-            for ((index,data) in result.result.withIndex()) {
+        val bitmap = result.bitmap.drawRect { canvas, paint ->
+            for ((index, data) in result.result.withIndex()) {
                 buffer.append("[$index] ").append(data.displayValue).append("\n")
                 data.boundingBox?.let { box ->
                     canvas.drawRect(box, paint)
@@ -53,15 +52,15 @@ class BarcodeScanningActivity : BarcodeCameraScanActivity() {
 
         val config = AppDialogConfig(this, R.layout.barcode_result_dialog)
         config.setContent(buffer).setOnClickConfirm {
-                AppDialog.INSTANCE.dismissDialog()
-                cameraScan.setAnalyzeImage(true)
-            }.setOnClickCancel {
-                AppDialog.INSTANCE.dismissDialog()
-                finish()
-            }
+            AppDialog.INSTANCE.dismissDialog()
+            cameraScan.setAnalyzeImage(true)
+        }.setOnClickCancel {
+            AppDialog.INSTANCE.dismissDialog()
+            finish()
+        }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 
 

@@ -32,10 +32,16 @@ import com.king.mlkit.vision.text.analyze.TextRecognitionAnalyzer
  */
 class TextRecognitionActivity : TextCameraScanActivity() {
     override fun onScanResultCallback(result: AnalyzeResult<Text>) {
+        if (result.result.text.isEmpty()) {
+            // 过滤掉空数据
+            return
+        }
+
         cameraScan.setAnalyzeImage(false)
 
         val config = AppDialogConfig(this, R.layout.text_result_dialog)
-        config.getView<TextView>(R.id.tvDialogContent).movementMethod = ScrollingMovementMethod.getInstance()
+        config.getView<TextView>(R.id.tvDialogContent).movementMethod =
+            ScrollingMovementMethod.getInstance()
         config.setContent(result.result.text)
             .setOnClickConfirm {
                 AppDialog.INSTANCE.dismissDialog()
@@ -44,9 +50,8 @@ class TextRecognitionActivity : TextCameraScanActivity() {
                 AppDialog.INSTANCE.dismissDialog()
                 finish()
             }
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
-
 
     override fun createAnalyzer(): Analyzer<Text>? {
         return TextRecognitionAnalyzer(ChineseTextRecognizerOptions.Builder().build())

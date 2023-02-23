@@ -15,36 +15,33 @@
  */
 package com.king.mlkit.vision.segmentation.analyze;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.segmentation.Segmentation;
 import com.google.mlkit.vision.segmentation.SegmentationMask;
 import com.google.mlkit.vision.segmentation.Segmenter;
 import com.google.mlkit.vision.segmentation.selfie.SelfieSegmenterOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
+
+import androidx.annotation.NonNull;
 
 /**
+ * 自拍分割分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class SegmentationAnalyzer implements Analyzer<SegmentationMask> {
+public class SegmentationAnalyzer extends CommonAnalyzer<SegmentationMask> {
 
     private Segmenter mDetector;
 
-    public SegmentationAnalyzer(){
+    public SegmentationAnalyzer() {
         this(null);
     }
 
-    public SegmentationAnalyzer(SelfieSegmenterOptions options){
-        if(options != null){
+    public SegmentationAnalyzer(SelfieSegmenterOptions options) {
+        if (options != null) {
             mDetector = Segmentation.getClient(options);
-        }else{
+        } else {
             mDetector = Segmentation.getClient(new SelfieSegmenterOptions.Builder()
                     .setDetectorMode(SelfieSegmenterOptions.STREAM_MODE)
                     .enableRawSizeMask()
@@ -52,27 +49,9 @@ public class SegmentationAnalyzer implements Analyzer<SegmentationMask> {
         }
     }
 
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<SegmentationMask>> listener) {
-        try {
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mDetector.process(inputImage).addOnSuccessListener(result -> {
-                if(result != null){
-                    listener.onSuccess(new AnalyzeResult<>(bitmap,result));
-                }else {
-                    listener.onFailure();
-                }
-            }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        } catch (Exception e) {
-            LogUtils.w(e);
-        }
+    protected Task<SegmentationMask> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

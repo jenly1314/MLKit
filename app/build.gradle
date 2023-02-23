@@ -4,14 +4,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion build_versions.compileSdk
-    buildToolsVersion build_versions.buildTools
+    compileSdk build_versions.compileSdk
+
     defaultConfig {
         applicationId "com.king.mlkit.vision.app"
-        minSdkVersion build_versions.minSdk
-        targetSdkVersion build_versions.targetSdk
+        minSdk build_versions.minSdk
+        targetSdk build_versions.targetSdk
         versionCode app_version.versionCode
         versionName app_version.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -26,9 +27,6 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -38,6 +36,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.king.mlkit.vision.app'
 }
 
 dependencies {
@@ -46,16 +48,16 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
-    implementation deps.androidx.design
+    implementation deps.androidx.material
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout
 
-    implementation deps.kotlin
     implementation deps.corektx
 
     implementation deps.app_dialog
 
     implementation project(':mlkit-camera-core')
+    implementation project(':mlkit-common')
     implementation project(':mlkit-barcode-scanning')
     implementation project(':mlkit-face-detection')
     implementation project(':mlkit-face-mesh-detection')

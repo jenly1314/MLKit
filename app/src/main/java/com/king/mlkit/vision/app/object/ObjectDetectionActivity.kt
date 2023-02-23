@@ -19,10 +19,10 @@ import android.widget.ImageView
 import com.google.mlkit.vision.objects.DetectedObject
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
-import com.king.mlkit.vision.`object`.ObjectCameraScanActivity
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.camera.AnalyzeResult
+import com.king.mlkit.vision.`object`.ObjectCameraScanActivity
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -30,22 +30,22 @@ import com.king.mlkit.vision.camera.AnalyzeResult
 open class ObjectDetectionActivity : ObjectCameraScanActivity() {
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<DetectedObject>>) {
         cameraScan.setAnalyzeImage(false)
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
+        val bitmap = result.bitmap.drawRect { canvas, paint ->
             for (data in result.result) {
-                canvas.drawRect(data.boundingBox,paint)
+                canvas.drawRect(data.boundingBox, paint)
             }
         }
 
         val config = AppDialogConfig(this, R.layout.result_dialog)
         config.setOnClickConfirm {
-                AppDialog.INSTANCE.dismissDialog()
-                cameraScan.setAnalyzeImage(true)
-            }.setOnClickCancel {
-                AppDialog.INSTANCE.dismissDialog()
-                finish()
-            }
+            AppDialog.INSTANCE.dismissDialog()
+            cameraScan.setAnalyzeImage(true)
+        }.setOnClickCancel {
+            AppDialog.INSTANCE.dismissDialog()
+            finish()
+        }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 }

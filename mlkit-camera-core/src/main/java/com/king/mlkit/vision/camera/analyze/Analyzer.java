@@ -15,29 +15,43 @@
  */
 package com.king.mlkit.vision.camera.analyze;
 
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
 import com.king.mlkit.vision.camera.AnalyzeResult;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.camera.core.ImageProxy;
 
 /**
+ * 分析器：主要用于分析相机预览的帧数据
+ *
+ * @param <T> 泛型T为分析成功后的具体结果
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface Analyzer<T> {
     /**
      * Analyzes an image to produce a result.
+     *
      * @param imageProxy The image to analyze
-     * @param listener {@link OnAnalyzeListener}
+     * @param listener   {@link OnAnalyzeListener}
      */
     void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<T>> listener);
 
     /**
      * Analyze listener
-     * @param <T>
+     *
+     * @param <T> 泛型T为分析结果对应的对象
      */
-    public interface OnAnalyzeListener<T>{
+    public interface OnAnalyzeListener<T> {
+        /**
+         * 成功
+         *
+         * @param result 分析结果
+         */
         void onSuccess(@NonNull T result);
-        void onFailure();
+
+        /**
+         * 失败
+         */
+        void onFailure(@Nullable Exception e);
     }
 }

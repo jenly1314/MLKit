@@ -1,12 +1,33 @@
-include ':mlkit-segmentation-selfie'
-include ':mlkit-pose-detection-accurate'
-include ':mlkit-pose-detection'
-include ':mlkit-image-labeling'
-include ':mlkit-object-detection'
-include ':mlkit-text-recognition'
-include ':mlkit-face-detection'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "MLKit"
+include ':app'
 include ':mlkit-barcode-scanning'
 include ':mlkit-camera-core'
-include ':app'
-rootProject.name = "MLKit"
+include ':mlkit-common'
+include ':mlkit-face-detection'
 include ':mlkit-face-mesh-detection'
+include ':mlkit-image-labeling'
+include ':mlkit-object-detection'
+include ':mlkit-pose-detection'
+include ':mlkit-pose-detection-accurate'
+include ':mlkit-segmentation-selfie'
+include ':mlkit-text-recognition'
+
+
+
+
+

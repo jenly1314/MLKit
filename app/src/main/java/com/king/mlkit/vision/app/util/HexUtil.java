@@ -1,5 +1,7 @@
 package com.king.mlkit.vision.app.util;
 
+import java.util.Locale;
+
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -21,7 +23,7 @@ public class HexUtil {
             sTemp = Integer.toHexString(0xFF & bArray[i]);
             if (sTemp.length() < 2)
                 sb.append(0);
-            sb.append(sTemp.toUpperCase());
+            sb.append(sTemp.toUpperCase(Locale.getDefault()));
         }
         return sb.toString();
     }

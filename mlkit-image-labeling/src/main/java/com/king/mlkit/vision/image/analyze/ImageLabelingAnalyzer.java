@@ -15,65 +15,43 @@
  */
 package com.king.mlkit.vision.image.analyze;
 
-import android.graphics.Bitmap;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
-
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.label.ImageLabel;
 import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabelerOptionsBase;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
-import com.king.mlkit.vision.camera.AnalyzeResult;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
-import com.king.mlkit.vision.camera.util.BitmapUtils;
-import com.king.mlkit.vision.camera.util.LogUtils;
+import com.king.mlkit.vision.common.analyze.CommonAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 /**
+ * 图像标签分析器
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class ImageLabelingAnalyzer implements Analyzer<List<ImageLabel>> {
+public class ImageLabelingAnalyzer extends CommonAnalyzer<List<ImageLabel>> {
 
     private ImageLabeler mDetector;
 
-    public ImageLabelingAnalyzer(){
+    public ImageLabelingAnalyzer() {
         this(null);
     }
 
-    public ImageLabelingAnalyzer(ImageLabelerOptionsBase options){
-        if(options != null){
+    public ImageLabelingAnalyzer(ImageLabelerOptionsBase options) {
+        if (options != null) {
             mDetector = ImageLabeling.getClient(options);
-        }else{
+        } else {
             mDetector = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS);
         }
     }
 
-
+    @NonNull
     @Override
-    public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<List<ImageLabel>>> listener) {
-        try {
-
-            final Bitmap bitmap = BitmapUtils.getBitmap(imageProxy);
-//            final Bitmap bitmap = ImageUtils.imageProxyToBitmap(imageProxy);
-//            @SuppressLint("UnsafeExperimentalUsageError")
-//            InputImage inputImage = InputImage.fromMediaImage(imageProxy.getImage(),imageProxy.getImageInfo().getRotationDegrees());
-            InputImage inputImage = InputImage.fromBitmap(bitmap,0);
-
-            mDetector.process(inputImage).addOnSuccessListener(result -> {
-                if(result == null || result.isEmpty()){
-                    listener.onFailure();
-                }else{
-                    listener.onSuccess(new AnalyzeResult<>(bitmap,result));
-                }
-            }).addOnFailureListener(e -> {
-                listener.onFailure();
-            });
-        } catch (Exception e) {
-            LogUtils.w(e);
-        }
+    protected Task<List<ImageLabel>> detectInImage(InputImage inputImage) {
+        return mDetector.process(inputImage);
     }
 }

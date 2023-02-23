@@ -15,11 +15,12 @@
  */
 package com.king.mlkit.vision.camera;
 
-
 import androidx.annotation.Nullable;
 import androidx.camera.core.Camera;
 
 /**
+ * 相机定义
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface ICamera {
@@ -36,9 +37,11 @@ public interface ICamera {
 
     /**
      * 获取{@link Camera}
+     *
      * @return
      */
-    @Nullable Camera getCamera();
+    @Nullable
+    Camera getCamera();
 
     /**
      * 释放

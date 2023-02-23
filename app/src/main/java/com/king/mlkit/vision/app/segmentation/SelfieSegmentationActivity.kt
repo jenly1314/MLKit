@@ -28,10 +28,10 @@ class SelfieSegmentationActivity : SegmentationCameraScanActivity() {
         }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(processBitmap(result))
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 
-    private fun processBitmap(result: AnalyzeResult<SegmentationMask>): Bitmap{
+    private fun processBitmap(result: AnalyzeResult<SegmentationMask>): Bitmap {
         val bitmap = result.bitmap
         val mask = result.result
         val maskWidth = mask.width
@@ -43,7 +43,9 @@ class SelfieSegmentationActivity : SegmentationCameraScanActivity() {
 
 
         val resultBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
-        val maskBitmap = Bitmap.createBitmap(maskColorsFromByteBuffer(mask), maskWidth, maskHeight, Bitmap.Config.ARGB_8888)
+        val maskBitmap = Bitmap.createBitmap(
+            maskColorsFromByteBuffer(mask), maskWidth, maskHeight, Bitmap.Config.ARGB_8888
+        )
 
         val canvas = Canvas(resultBitmap)
         val paint = Paint()
@@ -68,8 +70,7 @@ class SelfieSegmentationActivity : SegmentationCameraScanActivity() {
 
     @ColorInt
     private fun maskColorsFromByteBuffer(mask: SegmentationMask): IntArray {
-        @ColorInt val colors =
-            IntArray(mask.width * mask.height)
+        @ColorInt val colors = IntArray(mask.width * mask.height)
         for (i in 0 until mask.width * mask.height) {
             val backgroundLikelihood = 1 - mask.buffer.float
             if (backgroundLikelihood > 0.9) {

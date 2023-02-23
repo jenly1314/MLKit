@@ -29,16 +29,14 @@ import com.king.mlkit.vision.face.FaceCameraScanActivity
  */
 open class FaceDetectionActivity : FaceCameraScanActivity() {
 
-
-
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Face>>) {
         cameraScan.setAnalyzeImage(false)
-        val bitmap = result.bitmap.drawRect {canvas,paint ->
+        val bitmap = result.bitmap.drawRect { canvas, paint ->
             for (data in result.result) {
-                canvas.drawRect(data.boundingBox,paint)
-                for(contour in data.allContours){
-                    for (point in contour.points){
-                        canvas.drawCircle(point.x,point.y,2f,paint)
+                canvas.drawRect(data.boundingBox, paint)
+                for (contour in data.allContours) {
+                    for (point in contour.points) {
+                        canvas.drawCircle(point.x, point.y, 2f, paint)
                     }
                 }
             }
@@ -46,14 +44,14 @@ open class FaceDetectionActivity : FaceCameraScanActivity() {
 
         val config = AppDialogConfig(this, R.layout.result_dialog)
         config.setOnClickConfirm {
-                AppDialog.INSTANCE.dismissDialog()
-                cameraScan.setAnalyzeImage(true)
-            }.setOnClickCancel {
-                AppDialog.INSTANCE.dismissDialog()
-                finish()
-            }
+            AppDialog.INSTANCE.dismissDialog()
+            cameraScan.setAnalyzeImage(true)
+        }.setOnClickCancel {
+            AppDialog.INSTANCE.dismissDialog()
+            finish()
+        }
         val imageView = config.getView<ImageView>(R.id.ivDialogContent)
         imageView.setImageBitmap(bitmap)
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 }

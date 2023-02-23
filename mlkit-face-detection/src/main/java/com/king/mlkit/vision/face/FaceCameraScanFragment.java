@@ -15,8 +15,6 @@
  */
 package com.king.mlkit.vision.face;
 
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.face.Face;
 import com.king.mlkit.vision.camera.BaseCameraScanFragment;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
@@ -24,7 +22,13 @@ import com.king.mlkit.vision.face.analyze.FaceDetectionAnalyzer;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 人脸检测 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link FaceCameraScanActivity}或{@link FaceCameraScanFragment}可快速实现人脸检测
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class FaceCameraScanFragment extends BaseCameraScanFragment<List<Face>> {

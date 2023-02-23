@@ -20,7 +20,6 @@ import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.image.ImageCameraScanActivity
-import java.lang.StringBuilder
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -29,7 +28,7 @@ class ImageLabelingActivity : ImageCameraScanActivity() {
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<ImageLabel>>) {
         cameraScan.setAnalyzeImage(false)
         val buffer = StringBuilder()
-        for ((index,data) in result.result.withIndex()) {
+        for ((index, data) in result.result.withIndex()) {
             buffer.append("[$index] ").append(data.text).append("\n")
         }
         val config = AppDialogConfig(this)
@@ -40,6 +39,6 @@ class ImageLabelingActivity : ImageCameraScanActivity() {
             AppDialog.INSTANCE.dismissDialog()
             finish()
         }
-        AppDialog.INSTANCE.showDialog(config,false)
+        AppDialog.INSTANCE.showDialog(config, false)
     }
 }

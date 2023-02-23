@@ -21,21 +21,30 @@ import java.nio.ByteBuffer;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageProxy;
 
+/**
+ * Utils functions for bitmap conversions.
+ *
+ * @see <a href="https://github.com/googlesamples/mlkit/blob/master/android/vision-quickstart/app/src/main/java/com/google/mlkit/vision/demo/BitmapUtils.java">BitmapUtils</a>
+ */
 public class BitmapUtils {
 
-    /** Converts NV21 format byte buffer to bitmap. */
+    private BitmapUtils() {
+        throw new AssertionError();
+    }
+
+    /**
+     * Converts NV21 format byte buffer to bitmap.
+     */
     @Nullable
-    public static Bitmap getBitmap(ByteBuffer data, int width, int height,int rotationDegrees) {
+    public static Bitmap getBitmap(ByteBuffer data, int width, int height, int rotationDegrees) {
         data.rewind();
         byte[] imageInBuffer = new byte[data.limit()];
         data.get(imageInBuffer, 0, imageInBuffer.length);
         try {
-            YuvImage image =
-                    new YuvImage(
-                            imageInBuffer, ImageFormat.NV21,width,height, null);
+            YuvImage image = new YuvImage(
+                    imageInBuffer, ImageFormat.NV21, width, height, null);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             image.compressToJpeg(new Rect(0, 0, width, height), 80, stream);
 
@@ -44,12 +53,14 @@ public class BitmapUtils {
             stream.close();
             return rotateBitmap(bmp, rotationDegrees, false, false);
         } catch (Exception e) {
-            LogUtils.e( "Error: " + e.getMessage());
+            LogUtils.e("Error: " + e.getMessage());
         }
         return null;
     }
 
-    /** Converts a YUV_420_888 image from CameraX API to a bitmap. */
+    /**
+     * Converts a YUV_420_888 image from CameraX API to a bitmap.
+     */
     @Nullable
     public static Bitmap getBitmap(ImageProxy image) {
 
@@ -58,7 +69,9 @@ public class BitmapUtils {
         return getBitmap(nv21Buffer, image.getWidth(), image.getHeight(), image.getImageInfo().getRotationDegrees());
     }
 
-    /** Rotates a bitmap if it is converted from a bytebuffer. */
+    /**
+     * Rotates a bitmap if it is converted from a bytebuffer.
+     */
     private static Bitmap rotateBitmap(
             Bitmap bitmap, int rotationDegrees, boolean flipX, boolean flipY) {
         Matrix matrix = new Matrix();
@@ -168,7 +181,7 @@ public class BitmapUtils {
      * before the U buffer and the planes have a pixelStride of 2. If this is case, we can just copy
      * them to the NV21 array.
      */
-    private static ByteBuffer yuv420ThreePlanesToNV21(Image.Plane[] yuv420888planes, int width, int height) {
+    public static ByteBuffer yuv420ThreePlanesToNV21(Image.Plane[] yuv420888planes, int width, int height) {
         int imageSize = width * height;
         byte[] out = new byte[imageSize + 2 * (imageSize / 4)];
 
@@ -195,7 +208,9 @@ public class BitmapUtils {
         return ByteBuffer.wrap(out);
     }
 
-    /** Checks if the UV plane buffers of a YUV_420_888 image are in the NV21 format. */
+    /**
+     * Checks if the UV plane buffers of a YUV_420_888 image are in the NV21 format.
+     */
     private static boolean areUVPlanesNV21(Image.Plane[] planes, int width, int height) {
         int imageSize = width * height;
 

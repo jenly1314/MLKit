@@ -15,14 +15,18 @@
  */
 package com.king.mlkit.vision.segmentation;
 
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.segmentation.SegmentationMask;
 import com.king.mlkit.vision.camera.BaseCameraScanFragment;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
 import com.king.mlkit.vision.segmentation.analyze.SegmentationAnalyzer;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 自拍分割 - 相机扫描基类
+ * <p>
+ * 通过继承 {@link SegmentationCameraScanActivity}或{@link SegmentationCameraScanFragment}可快速实现自拍分割
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class SegmentationCameraScanFragment extends BaseCameraScanFragment<SegmentationMask> {

@@ -10,9 +10,10 @@
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1.1.982c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
-
-ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极其简单易用的封装包。无论您是否有机器学习的经验，您都可以在几行代码中实现您想要的功能。甚至，您无需对神经网络或者模型优化有多深入的了解，也能完成您想要做的事情。
-基于现有的API您可以很轻松的实现文字识别、条码识别、图像标签、人脸检测、对象检测等功能；另一方面，如果您是一位经验丰富的ML开发人员，ML kit甚至提供了便利的API，可帮助您在移动应用中使用自定义的TensorFlow Lit模型。
+ML
+Kit是一个能够将谷歌专业的机器学习知识带到应用中的极其简单易用的封装包。无论您是否有机器学习的经验，您都可以在几行代码中实现您想要的功能。甚至，您无需对神经网络或者模型优化有多深入的了解，也能完成您想要做的事情。
+基于现有的API您可以很轻松的实现文字识别、条码识别、图像标签、人脸检测、对象检测等功能；另一方面，如果您是一位经验丰富的ML开发人员，ML
+kit甚至提供了便利的API，可帮助您在移动应用中使用自定义的TensorFlow Lit模型。
 
 ## GIF 展示
 
@@ -20,8 +21,9 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 
 因为功能太多，所以仅录制演示了部分功能
 
-> 你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk) 体验效果
-
+>
+你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)
+体验效果
 
 ## 各Module相关说明
 
@@ -34,6 +36,10 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 Camera：为各个子库提供相机预览分析的核心库
 
 > 参见[CameraX](https://developer.android.google.cn/training/camerax)
+
+### [mlkit-common](mlkit-common)
+
+公共库：介于Camera与各个子库之间，为各个字库提供公共业务，从而简化各子库的实现
 
 ### [mlkit-barcode-scanning](mlkit-barcode-scanning)
 
@@ -65,13 +71,13 @@ Camera：为各个子库提供相机预览分析的核心库
 
 ### [mlkit-pose-detection](mlkit-pose-detection)
 
-Pose检测：通过分析图像能够检测人物摆姿势的关键点信息
+姿势检测：通过分析图像能够检测人物摆姿势的关键点信息
 
 > 参见[pose-detection](https://developers.google.cn/ml-kit/vision/pose-detection)
 
 ### [mlkit-pose-detection-accurate](mlkit-pose-detection-accurate)
 
-Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（精确版，依赖包也更大）
+姿势检测（精确版）：通过分析图像能够检测人物摆姿势的关键点信息（精确版的依赖库也略大一点）
 
 > 参见[pose-detection](https://developers.google.cn/ml-kit/vision/pose-detection)
 
@@ -88,6 +94,7 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 > 参见[text-recognition](https://developers.google.cn/ml-kit/vision/text-recognition/v2)
 
 ## ViewfinderView相关字段说明
+
 | 字段 | 字段类型 | 默认值 | 字段说明 |
 | :------| :------ | :------ | :------ |
 | maskColor | color |<font color=#000000>#60000000</font>| 扫描区外遮罩的颜色 |
@@ -130,8 +137,8 @@ Pose检测：通过分析图像能够检测人物摆姿势的关键点信息（�
 
 ### Gradle:
 
-1. 在Project的 **build.gradle** 里面添加远程仓库  
-          
+1. 在Project的 **build.gradle** 里面添加远程仓库
+
 ```gradle
 allprojects {
     repositories {
@@ -142,39 +149,46 @@ allprojects {
 ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
+
 ```gradle
 
 //Camera核心 (*必须)
-implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.3.0'
+
+//--------------------------
+
+//公共库 (可选) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
+implementation 'com.github.jenly1314.MLKit:mlkit-common:1.3.0'
 
 //条码识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.3.0'
 
 //人脸检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.3.0'
 
 //人脸网格检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:1.3.0'
 
 //图像标签 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.3.0'
 
 //对象检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.3.0'
 
-//Pose检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.2.0'
+//姿势检测 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.3.0'
 
-//Pose检测精确版 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.2.0'
+//姿势检测精确版 (可选)
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.3.0'
 
 //自拍分割 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.3.0'
 
 //文字识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.2.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 ```
+
 ### 温馨提示
 
 #### 关于MLKit版本与编译的SDK版本要求
@@ -185,93 +199,126 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.2.0'
 
 > 如果 **compileSdkVersion < 31** 请使用 **v1.0.x** 版本
 
-#### 关于ABI过滤：
+## 使用
 
-在Module的 **build.gradle** 里面的 android{} 中设置支持的 SO 库架构（可选，支持多个平台的 so，支持的平台越多，APK体积越大）
+### 快速实现扫描识别主要有以下几种方式：
 
-```gradle
-    defaultConfig {
-    
-        //...
-        
-        ndk {
-            //设置支持的 SO 库架构（开发者可以根据需要，选择一个或多个平台的 so）
-            abiFilters 'armeabi-v7a' // , 'arm64-v8a', 'x86', 'x86_64'
-        }
-    }
-```
+> 1、通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类，可快速实现扫描识别。
+> （适用于大多场景，自定义布局时需覆写 **getLayoutId** 方法）
 
-## 示例
+> 2、在你项目的Activity或者Fragment中实例化一个 **BaseCameraScan**。（适用于想在扫码界面写交互逻辑，又因为项目
+> 架构或其它原因，无法直接或间接继承 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 时使用）
 
-布局示例
->  可自定义布局（覆写getLayoutId方法），布局内至少要保证有PreviewView，然后自己可根据需要添加的控件。
+> 3、继承 **CameraScan** 自己实现一个，可参照默认实现类 **BaseCameraScan**，其他步骤同方式2。（高级用法，谨慎使用）
 
-> PreviewView 用来预览，布局内至少要保证有PreviewView，如果是继承BaseCameraScanActivity或BaseCameraScanFragment，控件id可覆写getPreviewViewId方法自定义
+### 关于 CameraScan
+
+**CameraScan** 作为相机扫描的（核心）基类；所有与相机扫描相关的都是基于此类来直接或间接进行控制的。
+
+### 关于 CameraConfig
+
+主要是相机相关的配置；如：摄像头的前置后置、相机预览相关、图像分析相关等配置。
+
+你可以直接库中内置实现的相机配置： **CameraConfig** 、**AspectRatioCameraConfig** 和 **ResolutionCameraConfig**。
+
+这里简单说下各自的特点：
+
+* **CameraConfig**：默认的相机配置。
+* **AspectRatioCameraConfig**：根据纵横比配置相机，使输出分析的图像尽可能的接近屏幕的比例
+* **ResolutionCameraConfig**：根据尺寸配置相机的目标图像大小，使输出分析的图像的分辨率尽可能的接近屏幕尺寸
+
+> 你也可以自定义或覆写 **CameraConfig** 中的 **options** 方法，根据需要定制配置。
+
+这里特别温馨提示：默认配置在未配置相机的目标分析图像大小时，会优先使用：横屏：640 * 480 竖屏：480 * 640；
+
+根据这个图像质量顺便说下默认配置的优缺点：
+
+* 优点：因为图像质量不高，所以在低配置的设备上使用也能hold住，这样就能尽可能的适应各种设备；
+* 缺点：正是由于图像质量不高，从而可能会对检测识别率略有影响，比如在某些机型上体验欠佳。
+* 结论：在适配、性能与体验之间得有所取舍，找到平衡点。
+
+> 当使用默认的 **CameraConfig** 在某些机型上体验欠佳时，你可以尝试使用 **AspectRatioCameraConfig** 或
+**ResolutionCameraConfig** 会有意想不到奇效。
+
+
+### 布局示例
+
+可自定义布局（覆写getLayoutId方法），布局内至少要保证有PreviewView，然后自己可根据需要添加的控件。
+
+PreviewView
+用来预览，布局内至少要保证有PreviewView，如果是继承BaseCameraScanActivity或BaseCameraScanFragment，控件id可覆写getPreviewViewId方法自定义
+
+示例：
 
 ```Xml
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.camera.view.PreviewView
-        android:id="@+id/previewView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.camera.view.PreviewView android:id="@+id/previewView"
+        android:layout_width="match_parent" android:layout_height="match_parent" />
     <!-- 只需保证有布局内有PreviewView即可，然后自己可根据需要添加的控件 -->
 </FrameLayout>
 ```
 
 如：扫二维码的布局示例 (**ViewfinderView** 是 **mlkit-barcode-scanning**中的)
+
 ```Xml
 <?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/previewView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <com.king.mlkit.vision.barcode.ViewfinderView
-        android:id="@+id/viewfinderView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <ImageView
-        android:id="@+id/ivFlashlight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+    <androidx.camera.view.PreviewView android:id="@+id/previewView"
+        android:layout_width="match_parent" android:layout_height="match_parent" />
+    <com.king.mlkit.vision.barcode.ViewfinderView android:id="@+id/viewfinderView"
+        android:layout_width="match_parent" android:layout_height="match_parent" />
+    <ImageView android:id="@+id/ivFlashlight" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="center"
         android:src="@drawable/ml_flashlight_selector"
         android:layout_marginTop="@dimen/ml_flashlight_margin_top" />
 </FrameLayout>
 ```
 
-CameraScan配置示例
+### CameraScan配置示例
+
+CameraScan里面包含部分支持链式调用的方法，即调用返回是CameraScan本身的一些配置建议在startCamera之前调用。
+
+> 如果是通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类实现的相机扫描，可以在 **
+> initCameraScan()** 方法中获取CameraScan，然后进行相关的配置设置。
+
+示例：
+
 ```java
-        //获取CameraScan，扫码相关的配置设置。CameraScan里面包含部分支持链式调用的方法，即调用返回是CameraScan本身的一些配置建议在startCamera之前调用。
+        // 获取CameraScan，然后根据需要修改相关配置
         getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
-            .setVibrate(true)//设置是否震动，默认为false
-            .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
-            .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
-            .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-            .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-            .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
-            .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
-            .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
-            .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
-            .startCamera();//启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用这句startCamera）
+                .setVibrate(true)//设置是否震动，默认为false
+                .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
+                .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
+                .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+                .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+                .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
+                .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
+                .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
+                .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
+
+                // 启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用startCamera）
+                getCameraScan().startCamera();
 
 
-        //设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
-        getCameraScan().enableTorch(torch);
+                // 设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
+                getCameraScan().enableTorch(torch);
 ```
 
-### 各个module的使用 
+### 各个module的使用示例
 
 #### mlkit-camera-core
 
 Camera核心：为各个子库提供相机预览分析的核心库。
 
 如果MLKit支持的衍生库没有满足你的需求，你也可以通过依赖 **mlkit-camera-core** 去拓展实现任何与相机预览和分析相关的衍生库。
+
+#### mlkit-common （1.3.0新增）
+
+公共库：介于Camera与各个子库之间，为各个字库提供公共业务，从而简化各子库的实现。
 
 #### mlkit-barcode-scanning
 
@@ -281,10 +328,8 @@ Camera核心：为各个子库提供相机预览分析的核心库。
 扫二维码实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
 [QRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/QRCodeScanningActivity.kt)
 
-
 扫二维码（多个结果）实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
 [MultipleQRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/MultipleQRCodeScanningActivity.kt)
-
 
 #### mlkit-face-detection
 
@@ -294,7 +339,7 @@ Camera核心：为各个子库提供相机预览分析的核心库。
 多人脸检测实现示例：通过间接继承 **FaceCameraScanActivity** 实现的示例
 [MultipleFaceDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/MultipleFaceDetectionActivity.kt)
 
-#### mlkit-face-mesh-detection
+#### mlkit-face-mesh-detection （1.2.0新增）
 
 人脸网格检测实现示例：通过直接继承 **FaceMeshCameraScanActivity** 实现的示例
 [FaceMeshDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/FaceMeshDetectionActivity.kt)
@@ -314,12 +359,12 @@ Camera核心：为各个子库提供相机预览分析的核心库。
 
 #### mlkit-pose-detection
 
-Pose检测实现示例：通过直接继承 **PoseCameraScanActivity** 实现的示例
+姿势检测实现示例：通过直接继承 **PoseCameraScanActivity** 实现的示例
 [PoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/PoseDetectionActivity.kt)
 
 #### mlkit-pose-detection-accurate
 
-Pose检测精确版实现示例：通过间接继承 **AccuratePoseCameraScanActivity** 实现的示例
+姿势检测（精确版）实现示例：通过间接继承 **AccuratePoseCameraScanActivity** 实现的示例
 [AccuratePoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/AccuratePoseDetectionActivity.kt)
 
 #### mlkit-segmentation-selfie
@@ -332,27 +377,46 @@ Pose检测精确版实现示例：通过间接继承 **AccuratePoseCameraScanAct
 文字识别实现示例：通过直接继承 **TextCameraScanActivity** 实现的示例
 [TextRecognitionActivity](app/src/main/java/com/king/mlkit/vision/app/text/TextRecognitionActivity.kt)
 
-
 ### 模型配置（可选）
 
 关于依赖项下载模型（如果选择使用 Google Play Services 中的模型）则可以通过在AndroidManifest中申明配置
+
 ```xml
-    <meta-data
-        android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-        android:value="ocr" />
-    <!-- To use multiple models: android:value="ocr,model2,model3" -->
+
+<meta-data android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+    android:value="ocr" /><!-- To use multiple models: android:value="ocr,model2,model3" -->
 ```
 
-如：配置Barcode模型，Face模型，OCR模型
+如：配置Barcode模型、Face模型、OCR模型等等~
+
 ```xml
-    <meta-data
-        android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-        android:value="barcode,face,ocr" />
+
+<meta-data android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+    android:value="barcode,face,ocr" />
 ```
 
-更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MLKit/latest/javadoc/)
+更多使用详情，请查看[app](app)
+中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MLKit/latest/javadoc/)
 
 ### 其他
+
+#### ABI过滤
+
+在Module的 **build.gradle** 里面的 android{} 中设置支持的 SO 库架构（可选，支持多个平台的 so，支持的平台越多，APK体积越大）
+
+```gradle
+    defaultConfig {
+    
+        //...
+        
+        ndk {
+            //设置支持的 SO 库架构（开发者可以根据需要，选择一个或多个平台的 so）
+            abiFilters 'armeabi-v7a' // , 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+```
+
+#### JDK版本
 
 需使用JDK8+编译，在你项目中的build.gradle的android{}中添加配置：
 
@@ -366,17 +430,28 @@ compileOptions {
 
 ## 特别说明
 
-关于 [mlkit-camera-core](mlkit-camera-core) 的核心代码是基于 [ZXingLite](https://github.com/jenly1314/ZXingLite) 抽离修改而成，所以在Camera预览相关API的使用上有很多相似。
-各个 **MLKit** 相关的 **Module** 主要是基于 [mlkit-camera-core](mlkit-camera-core) 提供相机的预览帧来做不同的分析处理，所以如果 **MLKit** 当前不满足您的需求，您可以自定义拓展去实现;
-也可以基于 [mlkit-camera-core](mlkit-camera-core) 开发各种衍生库。（例如：[WeChatQRCode](https://github.com/jenly1314/WeChatQRCode)）
+### 关于 [mlkit-camera-core](mlkit-camera-core)
+
+[mlkit-camera-core](mlkit-camera-core) 的核心代码是基于 [ZXingLite](https://github.com/jenly1314/ZXingLite)
+抽取后修改而来的，所以在使用上有很多相似之处，特别是 **CameraScan** 相关的API。
+各个 **MLKit** 相关的 **Module** 主要是基于 [mlkit-camera-core](mlkit-camera-core) 提供相机的预览帧来做不同的分析处理，所以如果 **
+MLKit** 当前不满足您的需求，您可以自定义拓展去实现;
+也可以基于 [mlkit-camera-core](mlkit-camera-core)
+去开发各种衍生库。（例如：[WeChatQRCode](https://github.com/jenly1314/WeChatQRCode)）
 
 ### 相关推荐
 
-#### [ZXingLite](https://github.com/jenly1314/ZXingLite) 基于ZXing库优化扫码和生成二维码/条形码功能，扫码界面完全支持自定义。    
+#### [ZXingLite](https://github.com/jenly1314/ZXingLite) 基于ZXing库优化扫码和生成二维码/条形码功能，扫码界面完全支持自定义。
+
 #### [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
 
-
 ## 版本记录
+
+#### v1.3.0：2023-2-23
+* 新增公共库（mlkit-common）
+* 优化注释
+* 更新CameraX至v1.2.1
+* 更新Gradle至v7.5
 
 #### v1.2.0：2022-12-11
 * 新增人脸网格检测（mlkit-face-mesh-detection）
@@ -408,6 +483,7 @@ compileOptions {
 * MLKit初始版本
 
 ## 赞赏
+
 如果您喜欢MLKit，或感觉MLKit帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢 :smiley:<p>
 您也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
 <div>
@@ -415,9 +491,11 @@ compileOptions {
 </div>
 
 ## 关于我
+
 Name: <a title="关于作者" href="https://jenly1314.github.io" target="_blank">Jenly</a>
 
-Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
+Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a>
+/ <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
 
 CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
 
@@ -427,7 +505,8 @@ GitHub: <a title="GitHub开源项目" href="https://github.com/jenly1314" target
 
 Gitee: <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>
 
-加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
+加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">
+20867961</a>
    <div>
        <img src="https://jenly1314.github.io/image/jenly666.png">
        <img src="https://jenly1314.github.io/image/qqgourp.png">

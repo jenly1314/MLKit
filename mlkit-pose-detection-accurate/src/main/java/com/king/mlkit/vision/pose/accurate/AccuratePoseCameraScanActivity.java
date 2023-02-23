@@ -15,14 +15,18 @@
  */
 package com.king.mlkit.vision.pose.accurate;
 
-import androidx.annotation.Nullable;
-
 import com.google.mlkit.vision.pose.Pose;
 import com.king.mlkit.vision.camera.BaseCameraScanActivity;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
 import com.king.mlkit.vision.pose.accurate.analyze.AccuratePoseDetectionAnalyzer;
 
+import androidx.annotation.Nullable;
+
 /**
+ * 姿势检测（精确） - 相机扫描基类
+ * <p>
+ * 通过继承 {@link AccuratePoseCameraScanActivity}或{@link AccuratePoseCameraScanFragment}可快速实现姿势检测
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class AccuratePoseCameraScanActivity extends BaseCameraScanActivity<Pose> {

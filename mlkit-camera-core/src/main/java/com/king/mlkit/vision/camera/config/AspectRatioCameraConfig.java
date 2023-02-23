@@ -27,7 +27,8 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
 
 /**
- * 相机配置：根据纵横比配置相机，使输出分析的图像尽可能的接近屏幕比例
+ * 相机配置：根据纵横比配置相机，使输出分析的图像尽可能的接近屏幕的比例
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public final class AspectRatioCameraConfig extends CameraConfig {
@@ -37,21 +38,26 @@ public final class AspectRatioCameraConfig extends CameraConfig {
     public AspectRatioCameraConfig(Context context) {
         super();
 
+        initTargetAspectRatio(context);
+    }
+
+    /**
+     * 初始化 {@link #mAspectRatio}
+     *
+     * @param context
+     */
+    private void initTargetAspectRatio(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        mAspectRatio = aspectRatio(width, height);
-        LogUtils.d("aspectRatio:" + mAspectRatio);
-
-    }
-
-    private int aspectRatio(float width, float height){
         float ratio = Math.max(width, height) / Math.min(width, height);
-        if (Math.abs(ratio - 4.0f / 3.0f) < Math.abs(ratio - 16.0f / 9.0f)) {
-            return AspectRatio.RATIO_4_3;
+        if (Math.abs(ratio - 4.0F / 3.0F) < Math.abs(ratio - 16.0F / 9.0F)) {
+            mAspectRatio = AspectRatio.RATIO_4_3;
+        } else {
+            mAspectRatio = AspectRatio.RATIO_16_9;
         }
-        return AspectRatio.RATIO_16_9;
+        LogUtils.d("aspectRatio:" + mAspectRatio);
     }
 
     @NonNull

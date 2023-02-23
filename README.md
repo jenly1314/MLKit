@@ -219,9 +219,9 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 主要是相机相关的配置；如：摄像头的前置后置、相机预览相关、图像分析相关等配置。
 
-你可以直接库中内置实现的相机配置： **CameraConfig** 、**AspectRatioCameraConfig** 和 **ResolutionCameraConfig**。
+> 你可以直接库中内置实现的相机配置： **CameraConfig** 、**AspectRatioCameraConfig** 和 **ResolutionCameraConfig**。
 
-这里简单说下各自的特点：
+#### 这里简单说下各自的特点：
 
 * **CameraConfig**：默认的相机配置。
 * **AspectRatioCameraConfig**：根据纵横比配置相机，使输出分析的图像尽可能的接近屏幕的比例
@@ -229,9 +229,9 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 > 你也可以自定义或覆写 **CameraConfig** 中的 **options** 方法，根据需要定制配置。
 
-这里特别温馨提示：默认配置在未配置相机的目标分析图像大小时，会优先使用：横屏：640 * 480 竖屏：480 * 640；
+> 这里特别温馨提示：默认配置在未配置相机的目标分析图像大小时，会优先使用：横屏：640 * 480 竖屏：480 * 640；
 
-根据这个图像质量顺便说下默认配置的优缺点：
+#### 根据这个图像质量顺便说下默认配置的优缺点：
 
 * 优点：因为图像质量不高，所以在低配置的设备上使用也能hold住，这样就能尽可能的适应各种设备；
 * 缺点：正是由于图像质量不高，从而可能会对检测识别率略有影响，比如在某些机型上体验欠佳。
@@ -243,10 +243,8 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 ### 布局示例
 
-可自定义布局（覆写getLayoutId方法），布局内至少要保证有PreviewView，然后自己可根据需要添加的控件。
-
-PreviewView
-用来预览，布局内至少要保证有PreviewView，如果是继承BaseCameraScanActivity或BaseCameraScanFragment，控件id可覆写getPreviewViewId方法自定义
+**PreviewView** 用来预览，布局内至少要保证有 **PreviewView**；如果是继承 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 或其子类实现的相机扫描；快速实现扫描功能；
+需自定义布局时，覆写getLayoutId方法即可；预览控件ID可覆写getPreviewViewId方法自定义，更多代码用法可**BaseCameraScanActivity**源码或参见下面的使用示例。
 
 示例：
 
@@ -260,7 +258,7 @@ PreviewView
 </FrameLayout>
 ```
 
-如：扫二维码的布局示例 (**ViewfinderView** 是 **mlkit-barcode-scanning**中的)
+如：扫二维码的布局示例 (**ViewfinderView** 是 **mlkit-barcode-scanning** 中的扫描渲染效果视图)
 
 ```Xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -280,15 +278,15 @@ PreviewView
 
 ### CameraScan配置示例
 
-CameraScan里面包含部分支持链式调用的方法，即调用返回是CameraScan本身的一些配置建议在startCamera之前调用。
+**CameraScan** 里面包含部分支持链式调用的方法，即调用返回是 **CameraScan** 本身的一些配置建议在调用 **startCamera()** 方法之前调用。
 
-> 如果是通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类实现的相机扫描，可以在 **
-> initCameraScan()** 方法中获取CameraScan，然后进行相关的配置设置。
+> 如果是通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类实现的相机扫描，可以在 
+**initCameraScan()** 方法中获取 **CameraScan** ，然后根据需要修改相关配置。
 
 示例：
 
 ```java
-        // 获取CameraScan，然后根据需要修改相关配置
+        // 获取CameraScan，根据需要修改相关配置
         getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
                 .setVibrate(true)//设置是否震动，默认为false
                 .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置

@@ -250,6 +250,37 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 
 > 扫描预览界面内部持有 **CameraScan**，并处理了 **CameraScan** 的初始化（如：相机权限、相机预览、生命周期等细节）
 
+
+### CameraScan配置示例
+
+**CameraScan** 里面包含部分支持链式调用的方法，即调用返回是 **CameraScan** 本身的一些配置建议在调用 **startCamera()** 方法之前调用。
+
+> 如果是通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类实现的相机扫描，可以在
+**initCameraScan()** 方法中获取 **CameraScan** ，然后根据需要修改相关配置。
+
+示例：
+
+```java
+        // 获取CameraScan，根据需要修改相关配置
+        getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
+                .setVibrate(true)//设置是否震动，默认为false
+                .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
+                .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
+                .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+                .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+                .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
+                .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
+                .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
+                .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
+
+                // 启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用startCamera）
+                getCameraScan().startCamera();
+
+
+                // 设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
+                getCameraScan().enableTorch(torch);
+```
+
 ### 布局示例
 
 **PreviewView** 用来预览，布局内至少要保证有 **PreviewView**；如果是继承 **BaseCameraScanActivity** 或 
@@ -285,36 +316,6 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
         android:src="@drawable/ml_flashlight_selector"
         android:layout_marginTop="@dimen/ml_flashlight_margin_top" />
 </FrameLayout>
-```
-
-### CameraScan配置示例
-
-**CameraScan** 里面包含部分支持链式调用的方法，即调用返回是 **CameraScan** 本身的一些配置建议在调用 **startCamera()** 方法之前调用。
-
-> 如果是通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类实现的相机扫描，可以在 
-**initCameraScan()** 方法中获取 **CameraScan** ，然后根据需要修改相关配置。
-
-示例：
-
-```java
-        // 获取CameraScan，根据需要修改相关配置
-        getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
-                .setVibrate(true)//设置是否震动，默认为false
-                .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
-                .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
-                .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-                .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-                .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
-                .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
-                .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
-                .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
-
-                // 启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用startCamera）
-                getCameraScan().startCamera();
-
-
-                // 设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
-                getCameraScan().enableTorch(torch);
 ```
 
 ### 各个module的使用示例

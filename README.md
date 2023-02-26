@@ -261,24 +261,24 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 示例：
 
 ```java
-        // 获取CameraScan，根据需要修改相关配置
-        getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
-                .setVibrate(true)//设置是否震动，默认为false
-                .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
-                .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
-                .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-                .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
-                .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
-                .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
-                .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
-                .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
+// 获取CameraScan，根据需要修改相关配置
+getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
+        .setVibrate(true)//设置是否震动，默认为false
+        .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
+        .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
+        .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+        .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
+        .bindFlashlightView(ivFlashlight)//绑定手电筒，绑定后可根据光线传感器，动态显示或隐藏手电筒按钮
+        .setOnScanResultCallback(this)//设置扫码结果回调，需要自己处理或者需要连扫时，可设置回调，自己去处理相关逻辑
+        .setAnalyzer(new BarcodeScanningAnalyzer())//设置分析器，如这里使用条码分析器，BarcodeScanningAnalyzer是mlkit-barcode-scanning中的
+        .setAnalyzeImage(true)//设置是否分析图片，默认为true。如果设置为false，相当于关闭了扫码识别功能
 
-                // 启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用startCamera）
-                getCameraScan().startCamera();
+        // 启动预览（如果是通过直接或间接继承BaseCameraScanActivity或BaseCameraScanFragment实现的则无需调用startCamera）
+        getCameraScan().startCamera();
 
 
-                // 设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
-                getCameraScan().enableTorch(torch);
+        // 设置闪光灯（手电筒）是否开启,需在startCamera之后调用才有效
+        getCameraScan().enableTorch(torch);
 ```
 
 ### 布局示例

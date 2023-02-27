@@ -21,8 +21,7 @@ kit甚至提供了便利的API，可帮助您在移动应用中使用自定义�
 
 因为功能太多，所以仅录制演示了部分功能
 
->
-你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)
+> 你可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)
 体验效果
 
 ## 各Module相关说明
@@ -440,7 +439,7 @@ compileOptions {
 
 ## 特别说明
 
-### 关于 [mlkit-camera-core](mlkit-camera-core)
+### 关于 mlkit-camera-core
 
 [mlkit-camera-core](mlkit-camera-core) 的核心代码是基于 [ZXingLite](https://github.com/jenly1314/ZXingLite)
 抽取后修改而来的，所以在使用上有很多相似之处，特别是 **CameraScan** 相关的API。
@@ -448,7 +447,7 @@ compileOptions {
 所以如果 **MLKit** 当前不满足您的需求，您可以自定义拓展去实现; 也可以基于 [mlkit-camera-core](mlkit-camera-core)
 去开发各种衍生库。（例如：[WeChatQRCode](https://github.com/jenly1314/WeChatQRCode)）
 
-### 相关推荐
+## 相关推荐
 
 #### [ZXingLite](https://github.com/jenly1314/ZXingLite) 基于ZXing库优化扫码和生成二维码/条形码功能，扫码界面完全支持自定义。
 

@@ -94,7 +94,7 @@ Camera：为各个子库提供相机预览分析的核心库
 
 ## ViewfinderView相关字段说明
 
-| 字段 | 字段类型 | 默认值 | 字段说明 |
+| 属性 | 属性类型      | 默认值 | 属性说明  |
 | :------| :------ | :------ | :------ |
 | maskColor | color |<font color=#000000>#60000000</font>| 扫描区外遮罩的颜色 |
 | frameColor | color |<font color=#1FB3E2>#7F1FB3E2</font>| 扫描区边框的颜色 |
@@ -292,9 +292,12 @@ getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
 ```Xml
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <androidx.camera.view.PreviewView android:id="@+id/previewView"
-        android:layout_width="match_parent" android:layout_height="match_parent" />
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent">
+    <androidx.camera.view.PreviewView 
+        android:id="@+id/previewView"
+        android:layout_width="match_parent" 
+        android:layout_height="match_parent" />
     <!-- 只需保证有布局内有PreviewView即可，然后自己可根据需要添加的控件 -->
 </FrameLayout>
 ```
@@ -302,18 +305,28 @@ getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
 如：扫二维码的布局示例 (**ViewfinderView** 是 **mlkit-barcode-scanning** 中的扫描渲染效果视图)
 
 ```Xml
-<?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.camera.view.PreviewView android:id="@+id/previewView"
-        android:layout_width="match_parent" android:layout_height="match_parent" />
-    <com.king.mlkit.vision.barcode.ViewfinderView android:id="@+id/viewfinderView"
-        android:layout_width="match_parent" android:layout_height="match_parent" />
-    <ImageView android:id="@+id/ivFlashlight" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_gravity="center"
-        android:src="@drawable/ml_flashlight_selector"
-        android:layout_marginTop="@dimen/ml_flashlight_margin_top" />
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.king.mlkit.vision.barcode.ViewfinderView
+        android:id="@+id/viewfinderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/ivFlashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/ml_flashlight_margin_top"
+        android:contentDescription="@null"
+        android:src="@drawable/ml_flashlight_selector" />
 </FrameLayout>
 ```
 

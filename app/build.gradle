@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.king.mlkit.vision.app'
     compileSdk build_versions.compileSdk
 
     defaultConfig {
@@ -27,25 +28,22 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     lint {
         abortOnError false
     }
-    namespace 'com.king.mlkit.vision.app'
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation deps.test.junit
-    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.android_ext_junit
     androidTestImplementation deps.test.espresso
 
     implementation deps.androidx.material

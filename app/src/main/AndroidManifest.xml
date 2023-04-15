@@ -33,7 +33,7 @@
             android:theme="@style/CameraScanTheme"/>
 
         <activity android:name=".barcode.QRCodeScanningActivity"
-            android:screenOrientation="portrait"
+
             android:exported="false"
             android:theme="@style/CameraScanTheme"/>
 

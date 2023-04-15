@@ -94,43 +94,44 @@ Camera：为各个子库提供相机预览分析的核心库
 
 ## ViewfinderView相关字段说明
 
-| 属性 | 属性类型      | 默认值 | 属性说明  |
-| :------| :------ | :------ | :------ |
-| maskColor | color |<font color=#000000>#60000000</font>| 扫描区外遮罩的颜色 |
-| frameColor | color |<font color=#1FB3E2>#7F1FB3E2</font>| 扫描区边框的颜色 |
-| cornerColor | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区边角的颜色 |
-| laserColor | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区激光线的颜色 |
-| labelText | string |  | 扫描提示文本信息 |
-| labelTextColor | color |<font color=#C0C0C0>#FFC0C0C0</font>| 提示文本字体颜色 |
-| labelTextSize | dimension |14sp| 提示文本字体大小 |
-| labelTextPadding | dimension |24dp| 提示文本距离扫描区的间距 |
-| labelTextWidth | dimension | | 提示文本的宽度，默认为View的宽度 |
-| labelTextLocation | enum |bottom| 提示文本显示位置 |
-| frameWidth | dimension |  | 扫码框宽度 |
-| frameHeight | dimension |  | 扫码框高度 |
-| laserStyle | enum | line | 扫描激光的样式 |
-| gridColumn | integer | 20 | 网格扫描激光列数 |
-| gridHeight | integer | 40dp | 网格扫描激光高度，为0dp时，表示动态铺满 |
-| cornerRectWidth | dimension | 4dp | 扫描区边角的宽 |
-| cornerRectHeight | dimension | 16dp | 扫描区边角的高 |
+| 属性                      | 属性类型      | 默认值 | 属性说明  |
+|:------------------------| :------ | :------ | :------ |
+| maskColor               | color |<font color=#000000>#60000000</font>| 扫描区外遮罩的颜色 |
+| frameColor              | color |<font color=#1FB3E2>#7F1FB3E2</font>| 扫描区边框的颜色 |
+| cornerColor             | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区边角的颜色 |
+| laserColor              | color |<font color=#1FB3E2>#FF1FB3E2</font>| 扫描区激光线的颜色 |
+| labelText               | string |  | 扫描提示文本信息 |
+| labelTextColor          | color |<font color=#C0C0C0>#FFC0C0C0</font>| 提示文本字体颜色 |
+| labelTextSize           | dimension |14sp| 提示文本字体大小 |
+| labelTextPadding        | dimension |24dp| 提示文本距离扫描区的间距 |
+| labelTextWidth          | dimension | | 提示文本的宽度，默认为View的宽度 |
+| labelTextLocation       | enum |bottom| 提示文本显示位置 |
+| frameWidth              | dimension |  | 扫码框宽度 |
+| frameHeight             | dimension |  | 扫码框高度 |
+| laserStyle              | enum | line | 扫描激光的样式 |
+| gridColumn              | integer | 20 | 网格扫描激光列数 |
+| gridHeight              | integer | 40dp | 网格扫描激光高度，为0dp时，表示动态铺满 |
+| cornerRectWidth         | dimension | 4dp | 扫描区边角的宽 |
+| cornerRectHeight        | dimension | 16dp | 扫描区边角的高 |
 | scannerLineMoveDistance | dimension | 2dp | 扫描线每次移动距离 |
-| scannerLineHeight | dimension | 5dp | 扫描线高度 |
-| frameLineWidth | dimension | 1dp | 边框线宽度 |
-| scannerAnimationDelay | integer | 20 | 扫描动画延迟间隔时间，单位：毫秒 |
-| frameRatio | float | 0.625f | 扫码框与屏幕占比 |
-| framePaddingLeft | dimension | 0 | 扫码框左边的内间距 |
-| framePaddingTop | dimension | 0 | 扫码框上边的内间距 |
-| framePaddingRight | dimension | 0 | 扫码框右边的内间距 |
-| framePaddingBottom | dimension | 0 | 扫码框下边的内间距 |
-| frameGravity | enum | center | 扫码框对齐方式 |
-| pointColor | color | <font color=#1FB3E2>#FF1FB3E2</font> | 结果点的颜色 |
-| pointStrokeColor | color | <font color=#FFFFFF>#FFFFFFFF</font> | 结果点描边的颜色 |
-| pointRadius | dimension | 15dp | 结果点的半径 |
-| pointStrokeRatio | float | 1.2 | 结果点描边半径与结果点半径的比例 |
-| pointDrawable | reference |  | 结果点自定义图片 |
-| showPointAnim | boolean | true | 是否显示结果点的动画 |
-| laserDrawable | reference | | 扫描激光自定义图片 |
-| viewfinderStyle | enum | classic | 取景框样式；支持：classic：经典样式（带扫码框那种）、popular：流行样式（不带扫码框） |
+| scannerLineHeight       | dimension | 5dp | 扫描线高度 |
+| frameLineWidth          | dimension | 1dp | 边框线宽度 |
+| scannerAnimationDelay   | integer | 20 | 扫描动画延迟间隔时间，单位：毫秒 |
+| frameRatio              | float | 0.625f | 扫码框与屏幕占比 |
+| framePaddingLeft        | dimension | 0 | 扫码框左边的内间距 |
+| framePaddingTop         | dimension | 0 | 扫码框上边的内间距 |
+| framePaddingRight       | dimension | 0 | 扫码框右边的内间距 |
+| framePaddingBottom      | dimension | 0 | 扫码框下边的内间距 |
+| frameGravity            | enum | center | 扫码框对齐方式 |
+| pointColor              | color | <font color=#1FB3E2>#FF1FB3E2</font> | 结果点的颜色 |
+| pointStrokeColor        | color | <font color=#FFFFFF>#FFFFFFFF</font> | 结果点描边的颜色 |
+| pointRadius             | dimension | 15dp | 结果点的半径 |
+| pointStrokeRatio        | float | 1.2 | 结果点描边半径与结果点半径的比例 |
+| pointDrawable           | reference |  | 结果点自定义图片 |
+| showPointAnim           | boolean | true | 是否显示结果点的动画 |
+| laserDrawable           | reference | | 扫描激光自定义图片 |
+| laserDrawableRatio      | float | 0.625f | 激光扫描图片与屏幕占比  |
+| viewfinderStyle         | enum | classic | 取景框样式；支持：classic：经典样式（带扫码框那种）、popular：流行样式（不带扫码框） |
 
 ## 引入
 
@@ -152,39 +153,39 @@ allprojects {
 ```gradle
 
 //Camera核心 (*必须)
-implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-camera-core:1.4.0'
 
 //--------------------------
 
 //公共库 (可选) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
-implementation 'com.github.jenly1314.MLKit:mlkit-common:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-common:1.4.0'
 
 //条码识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:1.4.0'
 
 //人脸检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:1.4.0'
 
 //人脸网格检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:1.4.0'
 
 //图像标签 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:1.4.0'
 
 //对象检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:1.4.0'
 
 //姿势检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:1.4.0'
 
 //姿势检测精确版 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:1.4.0'
 
 //自拍分割 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:1.4.0'
 
 //文字识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
+implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.4.0'
 
 ```
 
@@ -205,7 +206,7 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 > 1、通过继承 **BaseCameraScanActivity** 或者 **BaseCameraScanFragment** 或其子类，可快速实现扫描识别。
 > （适用于大多场景，自定义布局时需覆写 **getLayoutId** 方法）
 
-> 2、在你项目的Activity或者Fragment中实例化一个 **BaseCameraScan**。（适用于想在扫码界面写交互逻辑，又因为项目
+> 2、在你项目的Activity或者Fragment中实例化一个 **BaseCameraScan**。（适用于想在扫描界面写交互逻辑，又因为项目
 > 架构或其它原因，无法直接或间接继承 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 时使用）
 
 > 3、继承 **CameraScan** 自己实现一个，可参照默认实现类 **BaseCameraScan**，其他步骤同方式2。（高级用法，谨慎使用）
@@ -263,7 +264,7 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:1.3.0'
 // 获取CameraScan，根据需要修改相关配置
 getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
         .setVibrate(true)//设置是否震动，默认为false
-        .setCameraConfig(new CameraConfig())//设置相机配置信息，CameraConfig可覆写options方法自定义配置
+        .setCameraConfig(new ResolutionCameraConfig(this))//设置相机配置信息，CameraConfig可覆写options方法自定义配置
         .setNeedTouchZoom(true)//支持多指触摸捏合缩放，默认为true
         .setDarkLightLux(45f)//设置光线足够暗的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
         .setBrightLightLux(100f)//设置光线足够明亮的阈值（单位：lux），需要通过{@link #bindFlashlightView(View)}绑定手电筒才有效
@@ -467,6 +468,12 @@ compileOptions {
 #### [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
 
 ## 版本记录
+
+#### v1.4.0：2023-4-15
+* 优化CameraScan的缺省配置（CameraConfig相关配置）
+* 优化ViewfinderView自定义属性（新增laserDrawableRatio）
+* 更新MLKit相关依赖库版本
+* 更新CameraX至v1.2.2
 
 #### v1.3.0：2023-2-23
 * 新增公共库（mlkit-common）

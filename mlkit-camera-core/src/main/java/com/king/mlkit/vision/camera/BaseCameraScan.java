@@ -18,6 +18,7 @@ package com.king.mlkit.vision.camera;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -44,7 +45,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig;
 import com.king.mlkit.vision.camera.config.CameraConfig;
+import com.king.mlkit.vision.camera.config.ResolutionCameraConfig;
 import com.king.mlkit.vision.camera.manager.AmbientLightManager;
 import com.king.mlkit.vision.camera.manager.BeepManager;
 import com.king.mlkit.vision.camera.util.LogUtils;
@@ -59,7 +62,7 @@ import java.util.concurrent.Executors;
  * 1、通过继承 {@link BaseCameraScanActivity}或者{@link BaseCameraScanFragment}或其子类，可快速实现扫描识别。
  * （适用于大多数场景，自定义布局时需覆写getLayoutId方法）
  * <p>
- * 2、在你项目的Activity或者Fragment中实例化一个{@link BaseCameraScan}。（适用于想在扫码界面写交互逻辑，又因为项目
+ * 2、在你项目的Activity或者Fragment中实例化一个{@link BaseCameraScan}。（适用于想在扫描界面写交互逻辑，又因为项目
  * 架构或其它原因，无法直接或间接继承{@link BaseCameraScanActivity}或{@link BaseCameraScanFragment}时使用）
  * <p>
  * 3、继承{@link CameraScan}自己实现一个，可参照默认实现类{@link BaseCameraScan}，其他步骤同方式2。（高级用法，谨慎使用）
@@ -74,7 +77,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
      * opposed to a hover movement gesture.
      */
     private static final int HOVER_TAP_TIMEOUT = 150;
-
     /**
      * Defines the maximum distance in pixels that a touch pad touch can move
      * before being released for it to be considered a tap (click) as opposed
@@ -88,37 +90,71 @@ public class BaseCameraScan<T> extends CameraScan<T> {
 
     private Context mContext;
     private LifecycleOwner mLifecycleOwner;
+    /**
+     * 预览视图
+     */
     private PreviewView mPreviewView;
 
     private ListenableFuture<ProcessCameraProvider> mCameraProviderFuture;
+    /**
+     * 相机
+     */
     private Camera mCamera;
-
+    /**
+     * 相机配置
+     */
     private CameraConfig mCameraConfig;
+    /**
+     * 分析器
+     */
     private Analyzer<T> mAnalyzer;
-
     /**
      * 是否分析
      */
     private volatile boolean isAnalyze = true;
-
     /**
      * 是否已经分析出结果
      */
     private volatile boolean isAnalyzeResult;
-
+    /**
+     * 闪光灯（手电筒）视图
+     */
     private View flashlightView;
-
+    /**
+     * 分析结果
+     */
     private MutableLiveData<AnalyzeResult<T>> mResultLiveData;
-
+    /**
+     * 扫描结果回调
+     */
     private OnScanResultCallback mOnScanResultCallback;
+    /**
+     * 分析监听器
+     */
     private Analyzer.OnAnalyzeListener<AnalyzeResult<T>> mOnAnalyzeListener;
-
+    /**
+     * 蜂鸣音效管理器：主要用于播放蜂鸣提示音和振动效果
+     */
     private BeepManager mBeepManager;
+    /**
+     * 环境光线管理器：主要通过传感器来监听光线的亮度变化
+     */
     private AmbientLightManager mAmbientLightManager;
-
+    /**
+     * 最后点击时间，根据两次点击时间间隔用于区分单机和触摸缩放事件
+     */
     private long mLastHoveTapTime;
+    /**
+     * 是否是点击事件
+     */
     private boolean isClickTap;
+    /**
+     * 按下时X坐标
+     */
     private float mDownX;
+    /**
+     * 按下时Y坐标
+     */
     private float mDownY;
 
     public BaseCameraScan(@NonNull ComponentActivity activity, @NonNull PreviewView previewView) {
@@ -161,7 +197,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     private void initData() {
         mResultLiveData = new MutableLiveData<>();
         mResultLiveData.observe(mLifecycleOwner, result -> {
-            isAnalyzeResult = false;
             if (result != null) {
                 handleAnalyzeResult(result);
             } else if (mOnScanResultCallback != null) {
@@ -215,7 +250,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     /**
      * 处理预览视图点击事件；如果触发的点击事件被判定对焦操作，则开始自动对焦
      *
-     * @param event
+     * @param event 事件
      */
     private void handlePreviewViewClickTap(MotionEvent event) {
         if (event.getPointerCount() == 1) {
@@ -242,10 +277,10 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     /**
      * 计算两点的距离
      *
-     * @param aX
-     * @param aY
-     * @param bX
-     * @param bY
+     * @param aX a点X坐标
+     * @param aY a点Y坐标
+     * @param bX b点X坐标
+     * @param bY b点Y坐标
      * @return
      */
     private float distance(float aX, float aY, float bX, float bY) {
@@ -257,8 +292,8 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     /**
      * 开始对焦和测光
      *
-     * @param x
-     * @param y
+     * @param x X轴坐标
+     * @param y Y轴坐标
      */
     private void startFocusAndMetering(float x, float y) {
         if (mCamera != null) {
@@ -266,7 +301,7 @@ public class BaseCameraScan<T> extends CameraScan<T> {
             FocusMeteringAction focusMeteringAction = new FocusMeteringAction.Builder(point).build();
             if (mCamera.getCameraInfo().isFocusMeteringSupported(focusMeteringAction)) {
                 mCamera.getCameraControl().startFocusAndMetering(focusMeteringAction);
-                LogUtils.d("startFocusAndMetering:" + x + "," + y);
+                LogUtils.d("startFocusAndMetering: " + x + "," + y);
             }
         }
     }
@@ -279,14 +314,30 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         return this;
     }
 
+    /**
+     * 初始化相机配置
+     */
+    private void initCameraConfig(Context context) {
+        if (mCameraConfig == null) {
+            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+            int size = Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels);
+            // 根据分辨率初始化缺省配置CameraConfig；在此前提下尽可能的找到比屏幕分辨率小一级的配置；在适配、性能与体验之间得有所取舍，找到平衡点。
+            if (size > ResolutionCameraConfig.IMAGE_QUALITY_1080P) {
+                mCameraConfig = new ResolutionCameraConfig(context);
+            } else if (size > ResolutionCameraConfig.IMAGE_QUALITY_720P) {
+                mCameraConfig = new ResolutionCameraConfig(context, ResolutionCameraConfig.IMAGE_QUALITY_720P);
+            } else {
+                mCameraConfig = new AspectRatioCameraConfig(context);
+            }
+        }
+    }
+
     @Override
     public void startCamera() {
-        if (mCameraConfig == null) {
-            mCameraConfig = new CameraConfig();
-        }
+        initCameraConfig(mContext);
+        LogUtils.d("CameraConfig: " + mCameraConfig.getClass().getSimpleName());
         mCameraProviderFuture = ProcessCameraProvider.getInstance(mContext);
         mCameraProviderFuture.addListener(() -> {
-
             try {
                 Preview preview = mCameraConfig.options(new Preview.Builder());
 
@@ -300,7 +351,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST));
                 imageAnalysis.setAnalyzer(Executors.newSingleThreadExecutor(), image -> {
                     if (isAnalyze && !isAnalyzeResult && mAnalyzer != null) {
-                        isAnalyzeResult = true;
                         mAnalyzer.analyze(image, mOnAnalyzeListener);
                     }
                     image.close();
@@ -320,21 +370,20 @@ public class BaseCameraScan<T> extends CameraScan<T> {
     /**
      * 处理分析结果
      *
-     * @param result
+     * @param result 分析结果
      */
     private synchronized void handleAnalyzeResult(AnalyzeResult<T> result) {
-
         if (isAnalyzeResult || !isAnalyze) {
             return;
         }
-
+        isAnalyzeResult = true;
         if (mBeepManager != null) {
             mBeepManager.playBeepSoundAndVibrate();
         }
-
         if (mOnScanResultCallback != null) {
             mOnScanResultCallback.onScanResultCallback(result);
         }
+        isAnalyzeResult = false;
     }
 
     @Override
@@ -435,11 +484,6 @@ public class BaseCameraScan<T> extends CameraScan<T> {
         return false;
     }
 
-    /**
-     * 是否支持闪光灯
-     *
-     * @return
-     */
     @Override
     public boolean hasFlashUnit() {
         if (mCamera != null) {

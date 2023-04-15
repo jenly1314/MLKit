@@ -35,6 +35,9 @@ import androidx.annotation.Nullable;
 public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment {
 
     protected ViewfinderView viewfinderView;
+    /**
+     * 手电筒视图
+     */
     protected View ivFlashlight;
 
     @Override
@@ -87,7 +90,7 @@ public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment
     /**
      * 布局ID；通过覆写此方法可以自定义布局
      *
-     * @return
+     * @return 布局ID
      */
     @Override
     public int getLayoutId() {

@@ -23,7 +23,6 @@ import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.camera.CameraScan
-import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig
 import com.king.mlkit.vision.camera.util.PointUtils
 
 /**
@@ -39,8 +38,8 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         ivResult = findViewById(R.id.ivResult)
     }
 
-    override fun initCameraScan() {
-        super.initCameraScan()
+    override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
+        super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
             .bindFlashlightView(ivFlashlight)

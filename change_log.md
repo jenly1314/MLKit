@@ -1,5 +1,11 @@
 ## 版本记录
 
+#### v1.4.0：2023-4-15
+* 优化CameraScan的缺省配置（CameraConfig相关配置）
+* 优化ViewfinderView自定义属性（新增laserDrawableRatio）
+* 更新MLKit相关依赖库版本
+* 更新CameraX至v1.2.2
+
 #### v1.3.0：2023-2-23
 * 新增公共库（mlkit-common）
 * 优化注释

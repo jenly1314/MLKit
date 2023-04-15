@@ -23,6 +23,7 @@ import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.BarcodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
+import com.king.mlkit.vision.camera.CameraScan
 import com.king.mlkit.vision.camera.config.ResolutionCameraConfig
 
 /**
@@ -30,11 +31,11 @@ import com.king.mlkit.vision.camera.config.ResolutionCameraConfig
  */
 class BarcodeScanningActivity : BarcodeCameraScanActivity() {
 
-    override fun initCameraScan() {
-        super.initCameraScan()
+    override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
+        super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
-            .setCameraConfig(ResolutionCameraConfig(this))//设置CameraConfig
+//            .setCameraConfig(ResolutionCameraConfig(this))// 设置CameraConfig
     }
 
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {

@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.king.mlkit.vision.facemesh'
     compileSdk build_versions.compileSdk
 
     defaultConfig {
@@ -20,7 +21,6 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -28,21 +28,15 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.king.mlkit.vision.facemesh'
+
 }
 
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//}
-
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation deps.test.junit
-    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.android_ext_junit
     androidTestImplementation deps.test.espresso
 
-    compileOnly  deps.androidx.appcompat
+    compileOnly deps.androidx.appcompat
     api deps.google_mlkit_face_mesh_detection
 
     compileOnly project(':mlkit-camera-core')

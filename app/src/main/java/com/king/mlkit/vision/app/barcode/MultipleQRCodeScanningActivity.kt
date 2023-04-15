@@ -23,20 +23,18 @@ import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 import com.king.mlkit.vision.camera.AnalyzeResult
-import com.king.mlkit.vision.camera.config.AspectRatioCameraConfig
-import com.king.mlkit.vision.camera.config.ResolutionCameraConfig
+import com.king.mlkit.vision.camera.CameraScan
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {
 
-    override fun initCameraScan() {
-        super.initCameraScan()
+    override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
+        super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
-//            .setCameraConfig(AspectRatioCameraConfig(this))
-            .setCameraConfig(ResolutionCameraConfig(this, ResolutionCameraConfig.IMAGE_QUALITY_720P))
+//            .setCameraConfig(ResolutionCameraConfig(this))
     }
 
     override fun getLayoutId(): Int {

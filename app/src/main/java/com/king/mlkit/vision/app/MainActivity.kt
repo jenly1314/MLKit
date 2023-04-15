@@ -94,6 +94,9 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * 处理图片 - 从图片中获取条码结果
+     */
     private fun processPhoto(data: Uri?) {
         data?.let {
             try {

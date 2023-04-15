@@ -36,7 +36,7 @@ public abstract class BarcodeCameraScanActivity extends BaseCameraScanActivity<L
     /**
      * 创建分析器，默认分析所有条码格式
      *
-     * @return
+     * @return {@link Analyzer}
      */
     @Nullable
     @Override

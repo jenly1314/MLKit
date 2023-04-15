@@ -21,6 +21,7 @@
             <enum name="none" value="0"/>
             <enum name="line" value="1"/>
             <enum name="grid" value="2"/>
+            <enum name="image" value="3"/>
         </attr>
         <attr name="cornerRectWidth" format="dimension"/>
         <attr name="cornerRectHeight" format="dimension"/>
@@ -47,6 +48,7 @@
         <attr name="pointDrawable" format="reference"/>
         <attr name="showPointAnim" format="boolean"/>
         <attr name="laserDrawable" format="reference"/>
+        <attr name="laserDrawableRatio" format="float"/>
         <attr name="viewfinderStyle" format="enum">
             <enum name="classic" value="0"/>
             <enum name="popular" value="1"/>

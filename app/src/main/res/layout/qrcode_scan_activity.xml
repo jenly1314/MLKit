@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:viewfinderStyle="popular"
-        app:frameRatio="0.9" />
+        app:laserStyle="image"
+        app:laserDrawableRatio="0.8"
+        app:laserDrawable="@drawable/ic_laser_line"/>
     <ImageView
         android:id="@+id/ivFlashlight"
         android:layout_width="wrap_content"

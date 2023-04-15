@@ -27,6 +27,7 @@ import com.king.mlkit.vision.camera.util.LogUtils;
 
 import java.nio.ByteBuffer;
 import java.util.Collection;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.camera.core.ImageProxy;
@@ -52,8 +53,8 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
     @Override
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<AnalyzeResult<T>> listener) {
         try {
-
-            @SuppressLint("UnsafeOptInUsageError") final ByteBuffer nv21Buffer = BitmapUtils.yuv420ThreePlanesToNV21(
+            @SuppressLint("UnsafeOptInUsageError")
+            final ByteBuffer nv21Buffer = BitmapUtils.yuv420ThreePlanesToNV21(
                     imageProxy.getImage().getPlanes(),
                     imageProxy.getWidth(),
                     imageProxy.getHeight()
@@ -76,8 +77,8 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
                             imageProxy.getHeight(),
                             imageProxy.getImageInfo().getRotationDegrees()
                     );
-                    if(bitmap != null){
-                        LogUtils.d("bitmap: " + bitmap.getWidth() + " * " + bitmap.getHeight());
+                    if (bitmap != null) {
+                        LogUtils.d(String.format(Locale.getDefault(), "bitmap: %dx%d", bitmap.getWidth(), bitmap.getHeight()));
                     }
                     listener.onSuccess(new AnalyzeResult<>(bitmap, result));
                 }

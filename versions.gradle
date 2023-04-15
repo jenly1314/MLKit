@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 7
-app_version.versionName = "1.3.0"
+app_version.versionCode = 8
+app_version.versionName = "1.4.0"
 ext.app_version = app_version
 
 //build version
@@ -23,19 +23,19 @@ versions.constraintLayout = "2.0.4"
 
 //test
 versions.junit = "4.13.2"
-versions.androidExtJunit = "1.1.2"
+versions.androidExtJunit = "1.1.3"
 versions.test = "1.2.0"
 versions.runner = "1.2.0"
-versions.espresso = "3.3.0"
+versions.espresso = "3.4.0"
 
 versions.bintrayPublish = '1.0.0'
-versions.mavenPublish = '0.20.0'
+versions.mavenPublish = '0.22.0'
 
-versions.gralde = "7.4.1"
-versions.kotlin = "1.7.20"
+versions.gralde = "7.4.2"
+versions.kotlin = "1.8.0"
 versions.coreKtx = "1.7.0"
 
-versions.camerax = "1.2.1"
+versions.camerax = "1.2.2"
 
 ext.versions = versions
 
@@ -55,7 +55,6 @@ test.runner = "androidx.test:runner:$versions.runner"
 test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
 deps.test = test
 
-
 deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
 deps.corektx = "androidx.core:core-ktx:$versions.coreKtx"
@@ -69,8 +68,8 @@ deps.camera_view = "androidx.camera:camera-view:$versions.camerax"
 
 //deps.google_mlkit_common = "com.google.mlkit:vision-common:18.6.0"
 deps.google_mlkit_vision_common = "com.google.mlkit:vision-common:17.3.0"
-deps.google_mlkit_vision_interfaces = "com.google.mlkit:vision-interfaces:16.1.0"
-deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:17.0.3"
+deps.google_mlkit_vision_interfaces = "com.google.mlkit:vision-interfaces:16.2.0"
+deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:17.1.0"
 deps.google_mlkit_face_detection = "com.google.mlkit:face-detection:16.1.5"
 deps.google_mlkit_face_mesh_detection = "com.google.mlkit:face-mesh-detection:16.0.0-beta1"
 deps.google_mlkit_image_labeling = "com.google.mlkit:image-labeling:17.0.7"

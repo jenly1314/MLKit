@@ -23,6 +23,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -229,6 +230,10 @@ public class ViewfinderView extends View {
 
     private Bitmap laserBitmap;
 
+    private float laserBitmapRatio;
+
+    private float laserBitmapWidth;
+
     private int viewfinderStyle = ViewfinderStyle.CLASSIC;
 
     private List<Point> pointList;
@@ -261,7 +266,7 @@ public class ViewfinderView extends View {
      */
     public enum LaserStyle {
         NONE(0), LINE(1), GRID(2), IMAGE(3);
-        private int mValue;
+        private final int mValue;
 
         LaserStyle(int value) {
             mValue = value;
@@ -283,7 +288,7 @@ public class ViewfinderView extends View {
     public enum TextLocation {
         TOP(0), BOTTOM(1);
 
-        private int mValue;
+        private final int mValue;
 
         TextLocation(int value) {
             mValue = value;
@@ -305,7 +310,7 @@ public class ViewfinderView extends View {
     public enum FrameGravity {
         CENTER(0), LEFT(1), TOP(2), RIGHT(3), BOTTOM(4);
 
-        private int mValue;
+        private final int mValue;
 
         FrameGravity(int value) {
             mValue = value;
@@ -382,6 +387,7 @@ public class ViewfinderView extends View {
         isShowPointAnim = array.getBoolean(R.styleable.ViewfinderView_showPointAnim, true);
         Drawable pointDrawable = array.getDrawable(R.styleable.ViewfinderView_pointDrawable);
         Drawable laserDrawable = array.getDrawable(R.styleable.ViewfinderView_laserDrawable);
+        laserBitmapRatio = array.getFloat(R.styleable.ViewfinderView_laserDrawableRatio, 0.625f);
         viewfinderStyle = array.getInt(R.styleable.ViewfinderView_viewfinderStyle, ViewfinderStyle.CLASSIC);
 
         array.recycle();
@@ -446,6 +452,25 @@ public class ViewfinderView extends View {
         this.laserStyle = laserStyle;
     }
 
+    /**
+     * 设置激光扫描自定义图片
+     *
+     * @param drawableResId
+     */
+    public void setLaserDrawable(@DrawableRes int drawableResId) {
+        setLaserBitmap(BitmapFactory.decodeResource(getResources(), drawableResId));
+    }
+
+    /**
+     * 设置激光扫描自定义图片
+     *
+     * @param laserBitmap
+     */
+    public void setLaserBitmap(Bitmap laserBitmap) {
+        this.laserBitmap = laserBitmap;
+        scaleLaserBitmap();
+    }
+
     public void setPointImageResource(@DrawableRes int drawable) {
         setPointBitmap(BitmapFactory.decodeResource(getResources(), drawable));
     }
@@ -456,14 +481,30 @@ public class ViewfinderView extends View {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        initFrame(w, h);
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        initFrame(getWidth(),getHeight());
+    }
+
+    private void scaleLaserBitmap() {
+        if (laserBitmap != null && laserBitmapWidth > 0) {
+            float ratio = laserBitmapWidth / laserBitmap.getWidth();
+            Matrix matrix = new Matrix();
+            matrix.postScale(ratio, ratio);
+            int w = laserBitmap.getWidth();
+            int h = laserBitmap.getHeight();
+            laserBitmap = Bitmap.createBitmap(laserBitmap, 0, 0, w, h, matrix, true);
+        }
     }
 
     private void initFrame(int width, int height) {
 
         int size = (int) (Math.min(width, height) * frameRatio);
+
+        if (laserBitmapWidth <= 0) {
+            laserBitmapWidth = Math.min(width, height) * laserBitmapRatio;
+            scaleLaserBitmap();
+        }
 
         if (frameWidth <= 0 || frameWidth > width) {
             frameWidth = size;
@@ -595,7 +636,7 @@ public class ViewfinderView extends View {
     private void drawImageScanner(Canvas canvas, Rect frame) {
         if (laserBitmap != null) {
             paint.setColor(Color.WHITE);
-            canvas.drawBitmap(laserBitmap, frame.left, scannerStart, paint);
+            canvas.drawBitmap(laserBitmap, (getWidth() - laserBitmap.getWidth()) / 2, scannerStart, paint);
             if (scannerStart < scannerEnd) {
                 scannerStart += scannerLineMoveDistance;
             } else {
@@ -604,7 +645,6 @@ public class ViewfinderView extends View {
         } else {
             drawLineScanner(canvas, frame);
         }
-
     }
 
     /**
@@ -818,7 +858,6 @@ public class ViewfinderView extends View {
             paint.setColor(pointColor);
             canvas.drawCircle(point.x, point.y, pointRadius * currentZoomRatio, paint);
         }
-
 
     }
 

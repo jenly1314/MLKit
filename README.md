@@ -335,15 +335,15 @@ getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
   * 2D格式：Aztec, Data Matrix, PDF417, QR Code
 
 ```kotlin
-        BarcodeDecoder.process(bitmap, object : OnAnalyzeListener<List<Barcode>?> {
-            override fun onSuccess(result: List<Barcode>) {
-                // 分析成功
-            }
+BarcodeDecoder.process(bitmap, object : OnAnalyzeListener<List<Barcode>?> {
+    override fun onSuccess(result: List<Barcode>) {
+        // 分析成功
+    }
 
-            override fun onFailure(e: Exception?) {
-                // 分析失败
-            }
-        })
+    override fun onFailure(e: Exception?) {
+        // 分析失败
+    }
+})
 ```
 
 ### 各个module的使用示例

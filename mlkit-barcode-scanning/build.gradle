@@ -40,5 +40,6 @@ dependencies {
     api deps.google_mlkit_barcode_scanning
     api deps.viewfinderview
 
-    implementation project(':mlkit-common')
+    compileOnly project(':mlkit-common')
+    implementation deps.camera_scan
 }

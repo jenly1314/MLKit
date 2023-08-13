@@ -28,7 +28,7 @@ ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极�
 
 示例App：主要用于提供MLKit各个子库的演示效果
 
-### ~mlkit-camera-core~ （2.x已移除：后续改用 [CameraScan](https://github.com/jenly1314/CameraScan)）
+### ~mlkit-camera-core~ 已移除（从2.0.0版本开始改用 [CameraScan](https://github.com/jenly1314/CameraScan)）
 
 Camera：为各个子库提供相机预览分析的核心库
 
@@ -148,15 +148,18 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.0.0'
 
 > 使用 **v2.x** 以上版本时，要求 **compileSdkVersion >= 33**
 
-> 如果 **compileSdkVersion < 33** 请使用 [**v1.x**](https://github.com/jenly1314/MLKit/tree/1.x/) 版本
+> 如果 **compileSdkVersion < 33** 请使用 [**v1.x版本**](https://github.com/jenly1314/MLKit/tree/1.x/) 
 
 ## 使用
 
 ### 2.x版本的变化
 
 从 **1.x** 到 **2.x** 主要变化如下：
-* **mlkit-camera-core** 核心基础库移除了 -> 从2.x开始改为内部依赖[CameraScan](https://github.com/jenly1314/CameraScan)；（[CameraScan](https://github.com/jenly1314/CameraScan)是一个独立的库，单独进行维护）
-* **mlkit-barcode-scanning** 中的 **ViewfinderView** 移除了 -> 从2.x开始改为内部依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)；（[ViewfinderView](https://github.com/jenly1314/ViewfinderView)是一个独立的库，单独进行维护）
+* 1.x版本的 **mlkit-camera-core** 核心基础库被移除了；
+> 从2.0.0版本开始改为依赖[CameraScan](https://github.com/jenly1314/CameraScan)；（[CameraScan](https://github.com/jenly1314/CameraScan)是一个独立的库，单独进行维护）
+
+* 1.x版本 **mlkit-barcode-scanning** 中的 **ViewfinderView** 被移除了；
+> 从2.0.0版本开始改为依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)；（[ViewfinderView](https://github.com/jenly1314/ViewfinderView)是一个独立的库，单独进行维护）
 
 基于以上两点主要差异：2.x的主要使用方式和1.x基本类似，部分细节有所变更。
 
@@ -166,7 +169,7 @@ implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.0.0'
 
 ### 2.x版本的使用
 
-2.x的实现主要是以[CameraScan](https://github.com/jenly1314/CameraScan)作为基础库去实现具体的分析检测功能，所以你只需知道[CameraScan](https://github.com/jenly1314/CameraScan)的基本使用，自然就会使用MLKit里面所有的子模块了。
+2.x的实现主要是以[CameraScan](https://github.com/jenly1314/CameraScan)作为基础库去实现具体的分析检测功能，所以你可以直接去看[CameraScan](https://github.com/jenly1314/CameraScan)的使用说明，只要知道了[CameraScan](https://github.com/jenly1314/CameraScan)是怎么用的，自然就会使用MLKit里面所有的子模块了。
 
 ### 各个子模块的核心类说明
 

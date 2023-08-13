@@ -39,7 +39,8 @@ dependencies {
     compileOnly deps.androidx.appcompat
     api deps.google_mlkit_barcode_scanning
     api deps.viewfinderview
+    api deps.camera_scan
 
     compileOnly project(':mlkit-common')
-    implementation deps.camera_scan
+
 }

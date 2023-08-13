@@ -19,11 +19,11 @@ import android.content.Intent
 import android.graphics.Point
 import android.widget.ImageView
 import com.google.mlkit.vision.barcode.common.Barcode
+import com.king.camera.scan.AnalyzeResult
+import com.king.camera.scan.CameraScan
+import com.king.camera.scan.util.PointUtils
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
-import com.king.mlkit.vision.camera.AnalyzeResult
-import com.king.mlkit.vision.camera.CameraScan
-import com.king.mlkit.vision.camera.util.PointUtils
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -67,20 +67,26 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         //取预览当前帧图片并显示，为结果点提供参照
         ivResult.setImageBitmap(previewView.bitmap)
         val points = ArrayList<Point>()
+        val frameMetadata = result.frameMetadata
+        var width = frameMetadata.width
+        var height = frameMetadata.height
+        if(frameMetadata.rotation == 90 || frameMetadata.rotation == 270) {
+            width = frameMetadata.height
+            height = frameMetadata.width
+        }
         for (barcode in results) {
             barcode.boundingBox?.let { box ->
                 //将实际的结果中心点坐标转换成界面预览的坐标
                 val point = PointUtils.transform(
                     box.centerX(),
                     box.centerY(),
-                    result.bitmap.width,
-                    result.bitmap.height,
+                    width,
+                    height,
                     viewfinderView.width,
                     viewfinderView.height
                 )
                 points.add(point)
             }
-
         }
         //设置Item点击监听
         viewfinderView.setOnItemClickListener {

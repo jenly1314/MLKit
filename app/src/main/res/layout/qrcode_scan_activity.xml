@@ -11,19 +11,19 @@
         android:id="@+id/ivResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <com.king.mlkit.vision.barcode.ViewfinderView
+    <com.king.view.viewfinderview.ViewfinderView
         android:id="@+id/viewfinderView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:viewfinderStyle="popular"
-        app:laserStyle="image"
-        app:laserDrawableRatio="0.8"
-        app:laserDrawable="@drawable/ic_laser_line"/>
+        app:vvViewfinderStyle="popular"
+        app:vvLaserStyle="image"
+        app:vvLaserDrawableRatio="0.8"
+        app:vvLaserDrawable="@drawable/ic_laser_line"/>
     <ImageView
         android:id="@+id/ivFlashlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ml_flashlight_selector"
-        android:layout_marginTop="@dimen/ml_flashlight_margin_top" />
+        android:src="@drawable/camera_scan_flashlight_selector"
+        android:layout_marginTop="@dimen/camera_scan_flashlight_margin_top" />
 </FrameLayout>

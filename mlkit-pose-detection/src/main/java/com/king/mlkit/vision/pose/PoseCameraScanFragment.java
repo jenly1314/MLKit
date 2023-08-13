@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.pose;
 
 import com.google.mlkit.vision.pose.Pose;
-import com.king.mlkit.vision.camera.BaseCameraScanFragment;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanFragment;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.pose.analyze.PoseDetectionAnalyzer;
 
 import androidx.annotation.Nullable;

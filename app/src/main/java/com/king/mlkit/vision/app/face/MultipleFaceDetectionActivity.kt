@@ -2,7 +2,7 @@ package com.king.mlkit.vision.app.face
 
 import com.google.mlkit.vision.face.Face
 import com.google.mlkit.vision.face.FaceDetectorOptions
-import com.king.mlkit.vision.camera.analyze.Analyzer
+import com.king.camera.scan.analyze.Analyzer
 import com.king.mlkit.vision.face.analyze.FaceDetectionAnalyzer
 
 /**

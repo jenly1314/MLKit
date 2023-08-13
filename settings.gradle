@@ -10,13 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 rootProject.name = "MLKit"
 include ':app'
 include ':mlkit-barcode-scanning'
-include ':mlkit-camera-core'
 include ':mlkit-common'
 include ':mlkit-face-detection'
 include ':mlkit-face-mesh-detection'

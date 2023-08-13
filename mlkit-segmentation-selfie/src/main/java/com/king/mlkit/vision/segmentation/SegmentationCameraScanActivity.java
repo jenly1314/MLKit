@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.segmentation;
 
 import com.google.mlkit.vision.segmentation.SegmentationMask;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.segmentation.analyze.SegmentationAnalyzer;
 
 import androidx.annotation.Nullable;

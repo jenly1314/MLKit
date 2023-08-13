@@ -39,6 +39,5 @@ dependencies {
     compileOnly deps.androidx.appcompat
     api deps.google_mlkit_object_detection
 
-    compileOnly project(':mlkit-camera-core')
     compileOnly project(':mlkit-common')
 }

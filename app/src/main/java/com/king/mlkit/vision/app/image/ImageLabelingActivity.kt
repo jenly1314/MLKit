@@ -18,7 +18,7 @@ package com.king.mlkit.vision.app.image
 import com.google.mlkit.vision.label.ImageLabel
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
-import com.king.mlkit.vision.camera.AnalyzeResult
+import com.king.camera.scan.AnalyzeResult
 import com.king.mlkit.vision.image.ImageCameraScanActivity
 
 /**

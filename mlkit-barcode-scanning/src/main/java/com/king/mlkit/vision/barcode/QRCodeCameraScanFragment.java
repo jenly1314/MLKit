@@ -18,8 +18,9 @@ package com.king.mlkit.vision.barcode;
 import android.view.View;
 
 import com.google.mlkit.vision.barcode.common.Barcode;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.barcode.analyze.BarcodeScanningAnalyzer;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.view.viewfinderview.ViewfinderView;
 
 import java.util.List;
 
@@ -33,12 +34,7 @@ import androidx.annotation.Nullable;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment {
-
     protected ViewfinderView viewfinderView;
-    /**
-     * 手电筒视图
-     */
-    protected View ivFlashlight;
 
     @Override
     public void initUI() {
@@ -46,34 +42,7 @@ public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment
         if (viewfinderViewId != View.NO_ID && viewfinderViewId != 0) {
             viewfinderView = getRootView().findViewById(viewfinderViewId);
         }
-        int ivFlashlightId = getFlashlightId();
-        if (ivFlashlightId != View.NO_ID && ivFlashlightId != 0) {
-            ivFlashlight = getRootView().findViewById(ivFlashlightId);
-            if (ivFlashlight != null) {
-                ivFlashlight.setOnClickListener(v -> onClickFlashlight());
-            }
-        }
         super.initUI();
-    }
-
-    /**
-     * 点击手电筒
-     */
-    protected void onClickFlashlight() {
-        toggleTorchState();
-    }
-
-    /**
-     * 切换闪光灯状态（开启/关闭）
-     */
-    protected void toggleTorchState() {
-        if (getCameraScan() != null) {
-            boolean isTorch = getCameraScan().isTorchEnabled();
-            getCameraScan().enableTorch(!isTorch);
-            if (ivFlashlight != null) {
-                ivFlashlight.setSelected(!isTorch);
-            }
-        }
     }
 
     /**
@@ -107,12 +76,4 @@ public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment
         return R.id.viewfinderView;
     }
 
-    /**
-     * 获取 {@link #ivFlashlight} 的ID
-     *
-     * @return 默认返回{@code R.id.ivFlashlight}, 如果不需要手电筒按钮可以返回{@link View#NO_ID}
-     */
-    public int getFlashlightId() {
-        return R.id.ivFlashlight;
-    }
 }

@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.pose.accurate;
 
 import com.google.mlkit.vision.pose.Pose;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.pose.accurate.analyze.AccuratePoseDetectionAnalyzer;
 
 import androidx.annotation.Nullable;

@@ -40,6 +40,5 @@ dependencies {
     api deps.google_mlkit_text_recognition
     api deps.google_mlkit_text_recognition_chinese
 
-    compileOnly project(':mlkit-camera-core')
     compileOnly project(':mlkit-common')
 }

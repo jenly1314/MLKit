@@ -16,9 +16,9 @@
 package com.king.mlkit.vision.barcode;
 
 import com.google.mlkit.vision.barcode.common.Barcode;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.barcode.analyze.BarcodeScanningAnalyzer;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
 
 import java.util.List;
 

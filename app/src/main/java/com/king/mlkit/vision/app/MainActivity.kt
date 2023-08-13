@@ -27,6 +27,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.camera.scan.CameraScan
+import com.king.camera.scan.analyze.Analyzer
+import com.king.camera.scan.util.LogUtils
+import com.king.camera.scan.util.PermissionUtils
 import com.king.mlkit.vision.app.barcode.BarcodeScanningActivity
 import com.king.mlkit.vision.app.barcode.MultipleQRCodeScanningActivity
 import com.king.mlkit.vision.app.barcode.QRCodeScanningActivity
@@ -41,10 +45,7 @@ import com.king.mlkit.vision.app.pose.PoseDetectionActivity
 import com.king.mlkit.vision.app.segmentation.SelfieSegmentationActivity
 import com.king.mlkit.vision.app.text.TextRecognitionActivity
 import com.king.mlkit.vision.barcode.BarcodeDecoder
-import com.king.mlkit.vision.camera.CameraScan
-import com.king.mlkit.vision.camera.analyze.Analyzer.OnAnalyzeListener
-import com.king.mlkit.vision.camera.util.LogUtils
-import com.king.mlkit.vision.camera.util.PermissionUtils
+
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         data?.let {
             try {
                 val srcBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
-                BarcodeDecoder.process(srcBitmap, object : OnAnalyzeListener<List<Barcode>?> {
+                BarcodeDecoder.process(srcBitmap, object : Analyzer.OnAnalyzeListener<List<Barcode>?> {
                     override fun onSuccess(result: List<Barcode>) {
                         if (result.isNotEmpty()) {
                             val buffer = StringBuilder()

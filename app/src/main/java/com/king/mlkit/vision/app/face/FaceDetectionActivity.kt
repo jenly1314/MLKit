@@ -19,9 +19,9 @@ import android.widget.ImageView
 import com.google.mlkit.vision.face.Face
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.camera.scan.AnalyzeResult
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.app.drawRect
-import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.face.FaceCameraScanActivity
 
 /**
@@ -31,7 +31,7 @@ open class FaceDetectionActivity : FaceCameraScanActivity() {
 
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Face>>) {
         cameraScan.setAnalyzeImage(false)
-        val bitmap = result.bitmap.drawRect { canvas, paint ->
+        val bitmap = result.bitmap?.drawRect { canvas, paint ->
             for (data in result.result) {
                 canvas.drawRect(data.boundingBox, paint)
                 for (contour in data.allContours) {

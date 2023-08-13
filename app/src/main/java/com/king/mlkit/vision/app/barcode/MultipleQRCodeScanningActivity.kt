@@ -19,11 +19,11 @@ import android.widget.ImageView
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.camera.scan.AnalyzeResult
+import com.king.camera.scan.CameraScan
 import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
-import com.king.mlkit.vision.camera.AnalyzeResult
-import com.king.mlkit.vision.camera.CameraScan
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -34,7 +34,6 @@ class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {
         super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
-//            .setCameraConfig(ResolutionCameraConfig(this))
     }
 
     override fun getLayoutId(): Int {
@@ -46,7 +45,7 @@ class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {
         cameraScan.setAnalyzeImage(false)
 
         val buffer = StringBuilder()
-        val bitmap = result.bitmap.drawRect { canvas, paint ->
+        val bitmap = result.bitmap?.drawRect { canvas, paint ->
             for ((index, data) in result.result.withIndex()) {
                 buffer.append("[$index] ").append(data.displayValue).append("\n")
                 data.boundingBox?.let { box ->

@@ -39,7 +39,7 @@ dependencies {
     api deps.google_mlkit_vision_common
     api deps.google_mlkit_vision_interfaces
 
-    compileOnly project(':mlkit-camera-core')
+    api deps.camera_scan
 }
 
 

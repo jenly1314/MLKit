@@ -39,7 +39,6 @@ dependencies {
     compileOnly deps.androidx.appcompat
     api deps.google_mlkit_segmentation_selfie
 
-    compileOnly project(':mlkit-camera-core')
     compileOnly project(':mlkit-common')
 }
 

@@ -25,7 +25,7 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.analyze.Analyzer;
 
 import java.io.IOException;
 import java.util.List;

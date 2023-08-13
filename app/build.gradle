@@ -54,7 +54,6 @@ dependencies {
 
     implementation deps.app_dialog
 
-    implementation project(':mlkit-camera-core')
     implementation project(':mlkit-common')
     implementation project(':mlkit-barcode-scanning')
     implementation project(':mlkit-face-detection')

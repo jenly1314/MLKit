@@ -2,7 +2,7 @@ package com.king.mlkit.vision.app.`object`
 
 import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
-import com.king.mlkit.vision.camera.analyze.Analyzer
+import com.king.camera.scan.analyze.Analyzer
 import com.king.mlkit.vision.`object`.analyze.ObjectDetectionAnalyzer
 
 /**

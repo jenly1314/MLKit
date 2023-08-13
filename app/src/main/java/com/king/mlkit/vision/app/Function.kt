@@ -19,7 +19,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import com.king.mlkit.vision.camera.util.LogUtils
+import com.king.camera.scan.util.LogUtils
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

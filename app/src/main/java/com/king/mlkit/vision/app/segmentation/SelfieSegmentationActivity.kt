@@ -6,8 +6,8 @@ import androidx.annotation.ColorInt
 import com.google.mlkit.vision.segmentation.SegmentationMask
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.camera.scan.AnalyzeResult
 import com.king.mlkit.vision.app.R
-import com.king.mlkit.vision.camera.AnalyzeResult
 import com.king.mlkit.vision.segmentation.SegmentationCameraScanActivity
 
 /**
@@ -31,41 +31,41 @@ class SelfieSegmentationActivity : SegmentationCameraScanActivity() {
         AppDialog.INSTANCE.showDialog(config, false)
     }
 
-    private fun processBitmap(result: AnalyzeResult<SegmentationMask>): Bitmap {
-        val bitmap = result.bitmap
-        val mask = result.result
-        val maskWidth = mask.width
-        val maskHeight = mask.height
+    private fun processBitmap(result: AnalyzeResult<SegmentationMask>): Bitmap? {
+        return result.bitmap?.let { bitmap ->
+            val mask = result.result
+            val maskWidth = mask.width
+            val maskHeight = mask.height
 
-        val isRawSizeMaskEnabled = maskWidth != bitmap.width || maskHeight != bitmap.height
-        val scaleX = bitmap.width * 1f / maskWidth
-        val scaleY = bitmap.height * 1f / maskHeight
+            val isRawSizeMaskEnabled = maskWidth != bitmap.width || maskHeight != bitmap.height
+            val scaleX = bitmap.width * 1f / maskWidth
+            val scaleY = bitmap.height * 1f / maskHeight
 
 
-        val resultBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
-        val maskBitmap = Bitmap.createBitmap(
-            maskColorsFromByteBuffer(mask), maskWidth, maskHeight, Bitmap.Config.ARGB_8888
-        )
+            val resultBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
+            val maskBitmap = Bitmap.createBitmap(
+                maskColorsFromByteBuffer(mask), maskWidth, maskHeight, Bitmap.Config.ARGB_8888
+            )
 
-        val canvas = Canvas(resultBitmap)
-        val paint = Paint()
-        //绘制原始图片
-        canvas.drawBitmap(bitmap, 0f, 0f, null)
-        paint.strokeWidth = 6f
-        paint.style = Paint.Style.STROKE
-        paint.color = Color.RED
-        val matrix = Matrix()
-        if (isRawSizeMaskEnabled) {
-            matrix.preScale(scaleX, scaleY)
+            val canvas = Canvas(resultBitmap)
+            val paint = Paint()
+            //绘制原始图片
+            canvas.drawBitmap(bitmap, 0f, 0f, null)
+            paint.strokeWidth = 6f
+            paint.style = Paint.Style.STROKE
+            paint.color = Color.RED
+            val matrix = Matrix()
+            if (isRawSizeMaskEnabled) {
+                matrix.preScale(scaleX, scaleY)
+            }
+            //绘制蒙版图层
+            canvas.drawBitmap(maskBitmap, matrix, null)
+            bitmap.recycle()
+
+            canvas.save()
+            canvas.restore()
+            resultBitmap
         }
-        //绘制蒙版图层
-        canvas.drawBitmap(maskBitmap, matrix, null)
-        bitmap.recycle()
-
-        canvas.save()
-        canvas.restore()
-
-        return resultBitmap
     }
 
     @ColorInt

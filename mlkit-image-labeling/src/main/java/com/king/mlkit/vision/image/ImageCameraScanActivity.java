@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.image;
 
 import com.google.mlkit.vision.label.ImageLabel;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.image.analyze.ImageLabelingAnalyzer;
 
 import java.util.List;

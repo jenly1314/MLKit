@@ -21,4 +21,5 @@ package com.king.mlkit.vision.common;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MlKit {
+
 }

@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.text;
 
 import com.google.mlkit.vision.text.Text;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.text.analyze.TextRecognitionAnalyzer;
 
 import androidx.annotation.Nullable;

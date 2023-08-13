@@ -16,8 +16,8 @@
 package com.king.mlkit.vision.face;
 
 import com.google.mlkit.vision.face.Face;
-import com.king.mlkit.vision.camera.BaseCameraScanActivity;
-import com.king.mlkit.vision.camera.analyze.Analyzer;
+import com.king.camera.scan.BaseCameraScanActivity;
+import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.face.analyze.FaceDetectionAnalyzer;
 
 import java.util.List;

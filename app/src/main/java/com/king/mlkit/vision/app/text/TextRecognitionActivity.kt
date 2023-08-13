@@ -21,9 +21,9 @@ import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
+import com.king.camera.scan.AnalyzeResult
+import com.king.camera.scan.analyze.Analyzer
 import com.king.mlkit.vision.app.R
-import com.king.mlkit.vision.camera.AnalyzeResult
-import com.king.mlkit.vision.camera.analyze.Analyzer
 import com.king.mlkit.vision.text.TextCameraScanActivity
 import com.king.mlkit.vision.text.analyze.TextRecognitionAnalyzer
 

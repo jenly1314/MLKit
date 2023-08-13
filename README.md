@@ -327,6 +327,23 @@ getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
         android:src="@drawable/ml_flashlight_selector" />
 </FrameLayout>
 ```
+### 各个子模块的核心类说明
+
+下面就列一下各个子模块实现的具体功能和核心类；主要包括实现对应功能的**Analyzer** 和便于快速实现扫描检测的 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 的子类。
+
+| 功能        | 所属子模块                        | 对应的Analyzer实现                 | 对应的BaseCameraScanActivity子类                    |
+|:----------|:---------------------------------|:------------------------------|:---------------------------------------------------|
+| 条码扫描      | mlkit-barcode-scanning           | BarcodeScanningAnalyzer       | BarcodeCameraScanActivity/QRCodeCameraScanActivity |
+| 人脸检测      | mlkit-face-detection             | FaceDetectionAnalyzer         | FaceCameraScanActivity                             |
+| 人脸网格检测   | mlkit-face-mesh-detection        | FaceMeshDetectionAnalyzer     | FaceMeshCameraScanActivity                         |
+| 图像标签      | mlkit-image-labeling             | ImageLabelingAnalyzer         | ImageCameraScanActivity                            |
+| 对象检测      | mlkit-object-detection           | ObjectDetectionAnalyzer       | ObjectCameraScanActivity                           |
+| 姿势检测      | mlkit-pose-detection             | PoseDetectionAnalyzer         | PoseCameraScanActivity                             |
+| 姿势检测（精确版） | mlkit-pose-detection-accurate | AccuratePoseDetectionAnalyzer | AccuratePoseCameraScanActivity                     |
+| 自拍分割      | mlkit-segmentation-selfie        | SegmentationAnalyzer          | SegmentationCameraScanActivity                     |
+| 文字识别      | mlkit-text-recognition           | TextRecognitionAnalyzer       | TextCameraScanActivity                             |
+
+> **xxx**CameraScanActivity 和 **xxx**BaseCameraScanFragment 在上面只列出了一个，因为有一个 **xxx**CameraScanActivity 就有一个与之对应的 **xxx**CameraScanFragment；命名前缀一样，使用方式也基本一样。
 
 ### 条形码检测分析示例（**mlkit-bar-code-scanning**）
 

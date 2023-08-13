@@ -345,7 +345,7 @@ getCameraScan().setPlayBeep(true)//设置是否播放音效，默认为false
 
 > **xxx**CameraScanActivity 和 **xxx**BaseCameraScanFragment 在上面只列出了一个，因为有一个 **xxx**CameraScanActivity 就有一个与之对应的 **xxx**CameraScanFragment；命名前缀一样，使用方式也基本一样。
 
-### 条形码检测分析示例（**mlkit-bar-code-scanning**）
+### 条形码检测分析示例（**mlkit-barcode-scanning**）
 
 #### 支持检测识别的条形码格式主要有：
   * 线性格式：Codabar, Code 39, Code 93, Code 128, EAN-8, EAN-13, ITF, UPC-A, UPC-E

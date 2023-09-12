@@ -6,6 +6,7 @@ import com.king.camera.scan.analyze.Analyzer
 import com.king.mlkit.vision.`object`.analyze.ObjectDetectionAnalyzer
 
 /**
+ * 多个对象检测示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MultipleObjectDetectionActivity : ObjectDetectionActivity() {

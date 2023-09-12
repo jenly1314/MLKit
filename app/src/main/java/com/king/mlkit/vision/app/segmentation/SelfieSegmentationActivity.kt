@@ -11,6 +11,7 @@ import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.segmentation.SegmentationCameraScanActivity
 
 /**
+ * 自拍分割示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class SelfieSegmentationActivity : SegmentationCameraScanActivity() {

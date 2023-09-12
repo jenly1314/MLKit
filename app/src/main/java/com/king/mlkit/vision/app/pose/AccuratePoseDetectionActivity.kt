@@ -10,6 +10,7 @@ import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.pose.accurate.AccuratePoseCameraScanActivity
 
 /**
+ * 姿势检测（精确版）示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class AccuratePoseDetectionActivity : AccuratePoseCameraScanActivity() {

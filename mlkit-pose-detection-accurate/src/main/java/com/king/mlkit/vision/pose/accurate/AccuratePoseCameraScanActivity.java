@@ -23,7 +23,7 @@ import com.king.mlkit.vision.pose.accurate.analyze.AccuratePoseDetectionAnalyzer
 import androidx.annotation.Nullable;
 
 /**
- * 姿势检测（精确） - 相机扫描基类
+ * 姿势检测（精确版） - 相机扫描基类
  * <p>
  * 通过继承 {@link AccuratePoseCameraScanActivity}或{@link AccuratePoseCameraScanFragment}可快速实现姿势检测
  *

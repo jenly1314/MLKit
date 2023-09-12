@@ -26,6 +26,7 @@ import com.king.mlkit.vision.app.R
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 
 /**
+ * 扫描二维码示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class QRCodeScanningActivity : QRCodeCameraScanActivity() {
@@ -67,13 +68,8 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         //取预览当前帧图片并显示，为结果点提供参照
         ivResult.setImageBitmap(previewView.bitmap)
         val points = ArrayList<Point>()
-        val frameMetadata = result.frameMetadata
-        var width = frameMetadata.width
-        var height = frameMetadata.height
-        if(frameMetadata.rotation == 90 || frameMetadata.rotation == 270) {
-            width = frameMetadata.height
-            height = frameMetadata.width
-        }
+        var width = result.bitmapWidth
+        var height = result.bitmapHeight
         for (barcode in results) {
             barcode.boundingBox?.let { box ->
                 //将实际的结果中心点坐标转换成界面预览的坐标
@@ -114,6 +110,5 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         }
 
     }
-
 
 }

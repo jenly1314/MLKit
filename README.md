@@ -96,51 +96,51 @@ Camera：为各个子库提供相机预览分析的核心库
 
 1. 在Project的 **build.gradle** 或 **setting.gradle** 中添加远程仓库
 
-```gradle
-repositories {
-    //...
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-}
-```
+    ```gradle
+    repositories {
+        //...
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 
-```gradle
-
-//公共库 (*必须) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
-implementation 'com.github.jenly1314.MLKit:mlkit-common:2.0.0'
-
-//--------------------------
-
-//条码识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.0.0'
-
-//人脸检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.0.0'
-
-//人脸网格检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.0.0'
-
-//图像标签 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.0.0'
-
-//对象检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.0.0'
-
-//姿势检测 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.0.0'
-
-//姿势检测精确版 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.0.0'
-
-//自拍分割 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.0.0'
-
-//文字识别 (可选)
-implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.0.0'
-
-```
+    ```gradle
+    
+    //公共库 (*必须) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.0.1'
+    
+    //--------------------------
+    
+    //条码识别 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.0.1'
+    
+    //人脸检测 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.0.1'
+    
+    //人脸网格检测 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.0.1'
+    
+    //图像标签 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.0.1'
+    
+    //对象检测 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.0.1'
+    
+    //姿势检测 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.0.1'
+    
+    //姿势检测精确版 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.0.1'
+    
+    //自拍分割 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.0.1'
+    
+    //文字识别 (可选)
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.0.1'
+    
+    ```
 
 ### 温馨提示
 
@@ -327,6 +327,10 @@ compileOptions {
 #### [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
 
 ## 版本记录
+
+#### v2.0.1：2023-9-13
+* 更新CameraScan至v1.0.1
+* 更新ViewfinderView至v1.1.0
 
 #### v2.0.0：2023-8-13
 * 移除相机核心库（**mlkit-camera-core**），改为依赖[CameraScan](https://github.com/jenly1314/CameraScan) 

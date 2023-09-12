@@ -15,16 +15,13 @@
  */
 package com.king.mlkit.vision.barcode;
 
-import android.view.View;
+import androidx.annotation.Nullable;
 
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.king.camera.scan.analyze.Analyzer;
 import com.king.mlkit.vision.barcode.analyze.BarcodeScanningAnalyzer;
-import com.king.view.viewfinderview.ViewfinderView;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 /**
  * 二维码扫描 - 相机扫描基类
@@ -34,16 +31,6 @@ import androidx.annotation.Nullable;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment {
-    protected ViewfinderView viewfinderView;
-
-    @Override
-    public void initUI() {
-        int viewfinderViewId = getViewfinderViewId();
-        if (viewfinderViewId != View.NO_ID && viewfinderViewId != 0) {
-            viewfinderView = getRootView().findViewById(viewfinderViewId);
-        }
-        super.initUI();
-    }
 
     /**
      * 创建分析器，默认分析所有条码格式
@@ -54,26 +41,6 @@ public abstract class QRCodeCameraScanFragment extends BarcodeCameraScanFragment
     @Override
     public Analyzer<List<Barcode>> createAnalyzer() {
         return new BarcodeScanningAnalyzer(Barcode.FORMAT_QR_CODE);
-    }
-
-    /**
-     * 布局ID；通过覆写此方法可以自定义布局
-     *
-     * @return 布局ID
-     */
-    @Override
-    public int getLayoutId() {
-        return R.layout.ml_qrcode_camera_scan;
-    }
-
-    /**
-     * {@link #viewfinderView} 的 ID
-     *
-     * @return 默认返回{@code R.id.viewfinderView}, 如果不需要扫码框可以返回{@link View#NO_ID}
-     */
-
-    public int getViewfinderViewId() {
-        return R.id.viewfinderView;
     }
 
 }

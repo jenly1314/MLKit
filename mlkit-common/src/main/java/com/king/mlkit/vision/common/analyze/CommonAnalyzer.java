@@ -39,9 +39,9 @@ import androidx.camera.core.ImageProxy;
  */
 public abstract class CommonAnalyzer<T> implements Analyzer<T> {
 
-    private Queue<byte[]> queue = new ConcurrentLinkedQueue<>();
+    private final Queue<byte[]> queue = new ConcurrentLinkedQueue<>();
 
-    private AtomicBoolean joinQueue = new AtomicBoolean(false);
+    private final AtomicBoolean joinQueue = new AtomicBoolean(false);
 
     /**
      * 检测图像
@@ -77,7 +77,7 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
             );
             // 检测分析
             detectInImage(inputImage).addOnSuccessListener(result -> {
-                if (result == null || (result instanceof Collection && ((Collection) result).isEmpty())) {
+                if (result == null || (result instanceof Collection && ((Collection<?>) result).isEmpty())) {
                     queue.add(nv21Data);
                     listener.onFailure(null);
                 } else {

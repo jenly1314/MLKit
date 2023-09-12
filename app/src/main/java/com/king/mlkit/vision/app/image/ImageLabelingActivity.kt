@@ -22,6 +22,7 @@ import com.king.camera.scan.AnalyzeResult
 import com.king.mlkit.vision.image.ImageCameraScanActivity
 
 /**
+ * 图像标签示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class ImageLabelingActivity : ImageCameraScanActivity() {

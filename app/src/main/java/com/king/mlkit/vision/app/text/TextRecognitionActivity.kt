@@ -28,6 +28,7 @@ import com.king.mlkit.vision.text.TextCameraScanActivity
 import com.king.mlkit.vision.text.analyze.TextRecognitionAnalyzer
 
 /**
+ * 文字识别示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class TextRecognitionActivity : TextCameraScanActivity() {

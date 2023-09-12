@@ -6,6 +6,7 @@ import com.king.camera.scan.analyze.Analyzer
 import com.king.mlkit.vision.face.analyze.FaceDetectionAnalyzer
 
 /**
+ * 多个人脸检测示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MultipleFaceDetectionActivity : FaceDetectionActivity() {

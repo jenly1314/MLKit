@@ -26,6 +26,7 @@ import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 
 /**
+ * 扫描多个二维码示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {

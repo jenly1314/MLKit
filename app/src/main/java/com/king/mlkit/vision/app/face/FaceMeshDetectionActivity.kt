@@ -25,6 +25,7 @@ import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.facemesh.FaceMeshCameraScanActivity
 
 /**
+ * 人脸网格检测示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 open class FaceMeshDetectionActivity : FaceMeshCameraScanActivity() {

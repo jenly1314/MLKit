@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 9
-app_version.versionName = "2.0.0"
+app_version.versionCode = 10
+app_version.versionName = "2.0.1"
 ext.app_version = app_version
 
 //build version
@@ -35,8 +35,6 @@ versions.gralde = "7.4.2"
 versions.kotlin = "1.8.0"
 versions.coreKtx = "1.7.0"
 
-versions.camerax = "1.2.2"
-
 ext.versions = versions
 
 //androidx
@@ -59,13 +57,6 @@ deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
 deps.corektx = "androidx.core:core-ktx:$versions.coreKtx"
 
-//CameraX
-deps.camera_core = "androidx.camera:camera-core:$versions.camerax"
-deps.camera_camera2 = "androidx.camera:camera-camera2:$versions.camerax"
-deps.camera_lifecycle = "androidx.camera:camera-lifecycle:$versions.camerax"
-deps.camera_view = "androidx.camera:camera-view:$versions.camerax"
-//deps.camera_mlkit_vision = "androidx.camera:camera-mlkit-vision:$versions.camerax"
-
 //deps.google_mlkit_common = "com.google.mlkit:vision-common:18.6.0"
 deps.google_mlkit_vision_common = "com.google.mlkit:vision-common:17.3.0"
 deps.google_mlkit_vision_interfaces = "com.google.mlkit:vision-interfaces:16.2.0"
@@ -80,8 +71,8 @@ deps.google_mlkit_segmentation_selfie = "com.google.mlkit:segmentation-selfie:16
 deps.google_mlkit_text_recognition = "com.google.mlkit:text-recognition:16.0.0"
 deps.google_mlkit_text_recognition_chinese = "com.google.mlkit:text-recognition-chinese:16.0.0"
 
-deps.camera_scan = "com.github.jenly1314:CameraScan:1.0.0"
-deps.viewfinderview = "com.github.jenly1314:viewfinderview:1.0.0"
+deps.camera_scan = "com.github.jenly1314:camera-scan:1.0.1"
+deps.viewfinderview = "com.github.jenly1314:viewfinderview:1.1.0"
 
 deps.app_dialog = "com.github.jenly1314.AppUpdater:app-dialog:1.1.4"
 

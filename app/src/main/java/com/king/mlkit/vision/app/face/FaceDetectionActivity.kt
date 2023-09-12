@@ -25,6 +25,7 @@ import com.king.mlkit.vision.app.drawRect
 import com.king.mlkit.vision.face.FaceCameraScanActivity
 
 /**
+ * 人脸检测示例
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 open class FaceDetectionActivity : FaceCameraScanActivity() {

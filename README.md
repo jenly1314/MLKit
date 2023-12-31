@@ -100,7 +100,6 @@ Camera：为各个子库提供相机预览分析的核心库
     repositories {
         //...
         mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
     ```
 
@@ -109,36 +108,36 @@ Camera：为各个子库提供相机预览分析的核心库
     ```gradle
     
     //公共库 (*必须) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
-    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.1.0'
     
     //--------------------------
     
     //条码识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.1.0'
     
     //人脸检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.1.0'
     
     //人脸网格检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.1.0'
     
     //图像标签 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.1.0'
     
     //对象检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.1.0'
     
     //姿势检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.1.0'
     
     //姿势检测精确版 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.1.0'
     
     //自拍分割 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.1.0'
     
     //文字识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.0.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.1.0'
     
     ```
 
@@ -146,7 +145,9 @@ Camera：为各个子库提供相机预览分析的核心库
 
 #### 关于MLKit版本与编译的SDK版本要求
 
-> 使用 **v2.x** 以上版本时，要求 **compileSdkVersion >= 33**
+> 使用 **v2.1.x** 以上版本时，要求 **compileSdkVersion >= 34**
+
+> 使用 **v2.0.x** 以上版本时，要求 **compileSdkVersion >= 33**
 
 > 如果 **compileSdkVersion < 33** 请使用 [**v1.x版本**](https://github.com/jenly1314/MLKit/tree/1.x/) 
 
@@ -196,15 +197,15 @@ Camera：为各个子库提供相机预览分析的核心库
   * 2D格式：Aztec, Data Matrix, PDF417, QR Code
 
 ```kotlin
-BarcodeDecoder.process(bitmap, object : OnAnalyzeListener<List<Barcode>?> {
-    override fun onSuccess(result: List<Barcode>) {
-        // 分析成功
-    }
-
-    override fun onFailure(e: Exception?) {
-        // 分析失败
-    }
-})
+BarcodeDecoder.process(bitmap).addOnSuccessListener(this) { 
+   if (it.isNotEmpty()) {
+      // TODO 成功；此处可获取识别的结果
+   } else {
+      // TODO 没有结果
+   }
+}.addOnFailureListener(this) {
+   // TODO 失败；出现异常
+}
 ```
 
 ### 各个module的使用示例
@@ -328,6 +329,11 @@ compileOptions {
 
 ## 版本记录
 
+#### v2.1.0：2023-12-31
+* 更新CameraScan至v1.1.0
+* 更新compileSdkVersion至34
+* 更新Gradle至v8.0
+
 #### v2.0.1：2023-9-13
 * 更新CameraScan至v1.0.1
 * 更新ViewfinderView至v1.1.0
@@ -344,40 +350,7 @@ compileOptions {
 * 更新MLKit相关依赖库版本
 * 更新CameraX至v1.2.2
 
-#### v1.3.0：2023-2-23
-* 新增公共库（mlkit-common）
-* 优化注释
-* 更新CameraX至v1.2.1
-* 更新Gradle至v7.5
-
-#### v1.2.0：2022-12-11
-* 新增人脸网格检测（mlkit-face-mesh-detection）
-* 更新MLKit相关依赖库版本
-* 更新CameraX至v1.2.0
-* 更新compileSdkVersion至33
-
-#### v1.1.0：2022-6-1
-* 更新MLKit相关依赖库版本
-* 更新CameraX至v1.2.0-rc01
-* 更新compileSdkVersion至31
-* 更新Gradle至v7.2
-
-#### v1.0.3：2021-10-18
-* 更新CameraX至v1.0.2
-* ViewfinderView新增支持显示结果点相关
-* 新增扫二维码有多个结果时可选实现示例（类似于新版微信效果）
-* 文字识别（text recognition）改为静态（即：使用v2）
-
-#### v1.0.2：2021-8-4
-* 更新CameraX至v1.0.1
-* 优化CameraConfig的一些默认配置
-
-#### v1.0.1：2021-7-2
-* 更新MLKit相关依赖库版本
-* 优化细节
-
-#### v1.0.0：2021-4-7
-* MLKit初始版本
+#### [查看更多版本记录](change_log.md)
 
 ## 赞赏
 

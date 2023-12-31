@@ -19,6 +19,7 @@
     <ImageView
         android:id="@+id/ivDialogContent"
         android:layout_width="match_parent"
+        android:contentDescription="@null"
         android:layout_height="300dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"

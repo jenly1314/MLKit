@@ -16,8 +16,10 @@ import com.king.mlkit.vision.pose.PoseCameraScanActivity
 class PoseDetectionActivity : PoseCameraScanActivity() {
 
     override fun onScanResultCallback(result: AnalyzeResult<Pose>) {
+
         if (result.result.allPoseLandmarks.isNullOrEmpty()) {
-            // 过滤掉空数据
+            // 过滤掉空数据，继续分析
+            cameraScan.setAnalyzeImage(true)
             return
         }
         cameraScan.setAnalyzeImage(false)

@@ -15,6 +15,7 @@
         android:id="@+id/ivFlashlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@null"
         android:layout_gravity="center"
         android:src="@drawable/camera_scan_flashlight_selector"
         android:layout_marginTop="@dimen/camera_scan_flashlight_margin_top" />

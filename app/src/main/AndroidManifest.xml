@@ -5,13 +5,15 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +23,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MLKit">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,74 +34,87 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".barcode.MultipleQRCodeScanningActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".barcode.MultipleQRCodeScanningActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".barcode.QRCodeScanningActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".barcode.QRCodeScanningActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".barcode.BarcodeScanningActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".barcode.BarcodeScanningActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".face.FaceDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".face.FaceDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".face.MultipleFaceDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".face.MultipleFaceDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".face.FaceMeshDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".face.FaceMeshDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".image.ImageLabelingActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".image.ImageLabelingActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".object.ObjectDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".object.ObjectDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".object.MultipleObjectDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".object.MultipleObjectDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".pose.PoseDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".pose.PoseDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".pose.AccuratePoseDetectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".pose.AccuratePoseDetectionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".segmentation.SelfieSegmentationActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".segmentation.SelfieSegmentationActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
-        <activity android:name=".text.TextRecognitionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".text.TextRecognitionActivity"
             android:exported="false"
-            android:theme="@style/CameraScanTheme"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraScanTheme" />
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"

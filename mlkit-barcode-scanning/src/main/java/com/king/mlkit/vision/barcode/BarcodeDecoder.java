@@ -20,20 +20,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
-import com.king.camera.scan.analyze.Analyzer;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * 条码解码器：主要用于检测图像上的条形码/二维码
@@ -58,113 +56,28 @@ public class BarcodeDecoder {
         return InputImage.fromBitmap(bitmap, rotation);
     }
 
-    public static Task<List<Barcode>> process(Bitmap bitmap, Analyzer.OnAnalyzeListener<List<Barcode>> listener) {
-        return process(bitmap, listener, Barcode.FORMAT_ALL_FORMATS);
-    }
-
-    public static Task<List<Barcode>> process(Bitmap bitmap, Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(fromBitmap(bitmap)).addOnSuccessListener(result -> {
-            if (listener != null) {
-                if (result == null || result.isEmpty()) {
-                    listener.onFailure(null);
-                } else {
-                    listener.onSuccess(result);
-                }
-            }
-
-        }).addOnFailureListener(e -> {
-            if (listener != null) {
-                listener.onFailure(e);
-            }
-        });
-    }
-
-    public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull Executor executor, Analyzer.OnAnalyzeListener<List<Barcode>> listener) {
-        return process(bitmap, executor, listener, Barcode.FORMAT_ALL_FORMATS);
-    }
-
-    public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull Executor executor, Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(fromBitmap(bitmap)).addOnSuccessListener(executor, result -> {
-            if (listener != null) {
-                if (result == null || result.isEmpty()) {
-                    listener.onFailure(null);
-                } else {
-                    listener.onSuccess(result);
-                }
-            }
-
-        }).addOnFailureListener(executor, e -> {
-            if (listener != null) {
-                listener.onFailure(e);
-            }
-        });
-    }
-
     public static Task<List<Barcode>> process(Bitmap bitmap) {
-        return BarcodeScanning.getClient().process(fromBitmap(bitmap));
+        return process(fromBitmap(bitmap), Barcode.FORMAT_ALL_FORMATS);
     }
 
     public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull BarcodeScannerOptions options) {
-        return BarcodeScanning.getClient(options).process(fromBitmap(bitmap));
+        return process(fromBitmap(bitmap), options);
     }
 
     public static Task<List<Barcode>> process(Bitmap bitmap, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(fromBitmap(bitmap));
-    }
-
-    public static Task<List<Barcode>> process(InputImage inputImage, Analyzer.OnAnalyzeListener<List<Barcode>> listener) {
-        return process(inputImage, listener, Barcode.FORMAT_ALL_FORMATS);
-    }
-
-
-    public static Task<List<Barcode>> process(InputImage inputImage, Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(inputImage).addOnSuccessListener(result -> {
-            if (listener != null) {
-                if (result == null || result.isEmpty()) {
-                    listener.onFailure(null);
-                } else {
-                    listener.onSuccess(result);
-                }
-            }
-
-        }).addOnFailureListener(e -> {
-            if (listener != null) {
-                listener.onFailure(e);
-            }
-        });
-    }
-
-    public static Task<List<Barcode>> process(InputImage inputImage, @NonNull Executor executor, Analyzer.OnAnalyzeListener<List<Barcode>> listener) {
-        return process(inputImage, executor, listener, Barcode.FORMAT_ALL_FORMATS);
-    }
-
-    public static Task<List<Barcode>> process(InputImage inputImage, @NonNull Executor executor, Analyzer.OnAnalyzeListener<List<Barcode>> listener, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(inputImage).addOnSuccessListener(executor, result -> {
-            if (listener != null) {
-                if (result == null) {
-                    listener.onFailure(null);
-                } else {
-                    listener.onSuccess(result);
-                }
-            }
-
-        }).addOnFailureListener(executor, e -> {
-            if (listener != null) {
-                listener.onFailure(e);
-            }
-        });
+        return process(fromBitmap(bitmap), format, formats);
     }
 
     public static Task<List<Barcode>> process(InputImage inputImage) {
-        return BarcodeScanning.getClient().process(inputImage);
+        return process(inputImage, Barcode.FORMAT_ALL_FORMATS);
+    }
+
+    public static Task<List<Barcode>> process(InputImage inputImage, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
+        return process(inputImage, new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build());
     }
 
     public static Task<List<Barcode>> process(InputImage inputImage, @NonNull BarcodeScannerOptions options) {
         return BarcodeScanning.getClient(options).process(inputImage);
-    }
-
-    public static Task<List<Barcode>> process(InputImage inputImage, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
-        return BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build()).process(inputImage);
     }
 
     /**

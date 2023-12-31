@@ -1,5 +1,20 @@
 ## 版本记录
 
+#### v2.1.0：2023-12-31
+* 更新CameraScan至v1.1.0
+* 更新compileSdkVersion至34
+* 更新Gradle至v8.0
+
+#### v2.0.1：2023-9-13
+* 更新CameraScan至v1.0.1
+* 更新ViewfinderView至v1.1.0
+
+#### v2.0.0：2023-8-13
+* 移除相机核心库（**mlkit-camera-core**），改为依赖[CameraScan](https://github.com/jenly1314/CameraScan)
+* 移除**mlkit-barcode-scanning** 中的 **ViewfinderView**，改为依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)
+* 优化扫描分析过程的性能体验
+* 更新MLKit相关依赖库版本
+
 #### v1.4.0：2023-4-15
 * 优化CameraScan的缺省配置（CameraConfig相关配置）
 * 优化ViewfinderView自定义属性（新增laserDrawableRatio）

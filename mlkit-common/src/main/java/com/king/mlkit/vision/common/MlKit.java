@@ -22,4 +22,7 @@ package com.king.mlkit.vision.common;
  */
 class MlKit {
 
+    private MlKit() {
+
+    }
 }

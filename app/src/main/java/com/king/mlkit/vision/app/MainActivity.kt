@@ -17,10 +17,7 @@ package com.king.mlkit.vision.app
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -119,8 +116,9 @@ class MainActivity : AppCompatActivity() {
                 ).addOnSuccessListener(this) { result ->
                     if (result.isNotEmpty()) {
                         val buffer = StringBuilder()
+                        val srcBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
                         // 成功；在图片上框出结果
-                        val bitmap = it.getBitmap().drawRect { canvas, paint ->
+                        val bitmap = srcBitmap.drawRect { canvas, paint ->
                             for ((index, barcode) in result.withIndex()) {
                                 buffer.append("[$index] ").append(barcode.displayValue)
                                     .append("\n")
@@ -150,18 +148,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 LogUtils.w(e)
             }
-        }
-    }
-
-    /**
-     * 根据Uri获取对应的图片
-     */
-    private fun Uri.getBitmap(): Bitmap {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val source = ImageDecoder.createSource(contentResolver, this)
-            ImageDecoder.decodeBitmap(source)
-        } else {
-            MediaStore.Images.Media.getBitmap(contentResolver, this)
         }
     }
 

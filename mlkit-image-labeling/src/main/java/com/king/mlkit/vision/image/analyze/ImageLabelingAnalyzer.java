@@ -35,7 +35,7 @@ import androidx.annotation.NonNull;
  */
 public class ImageLabelingAnalyzer extends CommonAnalyzer<List<ImageLabel>> {
 
-    private ImageLabeler mDetector;
+    private final ImageLabeler mDetector;
 
     public ImageLabelingAnalyzer() {
         this(null);

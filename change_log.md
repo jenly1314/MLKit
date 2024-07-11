@@ -1,5 +1,10 @@
 ## 版本记录
 
+#### v2.2.0：2024-7-11
+* 更新CameraScan至v1.2.0
+* 更新ViewfinderView至v1.2.0
+* 更新MLKit相关依赖库版本
+
 #### v2.1.0：2023-12-31
 * 更新CameraScan至v1.1.0
 * 更新compileSdkVersion至34

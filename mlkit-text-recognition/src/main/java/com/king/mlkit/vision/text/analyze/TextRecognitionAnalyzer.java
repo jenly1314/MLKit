@@ -33,7 +33,7 @@ import androidx.annotation.NonNull;
  */
 public class TextRecognitionAnalyzer extends CommonAnalyzer<Text> {
 
-    private TextRecognizer mDetector;
+    private final TextRecognizer mDetector;
 
     public TextRecognitionAnalyzer() {
         this(null);

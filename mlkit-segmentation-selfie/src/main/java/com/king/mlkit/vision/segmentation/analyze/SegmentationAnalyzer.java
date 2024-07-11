@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
  */
 public class SegmentationAnalyzer extends CommonAnalyzer<SegmentationMask> {
 
-    private Segmenter mDetector;
+    private final Segmenter mDetector;
 
     public SegmentationAnalyzer() {
         this(null);

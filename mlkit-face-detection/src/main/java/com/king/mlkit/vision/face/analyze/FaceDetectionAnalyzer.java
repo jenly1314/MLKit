@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
  */
 public class FaceDetectionAnalyzer extends CommonAnalyzer<List<Face>> {
 
-    private FaceDetector mDetector;
+    private final FaceDetector mDetector;
 
     public FaceDetectionAnalyzer() {
         this(null);

@@ -62,10 +62,10 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
             queue.add(bytes);
             joinQueue.set(true);
         }
-        if (queue.isEmpty()) {
+        final byte[] nv21Data = queue.poll();
+        if(nv21Data == null) {
             return;
         }
-        final byte[] nv21Data = queue.poll();
         try {
             ImageUtils.yuv_420_888toNv21(imageProxy, nv21Data);
             InputImage inputImage = InputImage.fromByteArray(

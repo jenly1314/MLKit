@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
  */
 public class BarcodeScanningAnalyzer extends CommonAnalyzer<List<Barcode>> {
 
-    private BarcodeScanner mDetector;
+    private final BarcodeScanner mDetector;
 
     public BarcodeScanningAnalyzer() {
         mDetector = BarcodeScanning.getClient();

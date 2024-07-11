@@ -105,37 +105,37 @@ Camera：为各个子库提供相机预览分析的核心库
 
     ```gradle
     
-    //公共库 (*必须) （1.3.0新增：当使用到MLKit下面的子库时，需依赖公共库）
-    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.1.0'
+    //公共库 (*必须) 
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.2.0'
     
     //--------------------------
     
     //条码识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.2.0'
     
     //人脸检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.2.0'
     
     //人脸网格检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.2.0'
     
     //图像标签 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.2.0'
     
     //对象检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.2.0'
     
     //姿势检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.2.0'
     
     //姿势检测精确版 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.2.0'
     
     //自拍分割 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.2.0'
     
     //文字识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.1.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.2.0'
     
     ```
 
@@ -311,12 +311,12 @@ BarcodeDecoder.process(bitmap).addOnSuccessListener(this) {
 
 #### JDK版本
 
-需使用JDK11+编译，在你项目中的build.gradle的android{}中添加配置：
+需使用JDK8+编译，在你项目中的build.gradle的android{}中添加配置：
 
 ```gradle
 compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
 }
 ```
 
@@ -328,6 +328,11 @@ compileOptions {
 #### [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
 
 ## 版本记录
+
+#### v2.2.0：2024-7-11
+* 更新CameraScan至v1.2.0
+* 更新ViewfinderView至v1.2.0
+* 更新MLKit相关依赖库版本
 
 #### v2.1.0：2023-12-31
 * 更新CameraScan至v1.1.0

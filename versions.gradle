@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 11
-app_version.versionName = "2.1.0"
+app_version.versionCode = 12
+app_version.versionName = "2.2.0"
 ext.app_version = app_version
 
 //build version
@@ -53,15 +53,15 @@ deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 deps.corektx = "androidx.core:core-ktx:$versions.coreKtx"
 
 deps.google_mlkit_vision_common = "com.google.mlkit:vision-common:17.3.0"
-deps.google_mlkit_vision_interfaces = "com.google.mlkit:vision-interfaces:16.2.0"
+deps.google_mlkit_vision_interfaces = "com.google.mlkit:vision-interfaces:16.3.0"
 deps.google_mlkit_barcode_scanning = "com.google.mlkit:barcode-scanning:17.2.0"
-deps.google_mlkit_face_detection = "com.google.mlkit:face-detection:16.1.5"
-deps.google_mlkit_face_mesh_detection = "com.google.mlkit:face-mesh-detection:16.0.0-beta1"
-deps.google_mlkit_image_labeling = "com.google.mlkit:image-labeling:17.0.7"
-deps.google_mlkit_object_detection = "com.google.mlkit:object-detection:17.0.0"
-deps.google_mlkit_pose_detection = "com.google.mlkit:pose-detection:18.0.0-beta3"
-deps.google_mlkit_pose_detection_accurate = "com.google.mlkit:pose-detection-accurate:18.0.0-beta3"
-deps.google_mlkit_segmentation_selfie = "com.google.mlkit:segmentation-selfie:16.0.0-beta4"
+deps.google_mlkit_face_detection = "com.google.mlkit:face-detection:16.1.6"
+deps.google_mlkit_face_mesh_detection = "com.google.mlkit:face-mesh-detection:16.0.0-beta2"
+deps.google_mlkit_image_labeling = "com.google.mlkit:image-labeling:17.0.8"
+deps.google_mlkit_object_detection = "com.google.mlkit:object-detection:17.0.1"
+deps.google_mlkit_pose_detection = "com.google.mlkit:pose-detection:18.0.0-beta4"
+deps.google_mlkit_pose_detection_accurate = "com.google.mlkit:pose-detection-accurate:18.0.0-beta4"
+deps.google_mlkit_segmentation_selfie = "com.google.mlkit:segmentation-selfie:16.0.0-beta5"
 deps.google_mlkit_text_recognition = "com.google.mlkit:text-recognition:16.0.0"
 deps.google_mlkit_text_recognition_chinese = "com.google.mlkit:text-recognition-chinese:16.0.0"
 

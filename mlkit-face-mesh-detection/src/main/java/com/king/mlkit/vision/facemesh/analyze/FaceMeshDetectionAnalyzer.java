@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
  */
 public class FaceMeshDetectionAnalyzer extends CommonAnalyzer<List<FaceMesh>> {
 
-    private FaceMeshDetector mDetector;
+    private final FaceMeshDetector mDetector;
 
     public FaceMeshDetectionAnalyzer() {
         this(null);

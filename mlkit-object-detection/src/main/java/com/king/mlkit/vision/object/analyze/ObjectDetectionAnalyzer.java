@@ -35,7 +35,7 @@ import androidx.annotation.NonNull;
  */
 public class ObjectDetectionAnalyzer extends CommonAnalyzer<List<DetectedObject>> {
 
-    private ObjectDetector mDetector;
+    private final ObjectDetector mDetector;
 
     public ObjectDetectionAnalyzer() {
         this(null);

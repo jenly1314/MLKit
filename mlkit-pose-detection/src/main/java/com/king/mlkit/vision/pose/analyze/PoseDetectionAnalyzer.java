@@ -33,7 +33,7 @@ import androidx.annotation.NonNull;
  */
 public class PoseDetectionAnalyzer extends CommonAnalyzer<Pose> {
 
-    private PoseDetector mDetector;
+    private final PoseDetector mDetector;
 
     public PoseDetectionAnalyzer() {
         this(null);

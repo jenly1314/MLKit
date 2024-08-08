@@ -18,6 +18,7 @@ package com.king.mlkit.vision.app.barcode
 import android.content.Intent
 import android.graphics.Point
 import android.widget.ImageView
+import androidx.activity.OnBackPressedCallback
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.CameraScan
@@ -37,6 +38,20 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         super.initUI()
 
         ivResult = findViewById(R.id.ivResult)
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (viewfinderView.isShowPoints) {
+                    // 如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
+                    ivResult.setImageResource(0)
+                    viewfinderView.showScanner()
+                    cameraScan.setAnalyzeImage(true)
+                } else {
+                    finish()
+                }
+            }
+
+        })
     }
 
     override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
@@ -50,26 +65,17 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         return R.layout.qrcode_scan_activity
     }
 
-    override fun onBackPressed() {
-        if (viewfinderView.isShowPoints) {//如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
-            ivResult.setImageResource(0)
-            viewfinderView.showScanner()
-            cameraScan.setAnalyzeImage(true)
-            return
-        }
-        super.onBackPressed()
-    }
 
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
-
+        // 停止分析
         cameraScan.setAnalyzeImage(false)
         val results = result.result
 
         //取预览当前帧图片并显示，为结果点提供参照
         ivResult.setImageBitmap(previewView.bitmap)
         val points = ArrayList<Point>()
-        var width = result.bitmapWidth
-        var height = result.bitmapHeight
+        val width = result.imageWidth
+        val height = result.imageHeight
         for (barcode in results) {
             barcode.boundingBox?.let { box ->
                 //将实际的结果中心点坐标转换成界面预览的坐标

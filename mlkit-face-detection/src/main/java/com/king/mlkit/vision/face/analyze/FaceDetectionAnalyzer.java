@@ -59,7 +59,7 @@ public class FaceDetectionAnalyzer extends CommonAnalyzer<List<Face>> {
 
     @NonNull
     @Override
-    protected Task<List<Face>> detectInImage(InputImage inputImage) {
+    protected Task<List<Face>> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

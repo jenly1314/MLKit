@@ -18,6 +18,7 @@ package com.king.mlkit.vision.common.analyze;
 import android.graphics.ImageFormat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.camera.core.ImageProxy;
 
 import com.google.android.gms.tasks.Task;
@@ -52,7 +53,7 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
      * @return {@link Task}
      */
     @NonNull
-    protected abstract Task<T> detectInImage(InputImage inputImage);
+    protected abstract Task<T> detectInImage(@NonNull InputImage inputImage);
 
     @Override
     public void analyze(@NonNull ImageProxy imageProxy, @NonNull OnAnalyzeListener<T> listener) {
@@ -100,11 +101,8 @@ public abstract class CommonAnalyzer<T> implements Analyzer<T> {
 
     /**
      * 是否为空
-     *
-     * @param obj
-     * @return
      */
-    private boolean isNullOrEmpty(Object obj) {
+    private boolean isNullOrEmpty(@Nullable Object obj) {
         if (obj == null) {
             return true;
         }

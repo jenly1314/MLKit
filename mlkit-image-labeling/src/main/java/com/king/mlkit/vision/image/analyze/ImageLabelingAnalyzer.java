@@ -51,7 +51,7 @@ public class ImageLabelingAnalyzer extends CommonAnalyzer<List<ImageLabel>> {
 
     @NonNull
     @Override
-    protected Task<List<ImageLabel>> detectInImage(InputImage inputImage) {
+    protected Task<List<ImageLabel>> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

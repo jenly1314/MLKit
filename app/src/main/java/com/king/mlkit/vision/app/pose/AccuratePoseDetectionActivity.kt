@@ -6,7 +6,7 @@ import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.camera.scan.AnalyzeResult
 import com.king.mlkit.vision.app.R
-import com.king.mlkit.vision.app.drawRect
+import com.king.mlkit.vision.app.ext.drawRect
 import com.king.mlkit.vision.pose.accurate.AccuratePoseCameraScanActivity
 
 /**
@@ -16,7 +16,7 @@ import com.king.mlkit.vision.pose.accurate.AccuratePoseCameraScanActivity
 class AccuratePoseDetectionActivity : AccuratePoseCameraScanActivity() {
 
     override fun onScanResultCallback(result: AnalyzeResult<Pose>) {
-        if (result.result.allPoseLandmarks.isNullOrEmpty()) {
+        if (result.result.allPoseLandmarks.isEmpty()) {
             // 过滤掉空数据，继续分析
             cameraScan.setAnalyzeImage(true)
             return

@@ -16,6 +16,7 @@
 package com.king.mlkit.vision.app
 
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -27,10 +28,12 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
 import com.king.camera.scan.CameraScan
-import com.king.camera.scan.util.LogUtils
+import com.king.logx.LogX
 import com.king.mlkit.vision.app.barcode.BarcodeScanningActivity
 import com.king.mlkit.vision.app.barcode.MultipleQRCodeScanningActivity
 import com.king.mlkit.vision.app.barcode.QRCodeScanningActivity
+import com.king.mlkit.vision.app.ext.drawRect
+import com.king.mlkit.vision.app.ext.getBitmap
 import com.king.mlkit.vision.app.face.FaceDetectionActivity
 import com.king.mlkit.vision.app.face.FaceMeshDetectionActivity
 import com.king.mlkit.vision.app.face.MultipleFaceDetectionActivity
@@ -98,9 +101,9 @@ class MainActivity : AppCompatActivity() {
                 ).addOnSuccessListener(this) { result ->
                     if (result.isNotEmpty()) {
                         val buffer = StringBuilder()
-                        val srcBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
+
                         // 成功；在图片上框出结果
-                        val bitmap = srcBitmap.drawRect { canvas, paint ->
+                        val bitmap = getBitmap(it).drawRect { canvas, paint ->
                             for ((index, barcode) in result.withIndex()) {
                                 buffer.append("[$index] ").append(barcode.displayValue)
                                     .append("\n")
@@ -120,15 +123,15 @@ class MainActivity : AppCompatActivity() {
                         AppDialog.INSTANCE.showDialog(config)
                     } else {
                         // 没有结果
-                        LogUtils.d("result is empty")
+                        LogX.d("result is empty")
                         showToast("result is empty")
                     }
                 }.addOnFailureListener(this) { e ->
                     // 失败
-                    LogUtils.w(e)
+                    LogX.w(e)
                 }
             } catch (e: Exception) {
-                LogUtils.w(e)
+                LogX.w(e)
             }
         }
     }

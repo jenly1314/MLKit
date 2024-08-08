@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.king.mlkit.vision.app
+package com.king.mlkit.vision.app.ext
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ImageDecoder
 import android.graphics.Paint
-import com.king.camera.scan.util.LogUtils
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import com.king.logx.LogX
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 fun Bitmap.drawRect(block: (canvas: Canvas, paint: Paint) -> Unit): Bitmap {
-    var result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
     try {
         val canvas = Canvas(result)
         canvas.drawBitmap(this, 0f, 0f, null)
@@ -34,13 +39,25 @@ fun Bitmap.drawRect(block: (canvas: Canvas, paint: Paint) -> Unit): Bitmap {
         paint.style = Paint.Style.STROKE
         paint.color = Color.RED
 
-        block(canvas,paint)
+        block(canvas, paint)
 
         canvas.save()
         canvas.restore()
     } catch (e: Exception) {
-        LogUtils.w(e.message)
+        LogX.w(e)
     }
     return result
+}
+
+/**
+ * 获取[Bitmap]
+ */
+fun Context.getBitmap(uri: Uri): Bitmap {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        val source = ImageDecoder.createSource(contentResolver, uri)
+        ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.ARGB_8888, true)
+    } else {
+        MediaStore.Images.Media.getBitmap(contentResolver, uri)
+    }
 }
 

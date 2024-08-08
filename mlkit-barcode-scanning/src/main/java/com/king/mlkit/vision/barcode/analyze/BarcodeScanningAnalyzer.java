@@ -56,7 +56,7 @@ public class BarcodeScanningAnalyzer extends CommonAnalyzer<List<Barcode>> {
 
     @NonNull
     @Override
-    protected Task<List<Barcode>> detectInImage(InputImage inputImage) {
+    protected Task<List<Barcode>> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 

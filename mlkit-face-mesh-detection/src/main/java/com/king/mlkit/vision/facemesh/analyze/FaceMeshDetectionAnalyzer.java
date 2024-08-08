@@ -50,7 +50,7 @@ public class FaceMeshDetectionAnalyzer extends CommonAnalyzer<List<FaceMesh>> {
 
     @NonNull
     @Override
-    protected Task<List<FaceMesh>> detectInImage(InputImage inputImage) {
+    protected Task<List<FaceMesh>> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

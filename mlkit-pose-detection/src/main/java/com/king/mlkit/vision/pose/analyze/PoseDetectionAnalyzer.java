@@ -51,7 +51,7 @@ public class PoseDetectionAnalyzer extends CommonAnalyzer<Pose> {
 
     @NonNull
     @Override
-    protected Task<Pose> detectInImage(InputImage inputImage) {
+    protected Task<Pose> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

@@ -51,7 +51,7 @@ public class SegmentationAnalyzer extends CommonAnalyzer<SegmentationMask> {
 
     @NonNull
     @Override
-    protected Task<SegmentationMask> detectInImage(InputImage inputImage) {
+    protected Task<SegmentationMask> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

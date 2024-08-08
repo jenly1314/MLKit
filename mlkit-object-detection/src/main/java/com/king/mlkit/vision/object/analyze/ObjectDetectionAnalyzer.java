@@ -62,7 +62,7 @@ public class ObjectDetectionAnalyzer extends CommonAnalyzer<List<DetectedObject>
 
     @NonNull
     @Override
-    protected Task<List<DetectedObject>> detectInImage(InputImage inputImage) {
+    protected Task<List<DetectedObject>> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

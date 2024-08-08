@@ -11,7 +11,7 @@ import com.king.mlkit.vision.`object`.analyze.ObjectDetectionAnalyzer
  */
 class MultipleObjectDetectionActivity : ObjectDetectionActivity() {
 
-    override fun createAnalyzer(): Analyzer<MutableList<DetectedObject>>? {
+    override fun createAnalyzer(): Analyzer<MutableList<DetectedObject>> {
         return ObjectDetectionAnalyzer(
             ObjectDetectorOptions.Builder()
                 .setDetectorMode(ObjectDetectorOptions.SINGLE_IMAGE_MODE)

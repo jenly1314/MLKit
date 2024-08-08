@@ -49,7 +49,7 @@ public class TextRecognitionAnalyzer extends CommonAnalyzer<Text> {
 
     @NonNull
     @Override
-    protected Task<Text> detectInImage(InputImage inputImage) {
+    protected Task<Text> detectInImage(@NonNull InputImage inputImage) {
         return mDetector.process(inputImage);
     }
 }

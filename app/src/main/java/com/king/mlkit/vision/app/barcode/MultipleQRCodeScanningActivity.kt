@@ -22,7 +22,7 @@ import com.king.app.dialog.AppDialogConfig
 import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.CameraScan
 import com.king.mlkit.vision.app.R
-import com.king.mlkit.vision.app.drawRect
+import com.king.mlkit.vision.app.ext.drawRect
 import com.king.mlkit.vision.barcode.QRCodeCameraScanActivity
 
 /**
@@ -42,7 +42,7 @@ class MultipleQRCodeScanningActivity : QRCodeCameraScanActivity() {
     }
 
     override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
-
+        // 停止分析
         cameraScan.setAnalyzeImage(false)
 
         val buffer = StringBuilder()

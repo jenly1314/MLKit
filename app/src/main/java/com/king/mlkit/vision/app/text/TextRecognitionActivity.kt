@@ -54,7 +54,7 @@ class TextRecognitionActivity : TextCameraScanActivity() {
         AppDialog.INSTANCE.showDialog(config, false)
     }
 
-    override fun createAnalyzer(): Analyzer<Text>? {
+    override fun createAnalyzer(): Analyzer<Text> {
         return TextRecognitionAnalyzer(ChineseTextRecognizerOptions.Builder().build())
     }
 }

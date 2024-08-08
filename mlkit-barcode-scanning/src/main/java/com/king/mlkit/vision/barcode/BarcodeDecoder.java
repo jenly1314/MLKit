@@ -44,39 +44,49 @@ public class BarcodeDecoder {
         throw new AssertionError();
     }
 
-    public static InputImage fromFilePath(Context context, Uri uri) throws IOException {
+
+    @NonNull
+    public static InputImage fromFilePath(@NonNull Context context, @NonNull Uri uri) throws IOException {
         return InputImage.fromFilePath(context, uri);
     }
 
-    public static InputImage fromBitmap(Bitmap bitmap) {
+    @NonNull
+    public static InputImage fromBitmap(@NonNull Bitmap bitmap) {
         return fromBitmap(bitmap, 0);
     }
 
-    public static InputImage fromBitmap(Bitmap bitmap, int rotation) {
+    @NonNull
+    public static InputImage fromBitmap(@NonNull Bitmap bitmap, int rotation) {
         return InputImage.fromBitmap(bitmap, rotation);
     }
 
-    public static Task<List<Barcode>> process(Bitmap bitmap) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull Bitmap bitmap) {
         return process(fromBitmap(bitmap), Barcode.FORMAT_ALL_FORMATS);
     }
 
-    public static Task<List<Barcode>> process(Bitmap bitmap, @NonNull BarcodeScannerOptions options) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull Bitmap bitmap, @NonNull BarcodeScannerOptions options) {
         return process(fromBitmap(bitmap), options);
     }
 
-    public static Task<List<Barcode>> process(Bitmap bitmap, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull Bitmap bitmap, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
         return process(fromBitmap(bitmap), format, formats);
     }
 
-    public static Task<List<Barcode>> process(InputImage inputImage) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull InputImage inputImage) {
         return process(inputImage, Barcode.FORMAT_ALL_FORMATS);
     }
 
-    public static Task<List<Barcode>> process(InputImage inputImage, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull InputImage inputImage, @Barcode.BarcodeFormat int format, @Barcode.BarcodeFormat int... formats) {
         return process(inputImage, new BarcodeScannerOptions.Builder().setBarcodeFormats(format, formats).build());
     }
 
-    public static Task<List<Barcode>> process(InputImage inputImage, @NonNull BarcodeScannerOptions options) {
+    @NonNull
+    public static Task<List<Barcode>> process(@NonNull InputImage inputImage, @NonNull BarcodeScannerOptions options) {
         return BarcodeScanning.getClient(options).process(inputImage);
     }
 
@@ -88,9 +98,10 @@ public class BarcodeDecoder {
      * @param allowDefault 是否允许默认返回
      *                     为true表示允许，则在没有找到与正则匹配的的条码时，默认返回第0个位置的条码
      *                     为false表示不允许，则在没有找到与正则匹配的条码识，返回空
-     * @return
+     * @return {@link Barcode}
      */
-    public static Barcode getBarcode(List<Barcode> barcodeList, @Nullable String regex, boolean allowDefault) {
+    @Nullable
+    public static Barcode getBarcode(@Nullable List<Barcode> barcodeList, @Nullable String regex, boolean allowDefault) {
         if (barcodeList != null && !barcodeList.isEmpty()) {
             if (!TextUtils.isEmpty(regex)) {
                 // 如果正则不为空

@@ -106,36 +106,36 @@ Camera：为各个子库提供相机预览分析的核心库
     ```gradle
     
     //公共库 (*必须) 
-    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.2.1'
     
     //--------------------------
     
     //条码识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.2.1'
     
     //人脸检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.2.1'
     
     //人脸网格检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.2.1'
     
     //图像标签 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.2.1'
     
     //对象检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.2.1'
     
     //姿势检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.2.1'
     
     //姿势检测精确版 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.2.1'
     
     //自拍分割 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.2.1'
     
     //文字识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.2.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.2.1'
     
     ```
 
@@ -328,6 +328,9 @@ compileOptions {
 #### [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
 
 ## 版本记录
+
+#### v2.2.1：2024-8-8
+* 优化细节
 
 #### v2.2.0：2024-7-11
 * 更新CameraScan至v1.2.0

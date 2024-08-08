@@ -11,7 +11,7 @@ import com.king.mlkit.vision.face.analyze.FaceDetectionAnalyzer
  */
 class MultipleFaceDetectionActivity : FaceDetectionActivity() {
 
-    override fun createAnalyzer(): Analyzer<MutableList<Face>>? {
+    override fun createAnalyzer(): Analyzer<MutableList<Face>> {
         return FaceDetectionAnalyzer(
             FaceDetectorOptions.Builder()
                 .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)

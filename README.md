@@ -155,6 +155,7 @@ Camera：为各个子库提供相机预览分析的核心库
 #### 2.x版本的变化
 
 从 **1.x** 到 **2.x** 主要变化如下：
+
 * 1.x版本的 **mlkit-camera-core** 核心基础库被移除了；
 > 从2.0.0版本开始改为依赖[CameraScan](https://github.com/jenly1314/CameraScan)；（[CameraScan](https://github.com/jenly1314/CameraScan)是一个独立的库，单独进行维护）
 
@@ -173,7 +174,7 @@ Camera：为各个子库提供相机预览分析的核心库
 
 ### 各个子模块的核心类说明
 
-下面就列一下各个子模块实现的具体功能和核心类；主要包括实现对应功能的**Analyzer** 和便于快速实现扫描检测的 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 的子类。
+下面就列一下各个子模块实现的具体功能和核心类；主要包括实现对应功能的 **Analyzer** 和便于快速实现扫描检测的 **BaseCameraScanActivity** 或 **BaseCameraScanFragment** 的子类。
 
 | 功能        | 所属子模块                        | 对应的Analyzer实现                 | 对应的BaseCameraScanActivity子类                    |
 |:----------|:---------------------------------|:------------------------------|:---------------------------------------------------|
@@ -187,7 +188,7 @@ Camera：为各个子库提供相机预览分析的核心库
 | 自拍分割      | mlkit-segmentation-selfie        | SegmentationAnalyzer          | SegmentationCameraScanActivity                     |
 | 文字识别      | mlkit-text-recognition           | TextRecognitionAnalyzer       | TextCameraScanActivity                             |
 
-> **xxx**CameraScanActivity 和 **xxx**BaseCameraScanFragment 在上面只列出了一个，因为有一个 **xxx**CameraScanActivity 就有一个与之对应的 **xxx**CameraScanFragment；命名前缀一样，使用方式也基本一样。
+>  **xxx** CameraScanActivity 和 **xxx** BaseCameraScanFragment 在上面只列出了一个，因为有一个 **xxx** CameraScanActivity 就有一个与之对应的 **xxx** CameraScanFragment；命名前缀一样，使用方式也基本一样。
 
 ### 条形码检测分析示例（**mlkit-barcode-scanning**）
 

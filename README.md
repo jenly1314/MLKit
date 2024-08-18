@@ -103,39 +103,39 @@ Camera：为各个子库提供相机预览分析的核心库
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 
     ```gradle
-    
-    //公共库 (*必须) 
+
+    //公共库 (*必须)
     implementation 'com.github.jenly1314.MLKit:mlkit-common:2.2.1'
-    
+
     //--------------------------
-    
+
     //条码识别 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.2.1'
-    
+
     //人脸检测 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.2.1'
-    
+
     //人脸网格检测 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.2.1'
-    
+
     //图像标签 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.2.1'
-    
+
     //对象检测 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.2.1'
-    
+
     //姿势检测 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.2.1'
-    
+
     //姿势检测精确版 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.2.1'
-    
+
     //自拍分割 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.2.1'
-    
+
     //文字识别 (可选)
     implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.2.1'
-    
+
     ```
 
 ### 温馨提示
@@ -146,7 +146,7 @@ Camera：为各个子库提供相机预览分析的核心库
 
 > 使用 **v2.0.x** 以上版本时，要求 **compileSdkVersion >= 33**
 
-> 如果 **compileSdkVersion < 33** 请使用 [**v1.x版本**](https://github.com/jenly1314/MLKit/tree/1.x/) 
+> 如果 **compileSdkVersion < 33** 请使用 [**v1.x版本**](https://github.com/jenly1314/MLKit/tree/1.x/)
 
 ## 使用
 
@@ -196,7 +196,7 @@ Camera：为各个子库提供相机预览分析的核心库
   * 2D格式：Aztec, Data Matrix, PDF417, QR Code
 
 ```kotlin
-BarcodeDecoder.process(bitmap).addOnSuccessListener(this) { 
+BarcodeDecoder.process(bitmap).addOnSuccessListener(this) {
    if (it.isNotEmpty()) {
       // TODO 成功；此处可获取识别的结果
    } else {
@@ -288,7 +288,7 @@ BarcodeDecoder.process(bitmap).addOnSuccessListener(this) {
     android:value="barcode,face,ocr" />
 ```
 
-更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MLKit/latest/javadoc/)
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jenly1314.github.io/MLKit/api/)
 
 ### 其他
 
@@ -298,9 +298,9 @@ BarcodeDecoder.process(bitmap).addOnSuccessListener(this) {
 
 ```gradle
     defaultConfig {
-    
+
         //...
-        
+
         ndk {
             //设置支持的 SO 库架构（开发者可以根据需要，选择一个或多个平台的 so）
             abiFilters 'armeabi-v7a' // , 'arm64-v8a', 'x86', 'x86_64'
@@ -326,7 +326,9 @@ compileOptions {
 #### [CameraScan](https://github.com/jenly1314/CameraScan) 一个简化扫描识别流程的通用基础库。
 #### [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
 
-## 版本记录
+<!-- end -->
+
+## 版本日志
 
 #### v2.2.1：2024-8-8
 * 优化细节
@@ -346,8 +348,8 @@ compileOptions {
 * 更新ViewfinderView至v1.1.0
 
 #### v2.0.0：2023-8-13
-* 移除相机核心库（**mlkit-camera-core**），改为依赖[CameraScan](https://github.com/jenly1314/CameraScan) 
-* 移除**mlkit-barcode-scanning** 中的 **ViewfinderView**，改为依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)
+* 移除相机核心库（mlkit-camera-core），改为依赖[CameraScan](https://github.com/jenly1314/CameraScan)
+* 移除mlkit-barcode-scanning中的 **ViewfinderView** ，改为依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)
 * 优化扫描分析过程的性能体验
 * 更新MLKit相关依赖库版本
 
@@ -357,7 +359,7 @@ compileOptions {
 * 更新MLKit相关依赖库版本
 * 更新CameraX至v1.2.2
 
-#### [查看更多版本记录](change_log.md)
+#### [查看更多版本日志](CHANGELOG.md)
 
 ## 赞赏
 

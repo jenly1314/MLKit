@@ -24,6 +24,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.king.app.dialog.AppDialog
 import com.king.app.dialog.AppDialogConfig
@@ -137,7 +138,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startActivity(cls: Class<*>) {
-        startActivity(Intent(this, cls))
+        val optionsCompat = ActivityOptionsCompat.makeCustomAnimation(
+            this, android.R.anim.fade_in, android.R.anim.fade_out
+        )
+        startActivity(Intent(this, cls), optionsCompat.toBundle())
     }
 
     private fun pickPhotoClicked(isQRCode: Boolean) {

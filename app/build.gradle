@@ -52,7 +52,6 @@ dependencies {
     implementation deps.corektx
 
     implementation deps.app_dialog
-    implementation deps.logx
 
     implementation project(':mlkit-common')
     implementation project(':mlkit-barcode-scanning')

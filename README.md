@@ -105,36 +105,36 @@ Camera：为各个子库提供相机预览分析的核心库
     ```gradle
 
     //公共库 (*必须)
-    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.3.0'
 
     //--------------------------
 
     //条码识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.3.0'
 
     //人脸检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.3.0'
 
     //人脸网格检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.3.0'
 
     //图像标签 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.3.0'
 
     //对象检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.3.0'
 
     //姿势检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.3.0'
 
     //姿势检测精确版 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.3.0'
 
     //自拍分割 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.3.0'
 
     //文字识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.2.1'
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.3.0'
 
     ```
 
@@ -322,43 +322,20 @@ compileOptions {
 
 ## 相关推荐
 
-#### [ZXingLite](https://github.com/jenly1314/ZXingLite) 基于zxing实现的扫码库，优化扫码和生成二维码/条形码功能。
-#### [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
-#### [CameraScan](https://github.com/jenly1314/CameraScan) 一个简化扫描识别流程的通用基础库。
-#### [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
+- [ZXingLite](https://github.com/jenly1314/ZXingLite) 基于zxing实现的扫码库，优化扫码和生成二维码/条形码功能。
+- [WeChatQRCode](https://github.com/jenly1314/WeChatQRCode) 基于OpenCV开源的微信二维码引擎移植的扫码识别库。
+- [CameraScan](https://github.com/jenly1314/CameraScan) 一个简化扫描识别流程的通用基础库。
+- [ViewfinderView](https://github.com/jenly1314/ViewfinderView) ViewfinderView一个取景视图：主要用于渲染扫描相关的动画效果。
+- [LibYuv](https://github.com/jenly1314/libyuv) 基于Google的libyuv编译封装的YUV转换工具库，主要用途是在各种YUV与RGB之间进行相互转换、裁减、旋转、缩放、镜像等。
+- [LogX](https://github.com/jenly1314/LogX) 一个小而美的日志记录框架；好用不解释。
 
 <!-- end -->
 
 ## 版本日志
 
-#### v2.2.1：2024-8-8
-* 优化细节
-
-#### v2.2.0：2024-7-11
-* 更新CameraScan至v1.2.0
-* 更新ViewfinderView至v1.2.0
+#### v2.3.0：2025-1-15
+* 更新CameraScan至v1.3.0
 * 更新MLKit相关依赖库版本
-
-#### v2.1.0：2023-12-31
-* 更新CameraScan至v1.1.0
-* 更新compileSdkVersion至34
-* 更新Gradle至v8.0
-
-#### v2.0.1：2023-9-13
-* 更新CameraScan至v1.0.1
-* 更新ViewfinderView至v1.1.0
-
-#### v2.0.0：2023-8-13
-* 移除相机核心库（mlkit-camera-core），改为依赖[CameraScan](https://github.com/jenly1314/CameraScan)
-* 移除mlkit-barcode-scanning中的 **ViewfinderView** ，改为依赖[ViewfinderView](https://github.com/jenly1314/ViewfinderView)
-* 优化扫描分析过程的性能体验
-* 更新MLKit相关依赖库版本
-
-#### v1.4.0：2023-4-15
-* 优化CameraScan的缺省配置（CameraConfig相关配置）
-* 优化ViewfinderView自定义属性（新增laserDrawableRatio）
-* 更新MLKit相关依赖库版本
-* 更新CameraX至v1.2.2
 
 #### [查看更多版本日志](CHANGELOG.md)
 

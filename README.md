@@ -5,7 +5,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/jenly1314/MLKit/build.yml?logo=github)](https://github.com/jenly1314/MLKit/actions/workflows/build.yml)
 [![Download](https://img.shields.io/badge/download-APK-brightgreen?logo=github)](https://raw.githubusercontent.com/jenly1314/MLKit/master/app/release/app-release.apk)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen?logo=android)](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels)
-[![License](https://img.shields.io/github/license/jenly1314/MLKit?logo=open-source-initiative)](https://opensource.org/licenses/LICENSE-2-0)
+[![License](https://img.shields.io/github/license/jenly1314/MLKit?logo=open-source-initiative)](https://opensource.org/licenses/apache-2-0)
 
 ML Kit是一个能够将谷歌专业的机器学习知识带到应用中的极其简单易用的封装包。无论您是否有机器学习的经验，您都可以在几行代码中实现您想要的功能。甚至，您无需对神经网络或者模型优化有多深入的了解，也能完成您想要做的事情。
 

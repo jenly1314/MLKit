@@ -1,0 +1,61 @@
+[versions]
+agp = "8.3.0"
+kotlin = "1.9.20"
+dokka = "1.9.20"
+mavenPublish = "0.34.0"
+compileSdk = "35"
+minSdk = "23"
+targetSdk = "35"
+appcompat = "1.3.0"
+constraintlayout = "2.2.0"
+coreKtx = "1.12.0"
+material = "1.12.0"
+junit4 = "4.13.2"
+androidxTestExtJunit = "1.1.3"
+espressoCore = "3.4.0"
+googleMlkitVisionCommon = "17.3.0"
+googleMlkitVisionInterfaces = "16.3.0"
+googleMlkitBarcodeScanning = "17.3.0"
+googleMlkitFaceDetection = "16.1.7"
+googleMlkitFaceMeshDetection = "16.0.0-beta3"
+googleMlkitImageLabeling = "17.0.9"
+googleMlkitObjectDetection = "17.0.2"
+googleMlkitPoseDetection = "18.0.0-beta5"
+googleMlkitPoseDetectionAccurate = "18.0.0-beta5"
+googleMlkitSegmentationSelfie = "16.0.0-beta6"
+googleMlkitTextRecognition = "16.0.1"
+googleMlkitTextRecognitionChinese = "16.0.1"
+cameraScan = "1.4.1"
+viewfinderView = "1.4.0"
+appDialog = "2.1.0"
+
+[libraries]
+androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidxConstraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidxMaterial = { module = "com.google.android.material:material", version.ref = "material" }
+junit4 = { module = "junit:junit", version.ref = "junit4" }
+androidxTestExtJunit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJunit" }
+espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+googleMlkitVisionCommon = { module = "com.google.mlkit:vision-common", version.ref = "googleMlkitVisionCommon" }
+googleMlkitVisionInterfaces = { module = "com.google.mlkit:vision-interfaces", version.ref = "googleMlkitVisionInterfaces" }
+googleMlkitBarcodeScanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "googleMlkitBarcodeScanning" }
+googleMlkitFaceDetection = { module = "com.google.mlkit:face-detection", version.ref = "googleMlkitFaceDetection" }
+googleMlkitFaceMeshDetection = { module = "com.google.mlkit:face-mesh-detection", version.ref = "googleMlkitFaceMeshDetection" }
+googleMlkitImageLabeling = { module = "com.google.mlkit:image-labeling", version.ref = "googleMlkitImageLabeling" }
+googleMlkitObjectDetection = { module = "com.google.mlkit:object-detection", version.ref = "googleMlkitObjectDetection" }
+googleMlkitPoseDetection = { module = "com.google.mlkit:pose-detection", version.ref = "googleMlkitPoseDetection" }
+googleMlkitPoseDetectionAccurate = { module = "com.google.mlkit:pose-detection-accurate", version.ref = "googleMlkitPoseDetectionAccurate" }
+googleMlkitSegmentationSelfie = { module = "com.google.mlkit:segmentation-selfie", version.ref = "googleMlkitSegmentationSelfie" }
+googleMlkitTextRecognition = { module = "com.google.mlkit:text-recognition", version.ref = "googleMlkitTextRecognition" }
+googleMlkitTextRecognitionChinese = { module = "com.google.mlkit:text-recognition-chinese", version.ref = "googleMlkitTextRecognitionChinese" }
+cameraScan = { module = "com.github.jenly1314:camera-scan", version.ref = "cameraScan" }
+viewfinderView = { module = "com.github.jenly1314:viewfinderview", version.ref = "viewfinderView" }
+appDialog = { module = "com.github.jenly1314.AppUpdater:app-dialog", version.ref = "appDialog" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

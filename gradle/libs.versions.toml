@@ -43,7 +43,7 @@ mlkit-barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version
 mlkit-face-detection = { module = "com.google.mlkit:face-detection", version.ref = "googleMlkitFaceDetection" }
 mlkit-face-mesh-detection = { module = "com.google.mlkit:face-mesh-detection", version.ref = "googleMlkitFaceMeshDetection" }
 mlkit-image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "googleMlkitImageLabeling" }
-mlkit-object-detection = { module = "com.google.mlkit:object-detection", version.ref = "googleMlkitObjectDetection" }
+mlkit-obj-detection = { module = "com.google.mlkit:object-detection", version.ref = "googleMlkitObjectDetection" }
 mlkit-pose-detection = { module = "com.google.mlkit:pose-detection", version.ref = "googleMlkitPoseDetection" }
 mlkit-pose-detection-accurate = { module = "com.google.mlkit:pose-detection-accurate", version.ref = "googleMlkitPoseDetectionAccurate" }
 mlkit-segmentation-selfie = { module = "com.google.mlkit:segmentation-selfie", version.ref = "googleMlkitSegmentationSelfie" }

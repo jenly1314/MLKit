@@ -11,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -32,6 +31,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     lint {
+        targetSdk = libs.versions.targetSdk.get().toInt()
         abortOnError = false
     }
 }

@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -42,14 +42,14 @@ android {
 
 dependencies {
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidxTestExtJunit)
-    androidTestImplementation(libs.espressoCore)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
-    implementation(libs.androidxMaterial)
-    implementation(libs.androidxAppcompat)
-    implementation(libs.androidxConstraintlayout)
-    implementation(libs.androidxCoreKtx)
-    implementation(libs.appDialog)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.app.dialog)
 
     implementation(project(":mlkit-common"))
     implementation(project(":mlkit-barcode-scanning"))

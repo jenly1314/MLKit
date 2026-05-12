@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.maven.publish)
 }
 
 android {
@@ -38,10 +38,10 @@ android {
 
 dependencies {
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidxTestExtJunit)
-    androidTestImplementation(libs.espressoCore)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
-    api(libs.googleMlkitVisionCommon)
-    api(libs.googleMlkitVisionInterfaces)
-    api(libs.cameraScan)
+    api(libs.mlkit.vision.common)
+    api(libs.mlkit.vision.interfaces)
+    api(libs.camera.scan)
 }

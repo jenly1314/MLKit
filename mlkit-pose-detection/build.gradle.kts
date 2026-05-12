@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.maven.publish)
 }
 
 android {
@@ -38,11 +38,11 @@ android {
 
 dependencies {
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidxTestExtJunit)
-    androidTestImplementation(libs.espressoCore)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
-    compileOnly(libs.androidxAppcompat)
-    api(libs.googleMlkitPoseDetection)
+    compileOnly(libs.androidx.appcompat)
+    api(libs.mlkit.pose.detection)
 
     compileOnly(project(":mlkit-common"))
 }

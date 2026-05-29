@@ -50,7 +50,8 @@ class BarcodeDecoder private constructor() {
             if (barcodeList != null && barcodeList.isNotEmpty()) {
                 if (!TextUtils.isEmpty(regex)) {
                     for (barcode in barcodeList) {
-                        if (Pattern.matches(regex, barcode.rawValue)) {
+                        val rawValue = barcode.rawValue ?: continue
+                        if (Pattern.matches(regex!!, rawValue)) {
                             return barcode
                         }
                     }

@@ -1,4 +1,4 @@
-package com.king.mlkit.vision.object
+package com.king.mlkit.vision.`object`
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

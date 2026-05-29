@@ -13,7 +13,7 @@ import java.util.Queue
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicBoolean
 
-abstract class CommonAnalyzer<T> : Analyzer<T> {
+abstract class CommonAnalyzer<T : Any> : Analyzer<T> {
 
     private val queue: Queue<ByteArray> = ConcurrentLinkedQueue()
     private val joinQueue = AtomicBoolean(false)

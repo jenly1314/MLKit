@@ -8,7 +8,6 @@ import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.FrameMetadata
 import com.king.camera.scan.analyze.Analyzer
 import com.king.camera.scan.util.ImageUtils
-import java.util.Collection
 import java.util.Queue
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicBoolean

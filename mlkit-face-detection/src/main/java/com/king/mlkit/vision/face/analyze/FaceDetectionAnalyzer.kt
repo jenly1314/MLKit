@@ -8,7 +8,7 @@ import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class FaceDetectionAnalyzer(options: FaceDetectorOptions? = null) : CommonAnalyzer<List<Face>>() {
+open class FaceDetectionAnalyzer(options: FaceDetectorOptions? = null) : CommonAnalyzer<List<Face>>() {
 
     private val detector: FaceDetector = if (options != null) {
         FaceDetection.getClient(options)

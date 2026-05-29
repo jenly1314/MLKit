@@ -8,7 +8,7 @@ import com.google.mlkit.vision.facemesh.FaceMeshDetector
 import com.google.mlkit.vision.facemesh.FaceMeshDetectorOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class FaceMeshDetectionAnalyzer(options: FaceMeshDetectorOptions? = null) : CommonAnalyzer<List<FaceMesh>>() {
+open class FaceMeshDetectionAnalyzer(options: FaceMeshDetectorOptions? = null) : CommonAnalyzer<List<FaceMesh>>() {
 
     private val detector: FaceMeshDetector = if (options != null) {
         FaceMeshDetection.getClient(options)

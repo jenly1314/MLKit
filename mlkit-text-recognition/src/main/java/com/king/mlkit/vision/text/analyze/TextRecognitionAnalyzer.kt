@@ -9,7 +9,7 @@ import com.google.mlkit.vision.text.TextRecognizerOptionsInterface
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class TextRecognitionAnalyzer(options: TextRecognizerOptionsInterface? = null) : CommonAnalyzer<Text>() {
+open class TextRecognitionAnalyzer(options: TextRecognizerOptionsInterface? = null) : CommonAnalyzer<Text>() {
 
     private val detector: TextRecognizer = if (options != null) {
         TextRecognition.getClient(options)

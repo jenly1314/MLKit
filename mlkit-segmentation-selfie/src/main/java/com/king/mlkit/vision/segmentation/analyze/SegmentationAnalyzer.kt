@@ -8,7 +8,7 @@ import com.google.mlkit.vision.segmentation.Segmenter
 import com.google.mlkit.vision.segmentation.selfie.SelfieSegmenterOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class SegmentationAnalyzer(options: SelfieSegmenterOptions? = null) : CommonAnalyzer<SegmentationMask>() {
+open class SegmentationAnalyzer(options: SelfieSegmenterOptions? = null) : CommonAnalyzer<SegmentationMask>() {
 
     private val detector: Segmenter = if (options != null) {
         Segmentation.getClient(options)

@@ -9,7 +9,7 @@ import com.google.mlkit.vision.objects.ObjectDetectorOptionsBase
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class ObjectDetectionAnalyzer(options: ObjectDetectorOptionsBase? = null) : CommonAnalyzer<List<DetectedObject>>() {
+open class ObjectDetectionAnalyzer(options: ObjectDetectorOptionsBase? = null) : CommonAnalyzer<List<DetectedObject>>() {
 
     private val detector: ObjectDetector = if (options != null) {
         ObjectDetection.getClient(options)

@@ -8,7 +8,7 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class BarcodeScanningAnalyzer : CommonAnalyzer<List<Barcode>> {
+open class BarcodeScanningAnalyzer : CommonAnalyzer<List<Barcode>> {
 
     private val detector: BarcodeScanner
 

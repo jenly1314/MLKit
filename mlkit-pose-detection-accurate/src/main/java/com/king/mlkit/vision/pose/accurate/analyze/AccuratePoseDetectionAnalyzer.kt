@@ -9,7 +9,7 @@ import com.google.mlkit.vision.pose.PoseDetectorOptionsBase
 import com.google.mlkit.vision.pose.accurate.AccuratePoseDetectorOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class AccuratePoseDetectionAnalyzer(options: PoseDetectorOptionsBase? = null) : CommonAnalyzer<Pose>() {
+open class AccuratePoseDetectionAnalyzer(options: PoseDetectorOptionsBase? = null) : CommonAnalyzer<Pose>() {
 
     private val detector: PoseDetector = if (options != null) {
         PoseDetection.getClient(options)

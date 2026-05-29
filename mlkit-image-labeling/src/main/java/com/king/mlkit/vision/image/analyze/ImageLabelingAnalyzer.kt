@@ -9,7 +9,7 @@ import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import com.king.mlkit.vision.common.analyze.CommonAnalyzer
 
-class ImageLabelingAnalyzer(options: ImageLabelerOptionsBase? = null) : CommonAnalyzer<List<ImageLabel>>() {
+open class ImageLabelingAnalyzer(options: ImageLabelerOptionsBase? = null) : CommonAnalyzer<List<ImageLabel>>() {
 
     private val detector: ImageLabeler = if (options != null) {
         ImageLabeling.getClient(options)

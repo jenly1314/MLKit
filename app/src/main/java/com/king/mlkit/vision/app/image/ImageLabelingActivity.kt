@@ -26,7 +26,7 @@ import com.king.mlkit.vision.image.ImageCameraScanActivity
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 class ImageLabelingActivity : ImageCameraScanActivity() {
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<ImageLabel>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<ImageLabel>>) {
         cameraScan.setAnalyzeImage(false)
         val buffer = StringBuilder()
         for ((index, data) in result.result.withIndex()) {

@@ -30,7 +30,7 @@ import com.king.mlkit.vision.facemesh.FaceMeshCameraScanActivity
  */
 open class FaceMeshDetectionActivity : FaceMeshCameraScanActivity() {
 
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<FaceMesh>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<FaceMesh>>) {
         cameraScan.setAnalyzeImage(false)
         val bitmap = result.bitmap?.drawRect { canvas, paint ->
             for (data in result.result) {

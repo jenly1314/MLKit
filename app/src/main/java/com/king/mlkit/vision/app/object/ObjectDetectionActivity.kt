@@ -29,7 +29,7 @@ import com.king.mlkit.vision.`object`.ObjectCameraScanActivity
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 open class ObjectDetectionActivity : ObjectCameraScanActivity() {
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<DetectedObject>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<DetectedObject>>) {
         cameraScan.setAnalyzeImage(false)
         val bitmap = result.bitmap?.drawRect { canvas, paint ->
             for (data in result.result) {

@@ -54,7 +54,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         })
     }
 
-    override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
+    override fun initCameraScan(cameraScan: CameraScan<List<Barcode>>) {
         super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
@@ -66,7 +66,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
     }
 
 
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<Barcode>>) {
         // 停止分析
         cameraScan.setAnalyzeImage(false)
         val results = result.result

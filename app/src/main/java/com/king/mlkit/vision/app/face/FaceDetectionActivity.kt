@@ -30,7 +30,7 @@ import com.king.mlkit.vision.face.FaceCameraScanActivity
  */
 open class FaceDetectionActivity : FaceCameraScanActivity() {
 
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Face>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<Face>>) {
         cameraScan.setAnalyzeImage(false)
         val bitmap = result.bitmap?.drawRect { canvas, paint ->
             for (data in result.result) {

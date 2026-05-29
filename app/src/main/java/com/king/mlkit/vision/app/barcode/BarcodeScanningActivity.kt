@@ -31,13 +31,13 @@ import com.king.mlkit.vision.barcode.BarcodeCameraScanActivity
  */
 class BarcodeScanningActivity : BarcodeCameraScanActivity() {
 
-    override fun initCameraScan(cameraScan: CameraScan<MutableList<Barcode>>) {
+    override fun initCameraScan(cameraScan: CameraScan<List<Barcode>>) {
         super.initCameraScan(cameraScan)
         cameraScan.setPlayBeep(true)
             .setVibrate(true)
     }
 
-    override fun onScanResultCallback(result: AnalyzeResult<MutableList<Barcode>>) {
+    override fun onScanResultCallback(result: AnalyzeResult<List<Barcode>>) {
         // 停止分析
         cameraScan.setAnalyzeImage(false)
         val buffer = StringBuilder()

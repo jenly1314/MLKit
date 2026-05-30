@@ -84,8 +84,8 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
                     box.centerY(),
                     width,
                     height,
-                    viewfinderView?.width ?: 0,
-                    viewfinderView?.height ?: 0
+                    viewfinderView?.width ?: width,
+                    viewfinderView?.height ?: height
                 )
                 points.add(point)
             }

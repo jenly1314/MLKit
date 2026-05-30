@@ -41,10 +41,11 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewfinderView.isShowPoints) {
+                val vf = viewfinderView
+                if (vf?.isShowPoints == true) {
                     // 如果是结果点显示时，用户点击了返回键，则认为是取消选择当前结果，重新开始扫码
                     ivResult.setImageResource(0)
-                    viewfinderView.showScanner()
+                    vf.showScanner()
                     cameraScan.setAnalyzeImage(true)
                 } else {
                     finish()
@@ -70,6 +71,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
         // 停止分析
         cameraScan.setAnalyzeImage(false)
         val results = result.result
+        val vf = viewfinderView ?: return
 
         //取预览当前帧图片并显示，为结果点提供参照
         ivResult.setImageBitmap(previewView.bitmap)
@@ -84,14 +86,14 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
                     box.centerY(),
                     width,
                     height,
-                    viewfinderView.width,
-                    viewfinderView.height
+                    vf.width,
+                    vf.height
                 )
                 points.add(point)
             }
         }
         //设置Item点击监听
-        viewfinderView.setOnItemClickListener {
+        vf.setOnItemClickListener {
             //显示点击Item将所在位置扫码识别的结果返回
             val intent = Intent()
             intent.putExtra(CameraScan.SCAN_RESULT, results[it].displayValue)
@@ -106,7 +108,7 @@ class QRCodeScanningActivity : QRCodeCameraScanActivity() {
 //            cameraScan.setAnalyzeImage(true)
         }
         //显示结果点信息
-        viewfinderView.showResultPoints(points)
+        vf.showResultPoints(points)
 
         if (results.size == 1) {//只有一个结果直接返回
             val intent = Intent()

@@ -2,6 +2,7 @@ name: Publish
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   publish:
@@ -13,4 +14,3 @@ jobs:
       maven-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
       gpg-secret-key: ${{ secrets.GPG_SECRET_KEY }}
       gpg-secret-passphrase: ${{ secrets.GPG_SECRET_PASSPHRASE }}
-

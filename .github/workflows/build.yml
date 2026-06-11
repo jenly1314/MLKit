@@ -1,13 +1,13 @@
 name: Build
 
 on:
-    push:
-        branches: [ master ]
-    pull_request:
-        branches: [ master ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-    build:
-        uses: jenly1314/actions/.github/workflows/reusable-build.yml@v1
-        with:
-            java-version-file: '.github/workflows/.java-version'
+  build:
+    uses: jenly1314/actions/.github/workflows/reusable-build.yml@v1
+    with:
+      java-version-file: '.github/workflows/.java-version'

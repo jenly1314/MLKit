@@ -105,36 +105,36 @@ Camera：为各个子库提供相机预览分析的核心库
     ```gradle
 
     //公共库 (*必须)
-    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-common:2.5.0'
 
     //--------------------------
 
     //条码识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-barcode-scanning:2.5.0'
 
     //人脸检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-detection:2.5.0'
 
     //人脸网格检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-face-mesh-detection:2.5.0'
 
     //图像标签 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-image-labeling:2.5.0'
 
     //对象检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-object-detection:2.5.0'
 
     //姿势检测 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection:2.5.0'
 
     //姿势检测精确版 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-pose-detection-accurate:2.5.0'
 
     //自拍分割 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-segmentation-selfie:2.5.0'
 
     //文字识别 (可选)
-    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.4.0'
+    implementation 'com.github.jenly1314.MLKit:mlkit-text-recognition:2.5.0'
 
     ```
 
@@ -219,59 +219,59 @@ BarcodeDecoder.process(bitmap).addOnSuccessListener(this) {
 #### mlkit-barcode-scanning
 
 扫条形码/二维码实现示例：通过直接继承 **BarcodeCameraScanActivity** 实现的示例
-[BarcodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/BarcodeScanningActivity.kt)
+[BarcodeScanningActivity](app/src/main/kotlin/com/king/mlkit/vision/app/barcode/BarcodeScanningActivity.kt)
 
 扫二维码实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
-[QRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/QRCodeScanningActivity.kt)
+[QRCodeScanningActivity](app/src/main/kotlin/com/king/mlkit/vision/app/barcode/QRCodeScanningActivity.kt)
 
 扫二维码（多个结果）实现示例：通过间接继承 **BarcodeCameraScanActivity** 实现的示例
-[MultipleQRCodeScanningActivity](app/src/main/java/com/king/mlkit/vision/app/barcode/MultipleQRCodeScanningActivity.kt)
+[MultipleQRCodeScanningActivity](app/src/main/kotlin/com/king/mlkit/vision/app/barcode/MultipleQRCodeScanningActivity.kt)
 
 #### mlkit-face-detection
 
 人脸检测实现示例：通过直接继承 **FaceCameraScanActivity** 实现的示例
-[FaceDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/FaceDetectionActivity.kt)
+[FaceDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/face/FaceDetectionActivity.kt)
 
 多人脸检测实现示例：通过间接继承 **FaceCameraScanActivity** 实现的示例
-[MultipleFaceDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/MultipleFaceDetectionActivity.kt)
+[MultipleFaceDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/face/MultipleFaceDetectionActivity.kt)
 
 #### mlkit-face-mesh-detection （1.2.0新增）
 
 人脸网格检测实现示例：通过直接继承 **FaceMeshCameraScanActivity** 实现的示例
-[FaceMeshDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/face/FaceMeshDetectionActivity.kt)
+[FaceMeshDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/face/FaceMeshDetectionActivity.kt)
 
 #### mlkit-image-labeling
 
 图像标签实现示例：通过直接继承 **ImageCameraScanActivity** 实现的示例
-[ImageLabelingActivity](app/src/main/java/com/king/mlkit/vision/app/image/ImageLabelingActivity.kt)
+[ImageLabelingActivity](app/src/main/kotlin/com/king/mlkit/vision/app/image/ImageLabelingActivity.kt)
 
 #### mlkit-object-detection
 
 对象检测实现示例：通过直接继承 **ObjectCameraScanActivity** 实现的示例
-[ObjectDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/object/ObjectDetectionActivity.kt)
+[ObjectDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/object/ObjectDetectionActivity.kt)
 
 多对象检测实现示例：通过间接继承 **ObjectCameraScanActivity** 实现的示例
-[MultipleObjectDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/object/MultipleObjectDetectionActivity.kt)
+[MultipleObjectDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/object/MultipleObjectDetectionActivity.kt)
 
 #### mlkit-pose-detection
 
 姿势检测实现示例：通过直接继承 **PoseCameraScanActivity** 实现的示例
-[PoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/PoseDetectionActivity.kt)
+[PoseDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/pose/PoseDetectionActivity.kt)
 
 #### mlkit-pose-detection-accurate
 
 姿势检测（精确版）实现示例：通过间接继承 **AccuratePoseCameraScanActivity** 实现的示例
-[AccuratePoseDetectionActivity](app/src/main/java/com/king/mlkit/vision/app/pose/AccuratePoseDetectionActivity.kt)
+[AccuratePoseDetectionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/pose/AccuratePoseDetectionActivity.kt)
 
 #### mlkit-segmentation-selfie
 
 自拍分割实现示例：通过直接继承 **SegmentationCameraScanActivity** 实现的示例
-[SelfieSegmentationActivity](app/src/main/java/com/king/mlkit/vision/app/segmentation/SelfieSegmentationActivity.kt)
+[SelfieSegmentationActivity](app/src/main/kotlin/com/king/mlkit/vision/app/segmentation/SelfieSegmentationActivity.kt)
 
 #### mlkit-text-recognition
 
 文字识别实现示例：通过直接继承 **TextCameraScanActivity** 实现的示例
-[TextRecognitionActivity](app/src/main/java/com/king/mlkit/vision/app/text/TextRecognitionActivity.kt)
+[TextRecognitionActivity](app/src/main/kotlin/com/king/mlkit/vision/app/text/TextRecognitionActivity.kt)
 
 ### 模型配置（可选）
 
@@ -335,12 +335,9 @@ compileOptions {
 
 ## 版本日志
 
-#### v2.4.0：2026-3-16
-- 更新CameraScan至v1.4.1
-- 更新minSdk至23
-- 更新compileSdk至35
-- 更新Gradle至v8.13
-- 更新ViewfinderView至v1.4.0
+#### v2.5.0：2026-6-11
+- 迁移：所有 Java 代码已转为 Kotlin 实现
+- 更新CameraScan至v1.5.0
 
 #### [查看更多版本日志](CHANGELOG.md)
 

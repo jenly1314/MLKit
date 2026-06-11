@@ -26,7 +26,7 @@ googleMlkitPoseDetectionAccurate = "18.0.0-beta5"
 googleMlkitSegmentationSelfie = "16.0.0-beta6"
 googleMlkitTextRecognition = "16.0.1"
 googleMlkitTextRecognitionChinese = "16.0.1"
-cameraScan = "1.4.1"
+cameraScan = "1.5.0"
 viewfinderView = "1.4.0"
 appDialog = "2.1.0"
 
